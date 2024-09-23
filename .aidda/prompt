@@ -1,0 +1,32 @@
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In: 
+Out: 
+Sysmsg: You are an expert technical writer proficient in Markdown.
+        You will use proper markdown headings, code blocks, and other syntax
+        to format your response.  The markdown dialect you will use is
+        GitHub Flavored Markdown (GFM).  
+In: README.md
+Out: README.md
+
+Revise README.md
+- Integrate a summary of Mark Burgess's definition of Promise Theory
+- Integrate a summary of Mark Burgess's definition of Smart SpaceTime
+
+The following may help you:
+
+Mark Burgess' writings on *Smart Spacetime* focus on the idea that information systems and the physical world are interconnected through a concept called *promise theory*. He proposes that all systems—whether physical, social, or digital—can be understood as networks of autonomous agents making promises to each other. These promises define the behavior and relationships within a system, creating a *spacetime* where interactions and behaviors unfold over time.
+
+In the context of *Smart Spacetime*, Burgess explores how space (the arrangement of agents) and time (the order of interactions) are intrinsic to understanding system behavior. His theory emphasizes autonomy and local decision-making over centralized control, highlighting that systems are more resilient and adaptable when each agent manages its own promises based on its local conditions. This approach differs from traditional models that rely on global control or synchronization.
+
+Key themes include:
+
+1. **Autonomous Agents**: Each agent in the system makes local decisions based on its understanding of the environment and the promises made by other agents.
+  
+2. **Promises as Commitments**: Rather than commands or rules, systems function through promises, where agents declare their intentions and capabilities, and other agents react accordingly.
+  
+3. **Spacetime Framework**: He links the physical and informational dimensions, explaining how interactions across both dimensions form the structure of system behavior.
+  
+4. **Decentralized Management**: By avoiding central control, systems can scale and adapt more efficiently through local interactions.
+
+Burgess applies these principles to various domains, from IT infrastructure to social and physical systems, advocating for a shift in how we design and understand complex, distributed environments.
