@@ -72,5 +72,5 @@ XXX complete references
 1. Mark Burgess, Promise Theory
 2. Mark Burgess, Smart Spacetime
 3. Steve Traugott, Push vs Pull
-3. Steve Traugott, Why Order Matters
-4. Andrew Zonenberg, Antikernel
+4. Steve Traugott, Why Order Matters
+5. Andrew Zonenberg, Antikernel

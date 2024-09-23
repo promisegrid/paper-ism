@@ -9,7 +9,8 @@ Sysmsg: You are an expert technical writer proficient in Markdown.
 In: README.md
 Out: README.md
 
-Revise README.md
+Revise README.md:
+
 - Integrate a summary of Mark Burgess's definition of Promise Theory
 - Integrate a summary of Mark Burgess's definition of Smart SpaceTime
 
