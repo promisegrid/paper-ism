@@ -1,14 +1,14 @@
-# A Decentralized Infinite State Machine and Promise-Based State Transition System Compatible with Smart Spacetime and Promise Theory
+# A Decentralized Infinite State Machine and Promise-Based State Transition System Compatible with Semantic Spacetime and Promise Theory
 
 ## Abstract
 
-This paper introduces the concept of a decentralized infinite state machine (ISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this ISM framework is compatible with both Smart Spacetime (SST) and Promise Theory (PT), providing a natural model for distributed systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in ISM that aligns with SST and PT principles. This language relies on the concept of promises, where the ISM kernel (the agent) signs tuples that define guaranteed transitions between functions without those functions making promises themselves. We argue that this model maintains the separation of concerns between the kernel and the function execution, consistent with Promise Theory.
+This paper introduces the concept of a decentralized infinite state machine (ISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this ISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for distributed systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in ISM that aligns with SST and PT principles. This language relies on the concept of promises, where the ISM kernel (the agent) signs tuples that define guaranteed transitions between functions without those functions making promises themselves. We argue that this model maintains the separation of concerns between the kernel and the function execution, consistent with Promise Theory.
 
 ## Introduction
 
 Distributed systems face challenges in managing state and coordinating behavior across multiple autonomous agents. A decentralized infinite state machine (ISM) framework offers a solution where each agent independently manages its local state and interacts with others through promises. These promises form a graph of state transitions, creating a decentralized model of computation.
 
-Smart Spacetime (SST), as introduced by Mark Burgess, offers a way to understand distributed systems as interacting agents that operate based on local knowledge and autonomy, while Promise Theory (PT) provides a formalism for describing the commitments agents make to each other in a distributed environment. We hypothesize that ISM, SST, and PT are compatible, allowing us to develop a cohesive framework for decentralized computation.
+Semantic Spacetime (SST), as introduced by Mark Burgess, offers a way to understand distributed systems as interacting agents that operate based on local knowledge and autonomy, while Promise Theory (PT) provides a formalism for describing the commitments agents make to each other in a distributed environment. We hypothesize that ISM, SST, and PT are compatible, allowing us to develop a cohesive framework for decentralized computation.
 
 This paper explores the relationship between ISM, SST, and PT and introduces a generic language for describing state transitions in a way that aligns with these theories.
 
@@ -20,9 +20,9 @@ In an ISM, each agent is responsible for deciding its own next state based on bo
 
 The *decentralized* aspect of ISM ensures that there is no central controller, and each agent acts independently, promoting scalability and fault tolerance. 
 
-## Smart Spacetime and ISM Compatibility
+## Semantic Spacetime and ISM Compatibility
 
-Smart Spacetime (SST) offers a conceptual framework for understanding distributed systems as a set of agents that operate autonomously in both space and time. Agents in SST interact with their environment and each other based on local information and promises. Time and space are fundamental aspects of how agents coordinate and change state.
+Semantic Spacetime (SST) offers a conceptual framework for understanding distributed systems as a set of agents that operate autonomously in both space and time. Agents in SST interact with their environment and each other based on local information and promises. Time and space are fundamental aspects of how agents coordinate and change state.
 
 In the context of ISM, SST can be seen as the backdrop against which agents make promises about state transitions. Each state transition occurs within the spacetime context, and the "next state" in the ISM corresponds to a new configuration of the agent's spacetime environment.
 
@@ -30,7 +30,7 @@ By making promises about the future (the next function to be executed and its ex
 
 ## A Generic Language for State Transitions
 
-To enable ISM compatibility with Promise Theory and Smart Spacetime, we propose a generic language for describing state transitions. This language uses a tuple format to capture promises about function execution. The proposed format is as follows:
+To enable ISM compatibility with Promise Theory and Semantic Spacetime, we propose a generic language for describing state transitions. This language uses a tuple format to capture promises about function execution. The proposed format is as follows:
 
 ```
 (f1, in, inerr, out, outerr, rc, f2)
@@ -59,7 +59,7 @@ Thus, the kernel provides the necessary control over function execution, ensurin
 
 ## Discussion and Conclusion
 
-We have postulated that a decentralized infinite state machine, where each agent manages its local state and interacts with other agents through promises about future state transitions, is compatible with Smart Spacetime (SST) and Promise Theory (PT). This model aligns with the decentralized, autonomous nature of agents in SST and the promise-based interaction model of PT.
+We have postulated that a decentralized infinite state machine, where each agent manages its local state and interacts with other agents through promises about future state transitions, is compatible with Semantic Spacetime (SST) and Promise Theory (PT). This model aligns with the decentralized, autonomous nature of agents in SST and the promise-based interaction model of PT.
 
 To facilitate implementation, we proposed a generic tuple-based language for describing state transitions in ISM. The tuple formalizes the promise made by the ISM kernel about the execution of functions and their resulting outputs and transitions. Importantly, the kernel—acting as the agent—controls function execution, while functions themselves cannot make promises about behavior, preserving the core principles of Promise Theory.
 
@@ -70,7 +70,7 @@ This framework provides a promising foundation for designing decentralized syste
 XXX complete references
 
 1. Mark Burgess, Promise Theory
-2. Mark Burgess, Smart Spacetime
+2. Mark Burgess, Semantic Spacetime
 3. Steve Traugott, Push vs Pull
 4. Steve Traugott, Why Order Matters
 5. Andrew Zonenberg, Antikernel
