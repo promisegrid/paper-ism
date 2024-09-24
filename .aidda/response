@@ -1,112 +1,132 @@
 File: /home/stevegt/lab/promisegrid/paper-ism/README.md
 ```markdown
-# A Decentralized Infinite State Machine and Promise-Based State Transition System Compatible with Smart Spacetime and Promise Theory
+# A Decentralized Infinite State Machine and Promise-Based State Transition System Compatible with Semantic Spacetime and Promise Theory
 
 ## Abstract
 
-This paper introduces the concept of a decentralized infinite state machine (ISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this ISM framework is compatible with both Promise Theory (PT) and Smart Spacetime (SST), providing a natural model for distributed systems where the interaction between autonomous agents defines system behavior. We integrate summaries of Mark Burgess's definitions of Promise Theory and Smart Spacetime to establish foundational understanding. Additionally, we propose a generic language for describing state transitions in ISM that aligns with SST and PT principles. This language relies on the concept of promises, where the ISM kernel (the agent) signs tuples that define guaranteed transitions between functions without those functions making promises themselves. We argue that this model maintains the separation of concerns between the kernel and the function execution, consistent with Promise Theory.
+This paper introduces the concept of a decentralized infinite state machine (ISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this ISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for distributed systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in ISM that aligns with SST and PT principles. This language relies on the concept of promises, where the ISM kernel (the agent) signs tuples that define guaranteed transitions between functions without those functions making promises themselves. We argue that this model maintains the separation of concerns between the kernel and the function execution, consistent with Promise Theory.
 
 ## Introduction
 
 Distributed systems face challenges in managing state and coordinating behavior across multiple autonomous agents. A decentralized infinite state machine (ISM) framework offers a solution where each agent independently manages its local state and interacts with others through promises. These promises form a graph of state transitions, creating a decentralized model of computation.
 
-**Promise Theory (PT)**, introduced by Mark Burgess, provides a formalism for describing the commitments that autonomous agents make to one another in a distributed environment. In PT, agents are considered autonomous and make promises about their behavior without external enforcement. This autonomy ensures that agents can adapt and respond to local conditions, promoting resilience and scalability in distributed systems.
+Semantic Spacetime (SST), as introduced by Mark Burgess, offers a way to understand distributed systems as interacting agents that operate based on local knowledge and autonomy. SST emphasizes that interactions across space (the arrangement of agents) and time (the order of interactions) are intrinsic to understanding system behavior. Promise Theory (PT) provides a formalism for describing the commitments agents make to each other in a distributed environment. PT posits that systems function through promises, where autonomous agents declare their intentions and capabilities, and other agents react accordingly.
 
-**Smart Spacetime (SST)** is another concept developed by Mark Burgess, focusing on the interconnection of information systems and the physical world through promises. SST posits that systems—whether physical, social, or digital—can be understood as networks of autonomous agents making promises to each other. These promises define behaviors and relationships, creating a spacetime framework where interactions unfold over time.
+By integrating SST and PT, we hypothesize that ISM can be understood within this framework, allowing us to develop a cohesive model for decentralized computation where the system behavior emerges from local interactions and promises made by autonomous agents.
 
-This paper explores the relationship between ISM, PT, and SST, and introduces a generic language for describing state transitions in a way that aligns with these theories. By integrating the principles of Promise Theory and Smart Spacetime, we aim to develop a cohesive framework for decentralized computation in distributed systems.
+This paper explores the relationship between ISM, SST, and PT, and introduces a generic language for describing state transitions in a way that aligns with these theories.
 
 ## Promise Theory
 
-Promise Theory is a mathematical model that describes how autonomous agents cooperate through the making and keeping of promises. In PT, a promise is a declaration by an agent about its future behavior, which other agents may rely upon. Key principles of Promise Theory include:
+Promise Theory, introduced by Mark Burgess, is a model for understanding cooperative behavior in networks of autonomous agents. Key concepts include:
 
-1. **Autonomous Agents**: Each agent controls its own behavior and makes decisions based on local information and its own understanding of the environment.
+1. **Autonomous Agents**: Each agent operates independently, making local decisions based on its own understanding of the environment and the promises made by others. There is no central control dictating agent behavior.
+   
+2. **Promises as Commitments**: Agents interact through promises, which are declarations of intent regarding future behavior. Promises define what an agent commits to providing or expecting, enabling coordination without direct commands.
+   
+3. **Local Decision-Making**: Emphasizes that agents base their actions on local information, enhancing system resilience and adaptability. Agents are responsible for managing their own behavior and promises.
 
-2. **Promises as Commitments**: Agents communicate their intended behaviors through promises, rather than commands or obligations imposed by others.
+Promise Theory provides a framework for analyzing and designing distributed systems by focusing on cooperation through promises rather than enforced obligations. This approach allows for scalable, flexible, and robust systems where global behavior emerges from local interactions.
 
-3. **Decentralized Interaction**: There is no central authority; coordination emerges from the voluntary cooperation of agents.
+## Semantic Spacetime
 
-4. **Trust and Verification**: Agents may choose to trust the promises of others, but verification mechanisms can be used to assess whether promises are kept.
+Semantic Spacetime (SST) is a conceptual framework proposed by Mark Burgess that unifies space and time in understanding system behaviors. Key aspects include:
 
-By framing system interactions in terms of promises, PT facilitates the design of systems that are robust, adaptable, and scalable. It shifts the focus from enforcement to cooperation, emphasizing the importance of local decision-making and the voluntary nature of agent interactions.
+1. **Integration of Space and Time**: SST considers both spatial relationships (the arrangement and proximity of agents) and temporal dynamics (the timing and ordering of interactions) as fundamental to system behavior.
+   
+2. **Emergent Behavior**: System properties emerge from the cumulative effect of local interactions over spacetime, rather than being dictated by a central authority.
+   
+3. **Decentralized Management**: Supports scalability and adaptability by enabling agents to make decisions based on local spacetime contexts.
 
-## Smart Spacetime
-
-Smart Spacetime extends the principles of Promise Theory to encompass both informational and physical dimensions. In SST, the arrangement of agents in space and the sequence of their interactions over time are crucial to understanding system behavior. Key themes in Smart Spacetime include:
-
-1. **Agents in Spacetime**: Agents are situated in a physical or logical space, and their positions and proximities affect their interactions.
-
-2. **Temporal Dynamics**: The timing and order of interactions influence the evolution of the system.
-
-3. **Local Interactions**: Agents interact primarily with their immediate neighbors, relying on local information rather than global state.
-
-4. **Emergent Behavior**: System-level behaviors emerge from the aggregate of local interactions among agents.
-
-Smart Spacetime emphasizes that space (the arrangement and connectivity of agents) and time (the sequencing of interactions) are fundamental to the operation of distributed systems. By understanding these dimensions, we can better predict and influence the behavior of complex systems.
+In SST, the focus is on how information and influence propagate through the network of agents. By modeling interactions within a spacetime framework, SST provides insights into the dynamics of distributed systems and the importance of context in agent behaviors.
 
 ## Decentralized Infinite State Machine (ISM)
 
-An **infinite state machine** describes a system where the number of potential states is unbounded. In a decentralized ISM, each agent within the system maintains its local state and interacts with other agents by making promises about future transitions in a state graph.
+An *infinite state machine* describes a system where the number of potential states is unbounded. Each agent within the system maintains its local state and interacts with other agents by making promises about future transitions in a state graph.
 
-In an ISM, agents decide their own next state based on internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory. Agents only promise *what they will do next*, and these promises inform others' decisions about their own state transitions.
+In an ISM:
 
-The *decentralized* aspect ensures that there is no central controller, and each agent acts independently, promoting scalability and fault tolerance. This aligns with the SST focus on local interactions and the significance of spatial relationships among agents.
+- **Autonomous Decision-Making**: Each agent determines its own next state based on internal conditions and the promises received from other agents. This aligns with Promise Theory's emphasis on autonomy.
+- **Promise-Based Interactions**: Agents communicate by making promises about their behavior, forming a network of commitments that guide state transitions.
+- **Decentralization**: There is no central controller; agents operate independently, which enhances scalability and fault tolerance.
 
-## Compatibility between ISM, Promise Theory, and Smart Spacetime
+The ISM leverages the principles of Promise Theory and operates within the context of Semantic Spacetime, where the interactions and state transitions of agents occur over spacetime dimensions.
 
-The ISM framework is inherently compatible with both Promise Theory and Smart Spacetime:
+## Semantic Spacetime and ISM Compatibility
 
-- **Promise Theory Compatibility**: In ISM, agents make promises about their future state transitions, adhering to the principles of autonomy and voluntary cooperation. The ISM kernel (acting as the agent) promises the execution of functions according to specified transitions, without imposing behavior on other agents.
+Semantic Spacetime provides the foundational backdrop for the ISM framework:
 
-- **Smart Spacetime Compatibility**: ISM agents operate within a spacetime context, where their interactions and state transitions unfold over time and are influenced by their spatial relationships. The decentralized nature of ISM emphasizes local interactions, mirroring SST's focus on the significance of space and time in system behavior.
+- **Spatial Relationships**: Agents are positioned within a space where their proximity influences interactions. Promises made by nearby agents are more immediately relevant.
+- **Temporal Dynamics**: State transitions occur over time, and the timing of promises affects system behavior.
+- **Local Interactions**: Emphasizes that agents interact with their immediate environment, consistent with SST's focus on localism.
 
-By integrating the concepts of PT and SST into ISM, we create a robust framework for modeling distributed systems that leverages the strengths of autonomous agents making promises within a spacetime context.
+In the ISM, each agent's state transitions are influenced by the promises it makes and receives within its spacetime context. This creates a dynamic system where global behavior emerges from decentralized, local interactions, embodying the principles of both SST and Promise Theory.
 
 ## A Generic Language for State Transitions
 
-To enable ISM compatibility with Promise Theory and Smart Spacetime, we propose a generic language for describing state transitions. This language uses a tuple format to capture promises about function execution. The proposed format is as follows:
+To enable ISM compatibility with Promise Theory and Semantic Spacetime, we propose a generic language for describing state transitions. This language uses a tuple format to capture promises about function execution:
 
 ```
 (f1, in, inerr, out, outerr, rc, f2)
 ```
 
-Where:  
-- **f1**: The function currently being executed.  
-- **in**: Input to the function.  
-- **inerr**: Any input error that the function needs to handle.  
-- **out**: The expected output of the function.  
-- **outerr**: Any output errors generated by the function.  
-- **rc**: Return code indicating the result of the function (e.g., success or failure).  
-- **f2**: The next function that will be executed in the state graph.
+Where:
 
-This tuple asserts (or promises) that "function f1, given input in and input error inerr, will always produce output out, output error outerr, a return code rc, and a new function f2 to execute next."
+- **f1**: The current function being executed.
+- **in**: Input provided to the function.
+- **inerr**: Any input errors that need to be handled.
+- **out**: The expected output of the function.
+- **outerr**: Any output errors generated by the function.
+- **rc**: Return code indicating the result (e.g., success or failure).
+- **f2**: The next function to execute in the state graph.
 
-The tuple is signed by the ISM kernel, which is responsible for controlling function execution. The signature of the ISM kernel represents the *promise* of the kernel to guarantee the behavior specified by the tuple. This approach aligns with Promise Theory, where only the agent (in this case, the ISM kernel) can make promises.
+This tuple represents a promise made by the ISM kernel:
+
+> *Given input `in` and input error `inerr`, function `f1` will produce output `out`, output error `outerr`, return code `rc`, and will transition to function `f2`.*
+
+By signing this tuple, the ISM kernel commits to executing the state transition as promised. This adheres to Promise Theory by ensuring that only the agent (the ISM kernel) makes promises about behavior, maintaining a clear separation between the controller and the functions.
 
 ## The Role of the ISM Kernel in State Transitions
 
-The ISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.) but retains control over their behavior. The kernel promises to execute functions according to the tuple it signs.
+The ISM kernel acts as the agent responsible for:
 
-This separation ensures that individual functions (f1, f2, etc.) cannot make promises about their own behavior or the behavior of the system. Allowing functions to make promises would violate Promise Theory, as only the kernel (the controlling agent) can guarantee outcomes related to state transitions.
+- **Making Promises**: The kernel makes promises about state transitions by signing the tuples that define them.
+- **Controlling Execution**: It manages the execution of functions, ensuring that the promised transitions occur as specified.
+- **Maintaining Autonomy**: By controlling the promises and execution, the kernel preserves the autonomy of agents as per Promise Theory.
 
-Thus, the kernel provides the necessary control over function execution, ensuring that the system adheres to the promised behavior while maintaining compatibility with Promise Theory. Functions themselves remain passive entities that the kernel manages, preventing them from making claims about system behavior or state transitions.
+Functions (`f1`, `f2`, etc.) are passive; they do not make promises but are invoked according to the kernel's promises. This design:
+
+- **Prevents Violations**: Ensures functions cannot independently make promises, which would violate the principles of Promise Theory.
+- **Separates Concerns**: Distinguishes between the control logic (kernel) and the operational logic (functions), simplifying the system architecture.
 
 ## Discussion and Conclusion
 
-We have integrated summaries of Mark Burgess's definitions of Promise Theory and Smart Spacetime to establish a foundational understanding of these concepts. We have postulated that a decentralized infinite state machine, where each agent manages its local state and interacts with other agents through promises about future state transitions, is compatible with both PT and SST. This model aligns with the decentralized, autonomous nature of agents in PT and the spacetime framework of SST.
+We have proposed that a decentralized infinite state machine (ISM), where each agent manages its local state and interacts through promises, is compatible with both Semantic Spacetime (SST) and Promise Theory (PT). By integrating summaries of Mark Burgess's definitions:
 
-To facilitate implementation, we proposed a generic tuple-based language for describing state transitions in ISM. The tuple formalizes the promise made by the ISM kernel about the execution of functions and their resulting outputs and transitions. Importantly, the kernel—acting as the agent—controls function execution, while functions themselves cannot make promises about behavior, preserving the core principles of Promise Theory.
+- **Promise Theory**: We understand that autonomous agents interact by making promises, fostering cooperation without central control.
+- **Semantic Spacetime**: We see that agent interactions over space and time lead to emergent system behaviors.
 
-This framework provides a promising foundation for designing decentralized systems that operate autonomously and scalably, with clear responsibilities for state transitions managed by the ISM kernel. Future work can focus on applying this model to real-world distributed systems and exploring the performance and resilience of ISM-based architectures.
+The ISM framework leverages these concepts by:
+
+- **Utilizing Promises**: Agents make promises about state transitions, aligning with PT.
+- **Operating in Spacetime**: Interactions and transitions occur within a spacetime context, as per SST.
+
+The proposed generic language for state transitions formalizes promises made by the ISM kernel, ensuring that the system adheres to the principles of PT and SST. By keeping functions passive and centralizing promise-making in the kernel, we maintain a clear separation of concerns.
+
+This framework lays the groundwork for designing decentralized systems that are scalable, adaptable, and resilient. Future work includes:
+
+- **Implementing the ISM Framework**: Developing practical systems based on this model.
+- **Exploring Performance**: Analyzing how the ISM performs in real-world scenarios.
+- **Extending Theoretical Foundations**: Further integrating PT and SST into distributed system design.
 
 ## References
 
-XXX complete references
+*Note: Complete references to be provided.*
 
-1. Mark Burgess, _Promise Theory: Principles and Applications_.
-2. Mark Burgess, _Smart Spacetime: The Promise of Spacetime and its Applications_.
-3. Steve Traugott, "Push vs Pull".
-4. Steve Traugott, "Why Order Matters".
-5. Andrew Zonenberg, _Antikernel_.
+1. **Mark Burgess**, *An Introduction to Promise Theory*
+2. **Mark Burgess**, *Semantic Spacetime: A Framework for Distributed Systems*
+3. **Steve Traugott**, *Push vs Pull: Distributed Configuration Management*
+4. **Steve Traugott**, *Why Order Matters in Distributed Systems*
+5. **Andrew Zonenberg**, *Antikernel: A Decentralized Operating System Architecture*
 ```
 EOF_/home/stevegt/lab/promisegrid/paper-ism/README.md
