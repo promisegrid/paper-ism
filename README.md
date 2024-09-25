@@ -6,13 +6,15 @@ This paper introduces the concept of a decentralized infinite state machine (ISM
 
 ## Introduction
 
-Distributed systems face challenges in managing state and coordinating behavior across multiple autonomous agents. 
+Distributed systems face challenges in managing state and coordinating behavior across multiple autonomous agents.
 
-An **infinite state machine (ISM)** describes a system where the number of potential states is unbounded.  The actions of the system can be expressed as a directed open graph of state transitions that are capable of modeling anything computable by machine. XXX reference turing, mention a real-world example.
+An **infinite state machine (ISM)** describes a system where the number of potential states is unbounded. The actions of the system can be expressed as a directed open graph of state transitions.  
 
+A real-world example of an effectively infinite state machine is a general purpose computing system.   While it is true that the total number of possible states of a computer is limited by local storage, in practice a full exploration of the machine's local state space is computationally intractible -- even a "tiny" 1 gigabyte disk has 2^10^9 possible states.  It would require something on the order of 10^3000000000 years to visit them all.
 
-A **decentralized infinite state machine (ISM)** is a system where each agent manages its local state and interacts with other agents by some communications protocol.
-These communications form a directed hypergraph of state transitions, creating a decentralized model of computation.
+A **decentralized infinite state machine (ISM)** is a system where each agent manages its local state and interacts with other agents by some communications protocol. These communications form a directed hypergraph of state transitions, creating a decentralized model of computation.
+
+A real-world example of a decentralized infinite state machine is the Internet.  The Internet's communications protocols are not optimized for building or maintaining a complex state graph, let alone recognizing such a graph as a computing mechanism.  The closest we have to date is blockchain-based data structures, which tend to be single-threaded graphs, or git, which is adept at branching but is not optimized for use as a computation mechanism.
 
 **Promise Theory (PT)**, introduced by Mark Burgess, provides a formalism for understanding how autonomous agents interact in a distributed environment. In PT, agents make *promises* about their behavior to others, which are declarations of intent rather than enforced obligations. This framework emphasizes that agents can only control their own behavior, not that of others, promoting robustness and scalability in system design.
 
@@ -24,7 +26,7 @@ This paper explores the relationship between ISM, PT, and SST and introduces a g
 
 ## Decentralized Infinite State Machine (ISM)
 
-The *decentralized* aspect of ISM ensures that there is no central controller, and each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control -- agents cannot make promises on behalf of others.  These promises can be observed by others to inform their own state transitions.
+The *decentralized* aspect of ISM ensures that there is no central controller, and each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control -- agents cannot make promises on behalf of others. These promises can be observed by others to inform their own state transitions.
 
 ## Promise Theory
 
@@ -42,11 +44,11 @@ By applying Promise Theory to ISM, we ensure that agents interact through volunt
 
 Semantic Spacetime extends the concepts of space and time into the semantics of system interactions. In this framework:
 
-- **Agents**: Represent autonomous entities that interact with their environment and other agents.  An agent may be as complex as a biological organism or as simple as a subatomic particle.
+- **Agents**: Represent autonomous entities that interact with their environment and other agents. An agent may be as complex as a biological organism or as simple as a subatomic particle.
 
 - **Space**: Refers to the arrangement and relationships between agents. The spatial configuration affects how agents interact and disseminate information.
 
-- **Time**: Represents the sequence and timing of interactions. Temporal aspects influence the causality and synchronization of events.  XXX mention entropy arrow
+- **Time**: Represents the sequence and timing of interactions. Temporal aspects influence the causality and synchronization of events. The arrow of time, often associated with increasing entropy according to the second law of thermodynamics, implies that systems naturally evolve from states of lower entropy to higher entropy. In Semantic Spacetime, this entropy arrow reflects the progression of system states and the irreversibility of certain processes.
 
 - **Local Interactions**: Emphasizes that system behavior emerges from local interactions rather than global control.
 
@@ -85,7 +87,7 @@ The tuple is signed by the ISM kernel, which is responsible for controlling func
 
 ## The Role of the ISM Kernel in State Transitions
 
-The ISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.) but retains control over their behavior. 
+The ISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.) but retains control over their behavior.
 
 This separation ensures that individual functions (f1, f2, etc.) cannot make promises about their own behavior or the behavior of the system. Allowing functions to make promises would violate Promise Theory, as only the kernel (the controlling agent) can guarantee outcomes related to state transitions.
 
@@ -101,8 +103,9 @@ This framework provides a possible foundation for designing decentralized system
 
 ## References
 
-1. Mark Burgess, *Promise Theory: Principles and Applications*
-2. Mark Burgess, *Semantic Spacetime: A Practical Foundation*
-3. Steve Traugott, *Push vs Pull*
-4. Steve Traugott, *Why Order Matters*
-5. Andrew Zonenberg, *Antikernel*
+1. Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," *Proceedings of the London Mathematical Society*, 1936.
+2. Mark Burgess, *Promise Theory: Principles and Applications*
+3. Mark Burgess, *Semantic Spacetime: A Practical Foundation*
+4. Steve Traugott, *Push vs Pull*
+5. Steve Traugott, *Why Order Matters*
+6. Andrew Zonenberg, *Antikernel*
