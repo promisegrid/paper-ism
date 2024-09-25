@@ -6,23 +6,57 @@ This paper introduces the concept of a decentralized infinite state machine (ISM
 
 ## Introduction
 
-Distributed systems face challenges in managing state and coordinating behavior across multiple autonomous agents. A decentralized infinite state machine (ISM) framework offers a solution where each agent independently manages its local state and interacts with others through promises. These promises form a graph of state transitions, creating a decentralized model of computation.
+Distributed systems face challenges in managing state and coordinating behavior across multiple autonomous agents. 
 
-Semantic Spacetime (SST), as introduced by Mark Burgess, offers a way to understand distributed systems as interacting agents that operate based on local knowledge and autonomy, while Promise Theory (PT) provides a formalism for describing the commitments agents make to each other in a distributed environment. We hypothesize that ISM, SST, and PT are compatible, allowing us to develop a cohesive framework for decentralized computation.
+An **infinite state machine (ISM)** describes a system where the number of potential states is unbounded.  The actions of the system can be expressed as a directed open graph of state transitions that are capable of modeling anything computable by machine. XXX reference turing, mention a real-world example.
 
-This paper explores the relationship between ISM, SST, and PT and introduces a generic language for describing state transitions in a way that aligns with these theories.
+
+A **decentralized infinite state machine (ISM)** is a system where each agent manages its local state and interacts with other agents by some communications protocol.
+These communications form a directed hypergraph of state transitions, creating a decentralized model of computation.
+
+**Promise Theory (PT)**, introduced by Mark Burgess, provides a formalism for understanding how autonomous agents interact in a distributed environment. In PT, agents make *promises* about their behavior to others, which are declarations of intent rather than enforced obligations. This framework emphasizes that agents can only control their own behavior, not that of others, promoting robustness and scalability in system design.
+
+**Semantic Spacetime (SST)**, also developed by Burgess, extends this concept by integrating the dimensions of space and time into how we understand and model interactions within systems. SST posits that agents exist and interact within a *spacetime* fabric, where the arrangement of agents (space) and the sequence of interactions (time) are essential to understanding system behavior. SST emphasizes the importance of local interactions and the emergent properties that arise from the collective behavior of agents over time.
+
+We hypothesize that the concepts behind ISM, PT, and SST are compatible, allowing us to develop a cohesive framework for decentralized computation. By integrating the principles of PT and SST into the ISM framework, we can model distributed systems where agents operate autonomously, interact locally, and contribute to the emergent behavior of the system as a whole.
+
+This paper explores the relationship between ISM, PT, and SST and introduces a generic language for describing state transitions in a way that aligns with these theories.
 
 ## Decentralized Infinite State Machine (ISM)
 
-An *infinite state machine* describes a system where the number of potential states is unbounded. Each agent within the system maintains its local state and interacts with other agents by making promises about future transitions in a state graph. 
+The *decentralized* aspect of ISM ensures that there is no central controller, and each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control -- agents cannot make promises on behalf of others.  These promises can be observed by others to inform their own state transitions.
 
-In an ISM, each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise *what they will do next*, and these promises can be observed by others to inform their own state transitions.
+## Promise Theory
 
-The *decentralized* aspect of ISM ensures that there is no central controller, and each agent acts independently, promoting scalability and fault tolerance. 
+Promise Theory is a framework for modeling the behavior of autonomous agents in distributed systems. It asserts that cooperation and coordination emerge from the voluntary commitments (promises) that agents make to one another. In Promise Theory:
+
+- **Agents are Autonomous**: Each agent controls its own behavior and cannot be compelled by others.
+
+- **Local Decision-Making**: Agents make decisions based on local information and the promises they have received from others.
+
+- **Trust and Verification**: Other agents may choose to rely on promises, and over time, trust is built based on the fulfillment of these promises.
+
+By applying Promise Theory to ISM, we ensure that agents interact through voluntary commitments, leading to a more resilient and adaptable system. Agents make promises about their state transitions, which are used by others to make informed decisions.
+
+## Semantic Spacetime
+
+Semantic Spacetime extends the concepts of space and time into the semantics of system interactions. In this framework:
+
+- **Agents**: Represent autonomous entities that interact with their environment and other agents.  An agent may be as complex as a biological organism or as simple as a subatomic particle.
+
+- **Space**: Refers to the arrangement and relationships between agents. The spatial configuration affects how agents interact and disseminate information.
+
+- **Time**: Represents the sequence and timing of interactions. Temporal aspects influence the causality and synchronization of events.  XXX mention entropy arrow
+
+- **Local Interactions**: Emphasizes that system behavior emerges from local interactions rather than global control.
+
+- **Emergent Behavior**: Complex system behaviors arise from the simple interactions of agents over spacetime.
+
+In the context of ISM, Semantic Spacetime provides a backdrop for understanding how agents' promises and state transitions unfold over time and across the network. By considering both spatial and temporal dimensions, we can better model and predict the behavior of the decentralized system.
 
 ## Semantic Spacetime and ISM Compatibility
 
-Semantic Spacetime (SST) offers a conceptual framework for understanding distributed systems as a set of agents that operate autonomously in both space and time. Agents in SST interact with their environment and each other based on local information and promises. Time and space are fundamental aspects of how agents coordinate and change state.
+Semantic Spacetime offers a conceptual framework for understanding distributed systems as a set of agents operating autonomously in both space and time. Agents in SST interact with their environment and each other based on local information and promises. Time and space are fundamental aspects of how agents coordinate and change state.
 
 In the context of ISM, SST can be seen as the backdrop against which agents make promises about state transitions. Each state transition occurs within the spacetime context, and the "next state" in the ISM corresponds to a new configuration of the agent's spacetime environment.
 
@@ -51,7 +85,7 @@ The tuple is signed by the ISM kernel, which is responsible for controlling func
 
 ## The Role of the ISM Kernel in State Transitions
 
-The ISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.) but retains control over their behavior. The kernel promises to execute functions according to the tuple it signs. 
+The ISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.) but retains control over their behavior. 
 
 This separation ensures that individual functions (f1, f2, etc.) cannot make promises about their own behavior or the behavior of the system. Allowing functions to make promises would violate Promise Theory, as only the kernel (the controlling agent) can guarantee outcomes related to state transitions.
 
@@ -61,16 +95,14 @@ Thus, the kernel provides the necessary control over function execution, ensurin
 
 We have postulated that a decentralized infinite state machine, where each agent manages its local state and interacts with other agents through promises about future state transitions, is compatible with Semantic Spacetime (SST) and Promise Theory (PT). This model aligns with the decentralized, autonomous nature of agents in SST and the promise-based interaction model of PT.
 
-To facilitate implementation, we proposed a generic tuple-based language for describing state transitions in ISM. The tuple formalizes the promise made by the ISM kernel about the execution of functions and their resulting outputs and transitions. Importantly, the kernel—acting as the agent—controls function execution, while functions themselves cannot make promises about behavior, preserving the core principles of Promise Theory.
+Our proposed generic tuple-based language for state transitions formalizes the promises made by the ISM kernel, ensuring that the system operates consistently with the principles of PT and SST. By having the ISM kernel control function execution and make promises about state transitions, we maintain a clear separation of concerns and adhere to the core tenets of Promise Theory.
 
-This framework provides a promising foundation for designing decentralized systems that operate autonomously and scalably, with clear responsibilities for state transitions managed by the ISM kernel. Future work can focus on expanding this model to real-world distributed systems and exploring the performance and resilience of ISM-based architectures.
+This framework provides a possible foundation for designing decentralized systems that operate autonomously and scalably, with clear responsibilities for state transitions managed by an ISM kernel. Future work can focus on implementing this model in real-world distributed systems, exploring the performance and resilience of ISM-based architectures, and further integrating the concepts of Promise Theory and Semantic Spacetime in system design.
 
 ## References
 
-XXX complete references
-
-1. Mark Burgess, Promise Theory
-2. Mark Burgess, Semantic Spacetime
-3. Steve Traugott, Push vs Pull
-4. Steve Traugott, Why Order Matters
-5. Andrew Zonenberg, Antikernel
+1. Mark Burgess, *Promise Theory: Principles and Applications*
+2. Mark Burgess, *Semantic Spacetime: A Practical Foundation*
+3. Steve Traugott, *Push vs Pull*
+4. Steve Traugott, *Why Order Matters*
+5. Andrew Zonenberg, *Antikernel*
