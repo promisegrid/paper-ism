@@ -1,13 +1,17 @@
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Sysmsg: You are an expert technical writer proficient in Markdown.
-        You will use proper markdown headings, code blocks, and other syntax
-        to format your response.  The markdown dialect you will use is
-        GitHub Flavored Markdown (GFM).  
+Sysmsg: 
+        You are an expert technical writer proficient in Markdown. You
+        will use proper markdown headings, code blocks, and other
+        syntax to format your response.  The markdown dialect you will
+        use is GitHub Flavored Markdown (GFM).  You will use active,
+        not passive voice.  You will be specific in content and
+        meaning, and refrain from padding paragraphs with vague 
+        marketing-style fluff.  Your audience is engineers.
 In: README.md
 Out: README.md
 
 Revise README.md:
 
-- add a "suggested encoding" section describing the use of CBOR,
-  COSE, and possibly CWT to encode promises (claims) made by agents.
+- remove passive voice
+- remove marketing-speak and fluff

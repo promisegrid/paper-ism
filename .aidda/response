@@ -4,7 +4,7 @@ File: /home/stevegt/lab/promisegrid/paper-ism/README.md
 
 ## Abstract
 
-This paper introduces the concept of a decentralized infinite state machine (ISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this ISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in ISM that aligns with SST and PT principles. This language relies on the concept of promises, where the ISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.
+We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles. This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.
 
 ## Definition of Terms
 
@@ -37,11 +37,15 @@ Infinite state machines typically do not repeat previous states.  Their behavior
 
 A **decentralized state machine (DSM)** is a system of interconnected state machines that operate autonomously and interact with each other with no central controller.  Each machine manages only its own local state based on transitions triggered by inputs.  Inputs may be from local sources or from other state machines.  
 
-A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site.  Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group.  [https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12](https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12)
+The behavior of a decentralized state machine can be modeled as a hypergraph.  If the group includes an infinite state machine, then the graph is open-ended.
+
+### Decentralized Finite State Machine (DFSM) 
+
+A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site.  Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group.  [^flagxfer]
+
+### Decentralized Infinite State Machine (DISM)
 
 A real-world example of a decentralized infinite state machine is a group of git repository forks, where each repository is an infinite state machine that can interact with other repositories via pull and push operations.
-
-The behavior of a decentralized state machine can be modeled as a hypergraph.  If the group includes an infinite state machine, then the graph is open-ended.
 
 ### Transition Function
 
@@ -67,7 +71,7 @@ Promises are not guarantees; they are assertions an agent makes about its own be
 
 Frame of reference matters:  Whether a promise is fulfilled or broken depends on the observer. For example, Bob may view Alice's promise as fulfilled, while Carol views the same promise as broken.  Carol may then tell others that Alice's promise is broken, but it's important to note that, when making this claim, Carol is only making a promise about her own evaluation of Alice.
 
-Relativity matters:  It's worth considering that Carol and Bob may each be using the exact same criteria to evaluate Alice's promise, but they may have different frames of reference.  For example, Bob may be evaluating Alice's promise while he is at rest on Earth's surface, while Carol, in a 20,000km Earth orbit, gains about 38 microseconds per day on her local clock.  If Alice's promise includes microsecond-level precision, then Bob and Carol may be both correct and both in disagreement with each other. [https://www.gpsworld.com/inside-the-box-gps-and-relativity/](https://www.gpsworld.com/inside-the-box-gps-and-relativity/)
+Relativity matters:  It's worth considering that Carol and Bob may each be using the exact same criteria to evaluate Alice's promise, but they may have different frames of reference.  For example, Bob may be evaluating Alice's promise while he is at rest on Earth's surface, while Carol, in a 20,000km Earth orbit, gains about 38 microseconds per day on her local clock.  If Alice's promise includes microsecond-level precision, then Bob and Carol may be both correct and both in disagreement with each other.  [^gps]
 
 Dave, observing all of the above, may conclude that when he's evaluating Alice's, Bob's and Carol's promises, he may want to add his own compensation for relativistic effects.
 
@@ -131,11 +135,13 @@ In the context of ISM, SST can be seen as the backdrop against which agents make
 
 By making promises about the future (the next function to be executed and its expected outputs), agents in an ISM align with the SST principle that system behavior is the emergent result of local interactions in spacetime.
 
-## **Description of the (f1, invars, outvars, f2) Model**
+## A Generic Language for State Transitions
 
-The tuple **(f1, invars, outvars, f2)** is a generalized framework for describing state transitions in a decentralized system. This model is designed to be compatible with both **Promise Theory (PT)** and **Smart Spacetime (SST)**, providing a structured way to represent how autonomous agents process inputs, produce outputs, and evolve their internal state.
+To enable ISM compatibility with Promise Theory and Semantic Spacetime, we propose a generic language for describing state transitions. This language uses a tuple format to capture promises about function execution. The proposed format is as follows:
 
-### **Components of the Model**
+`(f1, invars, outvars, f2)`
+
+Where:
 
 1. **f1 (Current Algorithm/State):**
    - **Definition:** Represents the current algorithm or function that the agent (e.g., an ISM kernel) is executing. This is more than a simple state variable; it's an active process or behavior.
@@ -153,6 +159,8 @@ The tuple **(f1, invars, outvars, f2)** is a generalized framework for describin
    - **Definition:** The algorithm or function that the agent will execute next. **f2** may be the same as **f1** or a modified version, depending on internal side effects during processing.
    - **Role:** Captures the agent's new state after processing. If executing **f1** with **invars** leads to internal changes (e.g., updates to internal variables), these changes are reflected in **f2**.
 
+The tuple is signed by the ISM kernel, which is responsible for controlling function execution. The signature of the ISM kernel represents the *promise* of the kernel to guarantee the behavior specified by the tuple. This approach aligns with Promise Theory, where only the agent (in this case, the ISM kernel) can make promises.
+
 ### **How the Model Works**
 
 - **State Transition Process:**
@@ -160,14 +168,6 @@ The tuple **(f1, invars, outvars, f2)** is a generalized framework for describin
   2. **Producing Outputs:** The processing yields **outvars**, which are the outputs or results of **f1**.
   3. **Internal Side Effects:** While processing, **f1** may undergo internal changes (side effects), leading to a new state (**f2**).
   4. **Next State:** The agent transitions to **f2**, which incorporates any modifications from the side effects. If there are no side effects, then **f2 = f1**.
-
-- **Example Scenario:**
-  - **Agent:** A machine learning model that updates its parameters after each training batch.
-  - **f1:** The current state of the model with existing parameters.
-  - **invars:** A batch of training data.
-  - **Processing:** The model trains on the data, updating its parameters.
-  - **outvars:** Performance metrics like loss and accuracy.
-  - **f2:** The updated model with new parameters.
 
 ### **Key Characteristics**
 
@@ -227,26 +227,62 @@ The tuple **(f1, invars, outvars, f2)** is a generalized framework for describin
   - **outvars:** Responses or actions taken.
   - **f2:** New state after processing messages.
 
-## **A Generic Language for State Transitions**
+- **Machine Learning Models:**
+  - **f1:** Current model parameters.
+  - **invars:** Training data batch.
+  - **outvars:** Updated model performance metrics.
+  - **f2:** Model with new parameters after training.
 
-To enable ISM compatibility with Promise Theory and Semantic Spacetime, we propose a generic language for describing state transitions. This language uses a tuple format to capture promises about function execution. The proposed format is as follows:
+## Suggested Encoding
 
-```
-(f1, in, inerr, out, outerr, rc, f2)
-```
+To effectively encode the promises (claims) made by agents within the DISM framework, the following encoding standards are recommended:
 
-Where:  
-- **f1**: The function currently being executed.  
-- **in**: Input to the function.  
-- **inerr**: Any input error, generated by an upstream agent, that the function needs to handle.  
-- **out**: The expected output of the function.  
-- **outerr**: Any output errors generated by the function.  
-- **rc**: Return code indicating the result of the function (e.g., success or failure).  
-- **f2**: The next function that will be executed in the state graph.
+### CBOR (Concise Binary Object Representation)
 
-This tuple asserts (or promises) that "function f1, given input in and input error inerr, will always produce output out, output error outerr, a return code rc, and a new function f2 to execute next."
+**CBOR** is a binary data serialization format that is designed to be small in size and fast to parse. It is well-suited for encoding structured data like promises because of its compactness and flexibility.
 
-The tuple is signed by the ISM kernel, which is responsible for controlling function execution. The signature of the ISM kernel represents the *promise* of the kernel to guarantee the behavior specified by the tuple. This approach aligns with Promise Theory, where only the agent (in this case, the ISM kernel) can make promises.
+- **Advantages:**
+  - **Efficiency:** Binary format reduces the size of the encoded data, which is beneficial for distributed systems where bandwidth may be limited.
+  - **Flexibility:** Supports a wide range of data types, including complex nested structures.
+  - **Interoperability:** Widely supported across various programming languages and platforms.
+
+- **Usage in DISM:**
+  - Encode the promise tuples `(f1, invars, outvars, f2)` using CBOR to ensure efficient transmission and storage.
+  - Facilitate quick parsing and validation of promises by agents.
+
+### COSE (CBOR Object Signing and Encryption)
+
+**COSE** builds upon CBOR by introducing mechanisms for signing and encrypting data. This is essential for ensuring the integrity and confidentiality of promises exchanged between agents.
+
+- **Advantages:**
+  - **Security:** Provides cryptographic signing to verify the authenticity of promises.
+  - **Encryption:** Ensures that sensitive information within promises is protected from unauthorized access.
+  - **Standardization:** Adheres to established standards, promoting interoperability.
+
+- **Usage in DISM:**
+  - Sign promise tuples with COSE to guarantee that they originate from trusted agents.
+  - Encrypt promises when necessary to protect confidential state transitions or sensitive agent interactions.
+
+### CWT (CBOR Web Token)
+
+**CWT** leverages CBOR and COSE to create secure tokens that can carry claims (promises) in a compact and verifiable manner. It is analogous to JWT (JSON Web Tokens) but optimized for environments where space and efficiency are critical.
+
+- **Advantages:**
+  - **Compactness:** Suitable for systems where bandwidth and storage are at a premium.
+  - **Security:** Inherits COSE's signing and encryption capabilities.
+  - **Extensibility:** Can include custom claims relevant to the DISM framework.
+
+- **Usage in DISM:**
+  - Represent promises as CWTs to encapsulate the necessary claims within a secure token.
+  - Facilitate the verification of promises by agents without exposing the underlying data unnecessarily.
+
+### Integration Considerations
+
+- **Schema Definition:** Define a clear schema for how promises are structured within CBOR, COSE, and CWT to ensure consistency across agents.
+  
+- **Versioning:** Implement version control for the encoding schemas to manage updates and maintain compatibility as the DISM framework evolves.
+
+- **Performance Optimization:** Benchmark the encoding and decoding processes to ensure that they meet the performance requirements of the decentralized system.
 
 ## The Role of the ISM Kernel in State Transitions
 
@@ -272,5 +308,7 @@ This framework provides a possible foundation for designing decentralized system
 [^pvp]: Steve Traugott, *Push vs Pull*
 [^order]: Steve Traugott, *Why Order Matters*
 [^antikernel]: Andrew Zonenberg, *Antikernel*
+[^flagxfer]: Manual on Uniform Traffic Control Devices for Streets and Highways, US Dept of Transportation [https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12](https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12)
+[^gps]:  Inside the Box: GPS and Relativity [https://www.gpsworld.com/inside-the-box-gps-and-relativity/](https://www.gpsworld.com/inside-the-box-gps-and-relativity/)
 ```
 EOF_/home/stevegt/lab/promisegrid/paper-ism/README.md

@@ -157,7 +157,6 @@ Where:
    - **Definition:** The algorithm or function that the agent will execute next. **f2** may be the same as **f1** or a modified version, depending on internal side effects during processing.
    - **Role:** Captures the agent's new state after processing. If executing **f1** with **invars** leads to internal changes (e.g., updates to internal variables), these changes are reflected in **f2**.
 
-The tuple is signed by the ISM kernel, which is responsible for controlling function execution. The signature of the ISM kernel represents the *promise* of the kernel to guarantee the behavior specified by the tuple. This approach aligns with Promise Theory, where only the agent (in this case, the ISM kernel) can make promises.
 
 ### **How the Model Works**
 
@@ -231,22 +230,62 @@ The tuple is signed by the ISM kernel, which is responsible for controlling func
   - **outvars:** Updated model performance metrics.
   - **f2:** Model with new parameters after training.
 
+## The Role of the DISM Kernel in State Transitions
 
-## The Role of the ISM Kernel in State Transitions
+The tuple should be signed by the local DISM kernel hosting f1, rather than by f1 itself. The DISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.), and is able to influence their behavior, therefore functions should be considered components of the kernel, rather than independent agents themselves.
 
-The ISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.) but retains control over their behavior.
 
-This separation ensures that individual functions (f1, f2, etc.) cannot make promises about their own behavior or the behavior of the system. Allowing functions to make promises would violate Promise Theory, as only the kernel (the controlling agent) can guarantee outcomes related to state transitions.
+## Suggested Encoding
 
-Thus, the kernel provides the necessary control over function execution, ensuring that the system adheres to the promised behavior while maintaining compatibility with Promise Theory. Functions themselves remain passive entities that the kernel manages, preventing them from making claims about system behavior or state transitions.
+To encode the promises (claims) made by agents within the DISM framework, the following encoding standards are suggested:
 
-## Discussion and Conclusion
+### CBOR (Concise Binary Object Representation)
 
-We have postulated that a decentralized infinite state machine, where each agent manages its local state and interacts with other agents through promises about future state transitions, is compatible with Semantic Spacetime (SST) and Promise Theory (PT). This model aligns with the decentralized, autonomous nature of agents in SST and the promise-based interaction model of PT.
+**CBOR** is a binary data serialization format that is designed to be small in size and fast to parse. It is well-suited for encoding structured data like promises because of its compactness and flexibility.
 
-Our proposed generic tuple-based language for state transitions formalizes the promises made by the ISM kernel, ensuring that the system operates consistently with the principles of PT and SST. By having the ISM kernel control function execution and make promises about state transitions, we maintain a clear separation of concerns and adhere to the core tenets of Promise Theory.
+- **Advantages:**
+  - **Efficiency:** Binary format reduces the size of the encoded data, which is beneficial for distributed systems where bandwidth may be limited.
+  - **Flexibility:** Supports a wide range of data types, including complex nested structures.
+  - **Interoperability:** Widely supported across various programming languages and platforms.
 
-This framework provides a possible foundation for designing decentralized systems that operate autonomously and scalably, with clear responsibilities for state transitions managed by an ISM kernel. Future work can focus on implementing this model in real-world decentralized systems, exploring the performance and resilience of ISM-based architectures, and further integrating the concepts of Promise Theory and Semantic Spacetime in system design.
+- **Usage in DISM:**
+  - Encode the promise tuples `(f1, invars, outvars, f2)` using CBOR to ensure efficient transmission and storage.
+  - Facilitate quick parsing and validation of promises by agents.
+
+### COSE (CBOR Object Signing and Encryption)
+
+**COSE** builds upon CBOR by introducing mechanisms for signing and encrypting data. This is essential for ensuring the integrity and confidentiality of promises exchanged between agents.
+
+- **Advantages:**
+  - **Security:** Provides cryptographic signing to verify the authenticity of promises.
+  - **Encryption:** Ensures that sensitive information within promises is protected from unauthorized access.
+  - **Standardization:** Adheres to established standards, promoting interoperability.
+
+- **Usage in DISM:**
+  - Sign promise tuples with COSE to guarantee that they originate from trusted agents.
+  - Encrypt promises when necessary to protect confidential state transitions or sensitive agent interactions.
+
+### CWT (CBOR Web Token)
+
+**CWT** leverages CBOR and COSE to create secure tokens that can carry claims (promises) in a compact and verifiable manner. It is analogous to JWT (JSON Web Tokens) but optimized for environments where space and efficiency are critical.
+
+- **Advantages:**
+  - **Compactness:** Suitable for systems where bandwidth and storage are at a premium.
+  - **Security:** Inherits COSE's signing and encryption capabilities.
+  - **Extensibility:** Can include custom claims relevant to the DISM framework.
+
+- **Usage in DISM:**
+  - Represent promises as CWTs to encapsulate the necessary claims within a secure token.
+  - Facilitate the verification of promises by agents without exposing the underlying data unnecessarily.
+
+### Integration Considerations
+
+- **Schema Definition:** Define a clear schema for how promises are structured within CBOR, COSE, and CWT to ensure consistency across agents.
+  
+- **Versioning:** Implement version control for the encoding schemas to manage updates and maintain compatibility as the DISM framework evolves.
+
+- **Performance Optimization:** Benchmark the encoding and decoding processes to ensure that they meet the performance requirements of the decentralized system.
+
 
 ## References
 
@@ -258,4 +297,3 @@ This framework provides a possible foundation for designing decentralized system
 [^antikernel]: Andrew Zonenberg, *Antikernel*
 [^flagxfer]: Manual on Uniform Traffic Control Devices for Streets and Highways, US Dept of Transportation [https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12](https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12)
 [^gps]:  Inside the Box: GPS and Relativity [https://www.gpsworld.com/inside-the-box-gps-and-relativity/](https://www.gpsworld.com/inside-the-box-gps-and-relativity/)
-
