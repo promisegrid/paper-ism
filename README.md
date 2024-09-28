@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This paper introduces the concept of a decentralized infinite state machine (ISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this ISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in ISM that aligns with SST and PT principles. This language relies on the concept of promises, where the ISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.
+We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles. This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.
 
 ## Definition of Terms
 
@@ -35,11 +35,15 @@ Infinite state machines typically do not repeat previous states.  Their behavior
 
 A **decentralized state machine (DSM)** is a system of interconnected state machines that operate autonomously and interact with each other with no central controller.  Each machine manages only its own local state based on transitions triggered by inputs.  Inputs may be from local sources or from other state machines.  
 
-A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site.  Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group.  https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12
+The behavior of a decentralized state machine can be modeled as a hypergraph.  If the group includes an infinite state machine, then the graph is open-ended.
+
+### Decentralized Finite State Machine (DFSM) 
+
+A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site.  Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group.  [^flagxfer]
+
+### Decentralized Infinite State Machine (DISM)
 
 A real-world example of a decentralized infinite state machine is a group of git repository forks, where each repository is an infinite state machine that can interact with other repositories via pull and push operations.
-
-The behavior of a decentralized state machine can be modeled as a hypergraph.  If the group includes an infinite state machine, then the graph is open-ended.
 
 ### Transition Function
 
@@ -49,7 +53,7 @@ In our previous example of a general purpose computing system, the transition ta
 
 ### Agent
 
-An **agent** is an autonomous entity.  An agent might be a person or animal, a computer program, a machine, or other physical object.  At extremely small scale, an agent might be an electron or other subatomic particle.  The defining characteristic of an agent is its ability to influence, and be influenced by, its envrionment.
+An **agent** is an autonomous entity.  An agent might be a person or animal, a computer program, a machine, or other physical object.  At extremely small scale, an agent might be an electron or other subatomic particle.  The defining characteristic of an agent is its ability to influence, and be influenced by, its environment.
 
 ### Pure Functions and Side Effects
 
@@ -63,9 +67,9 @@ While pure functions aid in reasoning about a standalone system, it is useful to
 
 Promises are not guarantees; they are assertions an agent makes about its own behavior or state on a timeline.  From the frame of reference of another agent, these assertions may resolve as true, false, or undecided:  A promise may be viewed as fulfilled, broken, or still pending.  Over time, agents build trust by observing the behavior of other agents and their promises.  
 
-Frame of reference matters:  Whether an promise is fulfilled or broken depends on the observer. For example, Bob may view Alice's promise as fulfilled, while Carol views the same promise as broken.  Carol may then tell others that Alice's promise is broken, but it's important to note that, when making this claim, Carol is only making a promise about her own evaluation of Alice.
+Frame of reference matters:  Whether a promise is fulfilled or broken depends on the observer. For example, Bob may view Alice's promise as fulfilled, while Carol views the same promise as broken.  Carol may then tell others that Alice's promise is broken, but it's important to note that, when making this claim, Carol is only making a promise about her own evaluation of Alice.
 
-Relativity matters:  It's worth considering that Carol and Bob may each be using the exact same criteria to evaluate Alice's promise, but they may have different frames of reference.  For example, Bob may be evaluating Alice's promise while he is at rest on Earth's surface, while Carol, in a 20,000km Earth orbit, gains about 38 microseconds per day on her local clock.  If Alice's promise includes microsecond-level precision, then Bob and Carol may be both correct and both in disagreement with each other. https://www.gpsworld.com/inside-the-box-gps-and-relativity/
+Relativity matters:  It's worth considering that Carol and Bob may each be using the exact same criteria to evaluate Alice's promise, but they may have different frames of reference.  For example, Bob may be evaluating Alice's promise while he is at rest on Earth's surface, while Carol, in a 20,000km Earth orbit, gains about 38 microseconds per day on her local clock.  If Alice's promise includes microsecond-level precision, then Bob and Carol may be both correct and both in disagreement with each other.  [^gps]
 
 Dave, observing all of the above, may conclude that when he's evaluating Alice's, Bob's and Carol's promises, he may want to add his own compensation for relativistic effects.
 
@@ -133,22 +137,100 @@ By making promises about the future (the next function to be executed and its ex
 
 To enable ISM compatibility with Promise Theory and Semantic Spacetime, we propose a generic language for describing state transitions. This language uses a tuple format to capture promises about function execution. The proposed format is as follows:
 
-```
-(f1, in, inerr, out, outerr, rc, f2)
-```
+`(f1, invars, outvars, f2)`
 
-Where:  
-- **f1**: The function currently being executed.  
-- **in**: Input to the function.  
-- **inerr**: Any input error, generated by an upstream agent, that the function needs to handle.  
-- **out**: The expected output of the function.  
-- **outerr**: Any output errors generated by the function.  
-- **rc**: Return code indicating the result of the function (e.g., success or failure).  
-- **f2**: The next function that will be executed in the state graph.
+Where:
 
-This tuple asserts (or promises) that "function f1, given input in and input error inerr, will always produce output out, output error outerr, a return code rc, and a new function f2 to execute next."
+1. **f1 (Current Algorithm/State):**
+   - **Definition:** Represents the current algorithm or function that the agent (e.g., an ISM kernel) is executing. This is more than a simple state variable; it's an active process or behavior.
+   - **Role:** Serves as the starting point for processing. It encapsulates both the logic and the internal state of the agent before any new input is processed.
+
+2. **invars (Input Variables):**
+   - **Definition:** A set of input variables provided to **f1**. These variables can be simple data types or complex, nested structures (akin to Lincoln Stein's *BoulderIO* streaming of nested variables).
+   - **Role:** Act as the external data or stimuli that **f1** processes. They influence how the agent's current algorithm operates and can lead to state changes.
+
+3. **outvars (Output Variables):**
+   - **Definition:** The set of output variables produced by **f1** after processing **invars**. Like **invars**, these can be nested and complex.
+   - **Role:** Represent the results of the computation or transformation performed by **f1**. These outputs can be consumed by other agents or used for further processing.
+
+4. **f2 (Next Algorithm/State):**
+   - **Definition:** The algorithm or function that the agent will execute next. **f2** may be the same as **f1** or a modified version, depending on internal side effects during processing.
+   - **Role:** Captures the agent's new state after processing. If executing **f1** with **invars** leads to internal changes (e.g., updates to internal variables), these changes are reflected in **f2**.
 
 The tuple is signed by the ISM kernel, which is responsible for controlling function execution. The signature of the ISM kernel represents the *promise* of the kernel to guarantee the behavior specified by the tuple. This approach aligns with Promise Theory, where only the agent (in this case, the ISM kernel) can make promises.
+
+### **How the Model Works**
+
+- **State Transition Process:**
+  1. **Processing Inputs:** The agent uses **f1** to process **invars**.
+  2. **Producing Outputs:** The processing yields **outvars**, which are the outputs or results of **f1**.
+  3. **Internal Side Effects:** While processing, **f1** may undergo internal changes (side effects), leading to a new state (**f2**).
+  4. **Next State:** The agent transitions to **f2**, which incorporates any modifications from the side effects. If there are no side effects, then **f2 = f1**.
+
+### **Key Characteristics**
+
+- **Algorithms as Stateful Entities:**
+  - Both **f1** and **f2** represent not just functions but the state of the agent's processing logic, including any internal variables or configurations.
+
+- **Emphasis on State Transitions:**
+  - The model focuses on how the agent's state evolves over time, rather than viewing functions as stateless operations.
+
+- **Internal Side Effects:**
+  - Changes within **f1** during processing are considered side effects that lead to **f2**. This highlights the dynamic nature of the agent's behavior.
+
+- **Deterministic Promises:**
+  - The agent makes a promise that, given **invars**, it will produce **outvars** and transition to **f2**. This aligns with *Promise Theory*, emphasizing reliable and predictable interactions.
+
+### **Relation to Promise Theory and Smart Spacetime**
+
+- **Promise Theory (PT):**
+  - **Autonomy and Local Control:** Each agent independently manages its state transitions based on local inputs, adhering to PT's principle of autonomous agents.
+  - **Promises as Commitments:** The agent commits to specific behaviors (processing inputs to outputs) without being controlled by external entities.
+
+- **Smart Spacetime (SST):**
+  - **Spacetime Framework:** The model maps the temporal evolution (time) and the arrangement of agents and data (space).
+  - **Interacting Agents:** Agents interact through **invars** and **outvars**, influencing each other's states over time.
+
+### **Benefits of the Model**
+
+1. **Modularity:**
+   - Agents encapsulate their processing logic and state, making the system easier to understand and maintain.
+
+2. **Scalability:**
+   - Decentralized management of state allows the system to scale without centralized bottlenecks.
+
+3. **Adaptability:**
+   - Agents can evolve over time as **f1** transitions to **f2**, enabling dynamic behavior.
+
+4. **Transparency:**
+   - Explicit representation of inputs, outputs, and state changes enhances clarity.
+
+### **Practical Applications**
+
+- **Version Control Systems (e.g., Git):**
+  - **f1:** Current commit hash (repository state).
+  - **invars:** Set of changes (deltas) to apply.
+  - **outvars:** May be minimal or empty; the focus is on state transition.
+  - **f2:** New commit hash after applying changes.
+
+- **Data Processing Pipelines:**
+  - **f1:** Current data transformation function.
+  - **invars:** Input data stream.
+  - **outvars:** Transformed data.
+  - **f2:** Updated function if the transformation logic changes due to processing.
+
+- **Distributed Systems:**
+  - **f1:** Current state of a node or service.
+  - **invars:** Messages or requests from other nodes.
+  - **outvars:** Responses or actions taken.
+  - **f2:** New state after processing messages.
+
+- **Machine Learning Models:**
+  - **f1:** Current model parameters.
+  - **invars:** Training data batch.
+  - **outvars:** Updated model performance metrics.
+  - **f2:** Model with new parameters after training.
+
 
 ## The Role of the ISM Kernel in State Transitions
 
@@ -174,3 +256,6 @@ This framework provides a possible foundation for designing decentralized system
 [^pvp]: Steve Traugott, *Push vs Pull*
 [^order]: Steve Traugott, *Why Order Matters*
 [^antikernel]: Andrew Zonenberg, *Antikernel*
+[^flagxfer]: Manual on Uniform Traffic Control Devices for Streets and Highways, US Dept of Transportation [https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12](https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12)
+[^gps]:  Inside the Box: GPS and Relativity [https://www.gpsworld.com/inside-the-box-gps-and-relativity/](https://www.gpsworld.com/inside-the-box-gps-and-relativity/)
+
