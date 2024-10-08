@@ -1,16 +1,31 @@
-# A Decentralized Infinite State Machine and Promise-Based State Transition System Compatible with Semantic Spacetime and Promise Theory
+# A Hypergraph-based Decentralized Infinite State Machine Model Compatible with Semantic Spacetime and Promise Theory
 
 ## Abstract
 
 We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles. This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.
 
-## Definition of Terms
+## Foreword
+*-- By Steve Traugott*
 
-### State Machine
+XXX Retrospective on the prehistory of the DevOps movement's concepts
+and cultures of convergence, congruence, promise theory, semantic spacetime.
+Desire for reconciliation between these.
+
+## Discussion
+
+XXX informal discussion of the paper's content
+
+## Theory
+
+XXX formal content
+
+### Definition of Terms
+
+#### State Machine
 
 A **state machine** is a model of computation that describes a system's behavior as a sequence of states. In a state machine, the system transitions from one state to another based on inputs and internal conditions. 
 
-### Finite State Machine (FSM)
+#### Finite State Machine (FSM)
 
 A **finite state machine** has a fixed number of states and transitions, making it suitable for modeling systems with a limited number of possible states.  
 
@@ -19,7 +34,7 @@ A real-world example of a finite state machine is a traffic light, which has a f
 Finite state machines typically repeat a fixed set of states in one or more loops.  Their behavior can be modeled as a cyclic directed graph, where states are nodes and transitions are edges.
 
 
-### Infinite State Machine (ISM)
+#### Infinite State Machine (ISM)
 
 An **infinite state machine (ISM)** is a system in which the number of potential states is unbounded. 
 
@@ -31,37 +46,37 @@ In theory, it should be possible to commit a machine's entire disk state to a gi
 
 Infinite state machines typically do not repeat previous states.  Their behavior can be modeled as an open-ended directed graph.
 
-### Decentralized State Machine (DSM)
+#### Decentralized State Machine (DSM)
 
 A **decentralized state machine (DSM)** is a system of interconnected state machines that operate autonomously and interact with each other with no central controller.  Each machine manages only its own local state based on transitions triggered by inputs.  Inputs may be from local sources or from other state machines.  
 
 The behavior of a decentralized state machine can be modeled as a hypergraph.  If the group includes an infinite state machine, then the graph is open-ended.
 
-### Decentralized Finite State Machine (DFSM) 
+#### Decentralized Finite State Machine (DFSM) 
 
 A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site.  Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group.  [^flagxfer]
 
-### Decentralized Infinite State Machine (DISM)
+#### Decentralized Infinite State Machine (DISM)
 
 A real-world example of a decentralized infinite state machine is a group of git repository forks, where each repository is an infinite state machine that can interact with other repositories via pull and push operations.
 
-### Transition Function
+#### Transition Function
 
 A **transition function** is a mapping from the current state of the system to the next state.  In a finite state machine, the transition function might be a static table of state transitions; the table key is (current state, input event), which returns a value of (next state).  In an infinite state machine, the transition function is a dynamic table; given (current state, input), the transition function returns (next state, next state table).  
 
 In our previous example of a general purpose computing system, the transition table is the entire disk state, and the transition function is the process of reading and writing from disk.
 
-### Agent
+#### Agent
 
 An **agent** is an autonomous entity.  An agent might be a person or animal, a computer program, a machine, or other physical object.  At extremely small scale, an agent might be an electron or other subatomic particle.  The defining characteristic of an agent is its ability to influence, and be influenced by, its environment.
 
-### Pure Functions and Side Effects
+#### Pure Functions and Side Effects
 
 A **pure function** is a function that has no side effects and always returns the same output for the same input.  
 
 While pure functions aid in reasoning about a standalone system, it is useful to recognize that decentralized systems cannot exist without side effects; even if all agents in a decentralized system are themselves pure functions, the communications between them constitute side effects that alter the system's total state.
 
-### Promise Theory
+#### Promise Theory
 
 **Promise Theory (PT)**, introduced by Mark Burgess, formalizes a model for understanding how autonomous agents interact in a decentralized environment. In PT, agents make *promises* about their behavior to others.  The model emphasizes that agents can only make promises about their own behavior; agents cannot impose obligations on, nor make promises about, the behavior of other agents.
 
@@ -73,7 +88,7 @@ Relativity matters:  It's worth considering that Carol and Bob may each be using
 
 Dave, observing all of the above, may conclude that when he's evaluating Alice's, Bob's and Carol's promises, he may want to add his own compensation for relativistic effects.
 
-### Semantic Spacetime
+#### Semantic Spacetime
 
 **Semantic Spacetime (SST)**, also developed by Mark Burgess, is a natural extension of Promise Theory into physics and cosmology, integrating the dimensions of space and time into how we understand and model interactions within systems. In the SST model, agents exist and interact within a *spacetime* fabric, where the arrangement of agents (space) and the sequence of their interactions (time) are essential to understanding system behavior. 
 
@@ -83,7 +98,7 @@ SST is also not limited to linear time; it can represent branching or parallel t
 
 Promise Theory and SST lead to an interesting observation about real-world organizations, communities, and systems of governance: At their lowest level, all systems rely on promises, and many of those promises are implicit rather than explicit.  For instance, legal and monetary systems rely on the implied promises of the "social contract" between a government and its people.  The standards and practices of a profession rely on the promises of its members to uphold a certain set of values and ethics.  The health of any community or organization relies on promises, both explicit and implicit, that each member makes when joining and participating.  
 
-## Semantic Spacetime and DISM Compatibility
+### Semantic Spacetime and DISM Compatibility
 
 It's possible that the concepts behind PT, SST, and DISMs are compatible, allowing us to develop a cohesive framework for decentralized computation. By integrating the principles of PT and SST into a DISM framework, we can model decentralized systems where agents operate autonomously, interact locally, and contribute to the emergent behavior of the system as a whole.
 
@@ -93,11 +108,11 @@ This paper explores the relationship between ISM, PT, and SST and introduces a g
 
 For the purposes of this paper, it may be helpful to think of a promise as an assertion of fact as of a particular point on a timeline, with veracity equal to true, false, or undecided.
 
-## Decentralized Infinite State Machine (ISM)
+### Decentralized Infinite State Machine (ISM)
 
 The *decentralized* aspect of ISM ensures that there is no central controller, and each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control -- agents cannot make promises on behalf of others. These promises can be observed by others to inform their own state transitions.
 
-## Promise Theory
+### Promise Theory
 
 Promise Theory is a framework for modeling the behavior of autonomous agents in decentralized systems. It asserts that cooperation and coordination emerge from the voluntary commitments (promises) that agents make to one another. In Promise Theory:
 
@@ -109,7 +124,7 @@ Promise Theory is a framework for modeling the behavior of autonomous agents in 
 
 By applying Promise Theory to ISM, we ensure that agents interact through voluntary commitments, leading to a more resilient and adaptable system. Agents make promises about their state transitions, which are used by others to make informed decisions.
 
-## Semantic Spacetime
+### Semantic Spacetime
 
 Semantic Spacetime extends the concepts of space and time into the semantics of system interactions. In this framework:
 
@@ -125,7 +140,7 @@ Semantic Spacetime extends the concepts of space and time into the semantics of 
 
 In the context of ISM, Semantic Spacetime provides a backdrop for understanding how agents' promises and state transitions unfold over time and across the network. By considering both spatial and temporal dimensions, we can better model and predict the behavior of the decentralized system.
 
-## Semantic Spacetime and ISM Compatibility
+### Semantic Spacetime and ISM Compatibility
 
 Semantic Spacetime offers a conceptual framework for understanding decentralized systems as a set of agents operating autonomously in both space and time. Agents in SST interact with their environment and each other based on local information and promises. Time and space are fundamental aspects of how agents coordinate and change state.
 
@@ -133,7 +148,7 @@ In the context of ISM, SST can be seen as the backdrop against which agents make
 
 By making promises about the future (the next function to be executed and its expected outputs), agents in an ISM align with the SST principle that system behavior is the emergent result of local interactions in spacetime.
 
-## A Generic Language for State Transitions
+### A Generic Language for State Transitions
 
 To enable ISM compatibility with Promise Theory and Semantic Spacetime, we propose a generic language for describing state transitions. This language uses a tuple format to capture promises about function execution. The proposed format is as follows:
 
@@ -158,7 +173,7 @@ Where:
    - **Role:** Captures the agent's new state after processing. If executing **f1** with **invars** leads to internal changes (e.g., updates to internal variables), these changes are reflected in **f2**.
 
 
-### **How the Model Works**
+#### **How the Model Works**
 
 - **State Transition Process:**
   1. **Processing Inputs:** The agent uses **f1** to process **invars**.
@@ -166,7 +181,7 @@ Where:
   3. **Internal Side Effects:** While processing, **f1** may undergo internal changes (side effects), leading to a new state (**f2**).
   4. **Next State:** The agent transitions to **f2**, which incorporates any modifications from the side effects. If there are no side effects, then **f2 = f1**.
 
-### **Key Characteristics**
+#### **Key Characteristics**
 
 - **Algorithms as Stateful Entities:**
   - Both **f1** and **f2** represent not just functions but the state of the agent's processing logic, including any internal variables or configurations.
@@ -180,7 +195,7 @@ Where:
 - **Deterministic Promises:**
   - The agent makes a promise that, given **invars**, it will produce **outvars** and transition to **f2**. This aligns with *Promise Theory*, emphasizing reliable and predictable interactions.
 
-### **Relation to Promise Theory and Smart Spacetime**
+#### **Relation to Promise Theory and Smart Spacetime**
 
 - **Promise Theory (PT):**
   - **Autonomy and Local Control:** Each agent independently manages its state transitions based on local inputs, adhering to PT's principle of autonomous agents.
@@ -190,7 +205,7 @@ Where:
   - **Spacetime Framework:** The model maps the temporal evolution (time) and the arrangement of agents and data (space).
   - **Interacting Agents:** Agents interact through **invars** and **outvars**, influencing each other's states over time.
 
-### **Benefits of the Model**
+#### **Benefits of the Model**
 
 1. **Modularity:**
    - Agents encapsulate their processing logic and state, making the system easier to understand and maintain.
@@ -204,7 +219,7 @@ Where:
 4. **Transparency:**
    - Explicit representation of inputs, outputs, and state changes enhances clarity.
 
-### **Practical Applications**
+#### **Practical Applications**
 
 - **Version Control Systems (e.g., Git):**
   - **f1:** Current commit hash (repository state).
@@ -230,16 +245,17 @@ Where:
   - **outvars:** Updated model performance metrics.
   - **f2:** Model with new parameters after training.
 
-## The Role of the DISM Kernel in State Transitions
+### The Role of the DISM Kernel in State Transitions
 
 The tuple should be signed by the local DISM kernel hosting f1, rather than by f1 itself. The DISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.), and is able to influence their behavior, therefore functions should be considered components of the kernel, rather than independent agents themselves.
 
+## Implementation Considerations
 
-## Suggested Encoding
+### Suggested Encoding
 
 To encode the promises (claims) made by agents within the DISM framework, the following encoding standards are suggested:
 
-### CBOR (Concise Binary Object Representation)
+#### CBOR (Concise Binary Object Representation)
 
 **CBOR** is a binary data serialization format that is designed to be small in size and fast to parse. It is well-suited for encoding structured data like promises because of its compactness and flexibility.
 
@@ -252,7 +268,7 @@ To encode the promises (claims) made by agents within the DISM framework, the fo
   - Encode the promise tuples `(f1, invars, outvars, f2)` using CBOR to ensure efficient transmission and storage.
   - Facilitate quick parsing and validation of promises by agents.
 
-### COSE (CBOR Object Signing and Encryption)
+#### COSE (CBOR Object Signing and Encryption)
 
 **COSE** builds upon CBOR by introducing mechanisms for signing and encrypting data. This is essential for ensuring the integrity and confidentiality of promises exchanged between agents.
 
@@ -265,7 +281,7 @@ To encode the promises (claims) made by agents within the DISM framework, the fo
   - Sign promise tuples with COSE to guarantee that they originate from trusted agents.
   - Encrypt promises when necessary to protect confidential state transitions or sensitive agent interactions.
 
-### CWT (CBOR Web Token)
+#### CWT (CBOR Web Token)
 
 **CWT** leverages CBOR and COSE to create secure tokens that can carry claims (promises) in a compact and verifiable manner. It is analogous to JWT (JSON Web Tokens) but optimized for environments where space and efficiency are critical.
 
@@ -278,13 +294,9 @@ To encode the promises (claims) made by agents within the DISM framework, the fo
   - Represent promises as CWTs to encapsulate the necessary claims within a secure token.
   - Facilitate the verification of promises by agents without exposing the underlying data unnecessarily.
 
-### Integration Considerations
 
-- **Schema Definition:** Define a clear schema for how promises are structured within CBOR, COSE, and CWT to ensure consistency across agents.
-  
-- **Versioning:** Implement version control for the encoding schemas to manage updates and maintain compatibility as the DISM framework evolves.
-
-- **Performance Optimization:** Benchmark the encoding and decoding processes to ensure that they meet the performance requirements of the decentralized system.
+## Acknowledgments
+XXX mention LLM models and how used
 
 
 ## References
