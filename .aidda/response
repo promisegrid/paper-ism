@@ -15,7 +15,19 @@ XXX Retrospective on the prehistory of the DevOps movement's concepts and cultur
 
 ## Discussion
 
-In a nutshell, if the [theory](#theory) section is correct, then we should be able to build a decentralized system that includes people, machines, and artificial intelligence agents using simple concepts from graph theory.
+We propose a system for computing, communication, and governance built on consensus mechanisms, specifically designed to tackle the challenges in collaborative work and leadership that hinder organizations and communities, including non-profits and businesses.
+
+This system serves as a decentralized computation network, analogous to how the Internet operates as a decentralized communication network. Just as the Internet is a distributed network, our system functions as a decentralized computer. It is owned and operated by its users rather than any single legal entity, ensuring that the grid remains scalable and resilient as more users join.
+
+In a nutshell, if the [theory](#theory) section is correct, then we should be able to build a decentralized system for equitable and accurate group communication, computation, and decision-making using current technology and concepts from graph theory.
+
+The general idea is that the universe can be modeled as a hypergraph, where each node in the graph is a state of an agent, and each edge in the graph is an action taken by an agent in response to a stimulus. A hypergraph that models the universe can also be thought of as an infinite state machine.
+
+Promise Theory and Semantic Spacetime provide a framework for understanding how agents interact in a decentralized system; a hypergraph appears to be able to model these interactions completely.
+
+States, agents, and graph edges can be referenced by cryptographic hash in content-addressable storage, avoiding the need for central registration of code or data.
+
+As of this writing we are currently working on a proof of concept implementation of this system, using existing libraries for low-level message framing and content-addressable data storage.
 
 ## Prediction
 
@@ -66,7 +78,6 @@ Where:
 4. **f2 (Next Algorithm/State):**
    - **Definition:** The algorithm or function that the agent will execute next. **f2** may be the same as **f1** or a modified version, depending on internal side effects during processing.
    - **Role:** Captures the agent's new state after processing. If executing **f1** with **invars** leads to internal changes (e.g., updates to internal variables), these changes are reflected in **f2**.
-
 
 #### **How the Model Works**
 
@@ -191,7 +202,6 @@ To encode the promises (claims) made by agents within the DISM framework, the fo
   - Represent promises as CWTs to encapsulate the necessary claims within a secure token.
   - Facilitate the verification of promises by agents without exposing the underlying data unnecessarily.
 
-
 ### Definition of Terms
 
 #### State Machine
@@ -205,7 +215,6 @@ A **finite state machine** has a fixed number of states and transitions, making 
 A real-world example of a finite state machine is a traffic light, which has a fixed number of states (red, yellow, green) and transitions between them based on a timer and sensor inputs.
 
 Finite state machines typically repeat a fixed set of states in one or more loops.  Their behavior can be modeled as a cyclic directed graph, where states are nodes and transitions are edges.
-
 
 #### Infinite State Machine (ISM)
 
