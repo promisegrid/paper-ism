@@ -13,14 +13,18 @@ Out: README.md
 
 Revise README.md:
 
-- in the Discussion section, insert an informal description of the
-  theory described in the paper.
+In the discussion section, paraphrase this text:
 
-In a nutshell, if the [theory](#theory) section is correct, then we
-should be able to build a decentralized system that includes people,
-machines, and artificial intelligence agents using simple concepts
-from graph theory.
+a consensus-based computing, communications, and
+governance system.  designed specifically to address the problems
+of collaborative work and leadership that plague organizations and
+communities, including non-profits and businesses.
 
+the system is to computation what the Internet is to communication --
+the Internet is a decentralized network; the system is a
+decentralized computer.  Owned and operated by its users rather than
+any single legal entity, the grid is scalable and resilient, growing
+as users join. 
 
 .stop
 

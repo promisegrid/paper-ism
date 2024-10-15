@@ -13,8 +13,15 @@ XXX Retrospective on the prehistory of the DevOps movement's concepts and cultur
 
 ## Discussion
 
-XXX informal discussion of the paper's content
+In a nutshell, if the [theory](#theory) section is correct, then we should be able to build a decentralized system for equitable and accurate group communication, computation, and decision-making using current technology and concepts from graph theory.
 
+The general idea is that the universe can be modeled as a hypergraph, where each node in the graph is a state of an agent, and each edge in the graph is an action taken by an agent in response to a stimulus.  A hypergraph that models the universe can also be thought of as an infinite state machine.
+
+Promise Theory and Semantic Spacetime provide a framework for understanding how agents interact in a decentralized system; a hypergraph appears to be able to model these interactions completely.
+
+States, agents, and graph edges can be referenced by cryptographic hash in content-addressable storage, avoiding the need for central registration of code or data.
+
+As of this writing we are currently working on a proof of concept implementation of this system, using existing libraries for low-level message framing and content-addressable data storage.
 
 ## Prediction
 
@@ -297,7 +304,6 @@ Promise Theory and SST lead to an interesting observation about real-world organ
 ## Acknowledgments
 Angela Traugott, Donaldo Almazon, JJ Salley, XXX
 XXX mention LLM models and how used?
-
 
 ## References
 
