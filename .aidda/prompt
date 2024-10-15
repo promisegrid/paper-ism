@@ -13,7 +13,14 @@ Out: README.md
 
 Revise README.md:
 
-- remove duplicate 
+- in the Discussion section, insert an informal description of the
+  theory described in the paper.
+
+In a nutshell, if the [theory](#theory) section is correct, then we
+should be able to build a decentralized system that includes people,
+machines, and artificial intelligence agents using simple concepts
+from graph theory.
+
 
 .stop
 
@@ -70,3 +77,6 @@ Revise README.md:
   eye of the beholder
   
 - https://compcogneuro.org/book -- neuron is an agent, neuron can be expresses as a state table or state machine
+
+XXX ensure forward references
+

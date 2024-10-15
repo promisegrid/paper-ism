@@ -9,104 +9,22 @@ We introduce the concept of a decentralized infinite state machine (DISM) in whi
 ## Foreword
 *-- By Steve Traugott*
 
-XXX Retrospective on the prehistory of the DevOps movement's concepts
-and cultures of convergence, congruence, promise theory, semantic spacetime.
-Desire for reconciliation between these.
+XXX Retrospective on the prehistory of the DevOps movement's concepts and cultures of convergence, congruence, promise theory, semantic spacetime. Desire for reconciliation between these concepts.
 
 ## Discussion
 
 XXX informal discussion of the paper's content
 
-XXX ensure forward references
 
-XXX provide a prediction that serves as a test of the model
+## Prediction
+
+If the following model is correct, then we should be able to use it as a basis for design of a decentralized system that can be used to compute any function computable by machine.
+
+It is also reasonable that, if the resulting system includes agents that are super-Turing, e.g. human agents, then the system should be able to compute any function computable by a human.
+
+Finally, if the system includes multiple agents that are human, then it should be able to compute any function computable by a group of humans, including analysis, consensus formation, conflict detection and resolution, and decision recording.
 
 ## Theory
-
-XXX formal content
-
-### Definition of Terms
-
-#### State Machine
-
-A **state machine** is a model of computation that describes a system's behavior as a sequence of states. In a state machine, the system transitions from one state to another based on inputs and internal conditions. 
-
-#### Finite State Machine (FSM)
-
-A **finite state machine** has a fixed number of states and transitions, making it suitable for modeling systems with a limited number of possible states.  
-
-A real-world example of a finite state machine is a traffic light, which has a fixed number of states (red, yellow, green) and transitions between them based on a timer and sensor inputs.
-
-Finite state machines typically repeat a fixed set of states in one or more loops.  Their behavior can be modeled as a cyclic directed graph, where states are nodes and transitions are edges.
-
-
-#### Infinite State Machine (ISM)
-
-An **infinite state machine (ISM)** is a system in which the number of potential states is unbounded. 
-
-A real-world example of an infinite state machine is a git repository, which can have an unbounded number of commits over time, each representing a unique state of the repository and its history.
-
-Another real-world example of a infinite state machine is a general purpose computing system -- as the system operates, it advances from each disk state to the next based on the programs it executes.   (In theory, the total number of possible states of a physical computer is finite, limited by local storage, but in practice, the machine's state space is effectively unbounded:  Assuming a 1 terabyte disk, a contemporary machine has `8 * 2^10^12` possible bit states -- innumerable in geologic time.)
-
-In theory, it should be possible to commit a machine's entire disk state to a git repository with each state change, but in practice, git is not optimized for frequent commits of large objects.
-
-Infinite state machines typically do not repeat previous states.  Their behavior can be modeled as an open-ended directed graph.
-
-#### Decentralized State Machine (DSM)
-
-A **decentralized state machine (DSM)** is a system of interconnected state machines that operate autonomously and interact with each other with no central controller.  Each machine manages only its own local state based on transitions triggered by inputs.  Inputs may be from local sources or from other state machines.  
-
-The behavior of a decentralized state machine can be modeled as a hypergraph.  If the group includes an infinite state machine, then the graph is open-ended.
-
-#### Decentralized Finite State Machine (DFSM) 
-
-A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site.  Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group.  [^flagxfer]
-
-#### Decentralized Infinite State Machine (DISM)
-
-A decentralized ISM is a system of interconnected infinite state machines that operate autonomously and interact with each other with no central controller.  Each machine manages only its own local state based on transitions triggered by inputs.  Inputs may be from local sources or from other state machines.
-
-A real-world example of a decentralized infinite state machine is a group of git repository forks, where each repository is an infinite state machine that can interact with other repositories via pull and push operations.
-
-XXX Each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control -- agents cannot make promises on behalf of others. These promises can be observed by others to inform their own state transitions.
-
-#### Transition Function
-
-A **transition function** is a mapping from the current state of the system to the next state.  In a finite state machine, the transition function might be a static table of state transitions; the table key is (current state, input event), which returns a value of (next state).  In an infinite state machine, the transition function is a dynamic table; given (current state, input), the transition function returns (next state, next state table).  
-
-In our previous example of a general purpose computing system, the transition table is the entire disk state, and the transition function is the process of reading and writing from disk.
-
-#### Agent
-
-An **agent** is an autonomous entity.  An agent might be a person or animal, a computer program, a machine, or other physical object.  At extremely small scale, an agent might be an electron or other subatomic particle.  The defining characteristic of an agent is its ability to influence, and be influenced by, its environment.
-
-#### Pure Functions and Side Effects
-
-A **pure function** is a function that has no side effects and always returns the same output for the same input.  
-
-While pure functions aid in reasoning about a standalone system, it is useful to recognize that decentralized systems cannot exist without side effects; even if all agents in a decentralized system are themselves pure functions, the communications between them constitute side effects that alter the system's total state.
-
-#### Promise Theory
-
-**Promise Theory (PT)**, introduced by Mark Burgess, formalizes a model for understanding how autonomous agents interact in a decentralized environment. In PT, agents make *promises* about their behavior to others.  The model emphasizes that agents can only make promises about their own behavior; agents cannot impose obligations on, nor make promises about, the behavior of other agents.
-
-Promises are not guarantees; they are assertions an agent makes about its own behavior or state on a timeline.  From the frame of reference of another agent, these assertions may resolve as true, false, or undecided:  A promise may be viewed as fulfilled, broken, or still pending.  Over time, agents build trust by observing the behavior of other agents and their promises.  
-
-Frame of reference matters:  Whether a promise is fulfilled or broken depends on the observer. For example, Bob may view Alice's promise as fulfilled, while Carol views the same promise as broken.  Carol may then tell others that Alice's promise is broken, but it's important to note that, when making this claim, Carol is only making a promise about her own evaluation of Alice.
-
-Relativity matters:  It's worth considering that Carol and Bob may each be using the exact same criteria to evaluate Alice's promise, but they may have different frames of reference.  For example, Bob may be evaluating Alice's promise while he is at rest on Earth's surface, while Carol, in a 20,000km Earth orbit, gains about 38 microseconds per day on her local clock.  If Alice's promise includes microsecond-level precision, then Bob and Carol may be both correct and both in disagreement with each other.  [^gps]
-
-Dave, observing all of the above, may conclude that when he's evaluating Alice's, Bob's and Carol's promises, he may want to add his own compensation for relativistic effects.
-
-#### Semantic Spacetime
-
-**Semantic Spacetime (SST)**, also developed by Mark Burgess, is a natural extension of Promise Theory into physics and cosmology, integrating the dimensions of space and time into how we understand and model interactions within systems. In the SST model, agents exist and interact within a *spacetime* fabric, where the arrangement of agents (space) and the sequence of their interactions (time) are essential to understanding system behavior. 
-
-SST and PT are not limited to animate agents; they can be applied to any system where agents interact.  In this model, an agent might even be an electron or other subatomic particle, which promises to follow a set of rules in its interactions with other particles.  Here, too, PT is consistent; we can't make promises on behalf of another, in this case a subatomic particle, and so we are often surprised when the promises we make on their behalf turn out to be wrong.  The efforts of CERN, LLNL, and other national and international labs can be seen as a continuing conversation to discover the true nature of those promises. 
-
-SST is also not limited to linear time; it can represent branching or parallel timelines.  
-
-Promise Theory and SST lead to an interesting observation about real-world organizations, communities, and systems of governance: At their lowest level, all systems rely on promises, and many of those promises are implicit rather than explicit.  For instance, legal and monetary systems rely on the implied promises of the "social contract" between a government and its people.  The standards and practices of a profession rely on the promises of its members to uphold a certain set of values and ethics.  The health of any community or organization relies on promises, both explicit and implicit, that each member makes when joining and participating.  
 
 ### Semantic Spacetime and DISM Compatibility
 
@@ -117,36 +35,6 @@ The health of any decentralized system relies on the promises that each agent ma
 This paper explores the relationship between ISM, PT, and SST and introduces a generic language for describing state transitions in a way that aligns with these theories.
 
 For the purposes of this paper, it may be helpful to think of a promise as an assertion of fact as of a particular point on a timeline, with veracity equal to true, false, or undecided.
-
-### Promise Theory
-
-Promise Theory is a framework for modeling the behavior of autonomous agents in decentralized systems. It asserts that cooperation and coordination emerge from the voluntary commitments (promises) that agents make to one another. In Promise Theory:
-
-- **Agents are Autonomous**: Each agent controls its own behavior and cannot be compelled by others.
-
-- **Local Decision-Making**: Agents make decisions based on local information and the promises they have received from others.
-
-- **Trust and Verification**: Other agents may choose to rely on promises, and over time, trust is built based on the fulfillment of these promises.
-
-By applying Promise Theory to ISM, we ensure that agents interact through voluntary commitments, leading to a more resilient and adaptable system. Agents make promises about their state transitions, which are used by others to make informed decisions.
-
-### Semantic Spacetime
-
-Semantic Spacetime extends the concepts of space and time into the semantics of system interactions. In this framework:
-
-- **Agents**: Represent autonomous entities that interact with their environment and other agents. An agent may be as complex as a biological organism or as simple as a subatomic particle.
-
-- **Space**: Refers to the arrangement and relationships between agents. The spatial configuration affects how agents interact and disseminate information.
-
-- **Time**: Represents the sequence and timing of interactions. Temporal aspects influence the causality and synchronization of events. The arrow of time, often associated with increasing entropy according to the second law of thermodynamics, implies that systems naturally evolve from states of lower entropy to higher entropy. In Semantic Spacetime, this entropy arrow reflects the progression of system states and the irreversibility of certain processes.
-
-- **Local Interactions**: Emphasizes that system behavior emerges from local interactions rather than global control.
-
-- **Emergent Behavior**: Complex system behaviors arise from the simple interactions of agents over spacetime.
-
-In the context of ISM, Semantic Spacetime provides a backdrop for understanding how agents' promises and state transitions unfold over time and across the network. By considering both spatial and temporal dimensions, we can better model and predict the behavior of the decentralized system.
-
-### Semantic Spacetime and ISM Compatibility
 
 Semantic Spacetime offers a conceptual framework for understanding decentralized systems as a set of agents operating autonomously in both space and time. Agents in SST interact with their environment and each other based on local information and promises. Time and space are fundamental aspects of how agents coordinate and change state.
 
@@ -255,7 +143,7 @@ Where:
 
 The tuple should be signed by the local DISM kernel hosting f1, rather than by f1 itself. The DISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.), and is able to influence their behavior, therefore functions should be considered components of the kernel, rather than independent agents themselves.
 
-## Implementation 
+## Possible Implementation 
 
 XXX move to before theory section, after discussion
 
@@ -302,6 +190,109 @@ To encode the promises (claims) made by agents within the DISM framework, the fo
   - Represent promises as CWTs to encapsulate the necessary claims within a secure token.
   - Facilitate the verification of promises by agents without exposing the underlying data unnecessarily.
 
+
+### Definition of Terms
+
+#### State Machine
+
+A **state machine** is a model of computation that describes a system's behavior as a sequence of states. In a state machine, the system transitions from one state to another based on inputs and internal conditions. 
+
+#### Finite State Machine (FSM)
+
+A **finite state machine** has a fixed number of states and transitions, making it suitable for modeling systems with a limited number of possible states.  
+
+A real-world example of a finite state machine is a traffic light, which has a fixed number of states (red, yellow, green) and transitions between them based on a timer and sensor inputs.
+
+Finite state machines typically repeat a fixed set of states in one or more loops.  Their behavior can be modeled as a cyclic directed graph, where states are nodes and transitions are edges.
+
+
+#### Infinite State Machine (ISM)
+
+An **infinite state machine (ISM)** is a system in which the number of potential states is unbounded. 
+
+A real-world example of an infinite state machine is a git repository, which can have an unbounded number of commits over time, each representing a unique state of the repository and its history.
+
+Another real-world example of a infinite state machine is a general purpose computing system -- as the system operates, it advances from each disk state to the next based on the programs it executes.   (In theory, the total number of possible states of a physical computer is finite, limited by local storage, but in practice, the machine's state space is effectively unbounded:  Assuming a 1 terabyte disk, a contemporary machine has `8 * 2^10^12` possible bit states -- innumerable in geologic time.)
+
+In theory, it should be possible to commit a machine's entire disk state to a git repository with each state change, but in practice, git is not optimized for frequent commits of large objects.
+
+Infinite state machines typically do not repeat previous states.  Their behavior can be modeled as an open-ended directed graph.
+
+#### Decentralized State Machine (DSM)
+
+A **decentralized state machine (DSM)** is a system of interconnected state machines that operate autonomously and interact with each other with no central controller.  Each machine manages only its own local state based on transitions triggered by inputs.  Inputs may be from local sources or from other state machines.  
+
+The behavior of a decentralized state machine can be modeled as a hypergraph.  If the group includes an infinite state machine, then the graph is open-ended.
+
+#### Decentralized Finite State Machine (DFSM) 
+
+A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site.  Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group.  [^flagxfer]
+
+#### Decentralized Infinite State Machine (DISM)
+
+A decentralized ISM is a system of interconnected infinite state machines that operate autonomously and interact with each other with no central controller.  Each machine manages only its own local state based on transitions triggered by inputs.  Inputs may be from local sources or from other state machines.
+
+A real-world example of a decentralized infinite state machine is a group of git repository forks, where each repository is an infinite state machine that can interact with other repositories via pull and push operations.
+
+XXX Each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control -- agents cannot make promises on behalf of others. These promises can be observed by others to inform their own state transitions.
+
+#### Transition Function
+
+A **transition function** is a mapping from the current state of the system to the next state.  In a finite state machine, the transition function might be a static table of state transitions; the table key is (current state, input event), which returns a value of (next state).  In an infinite state machine, the transition function is a dynamic table; given (current state, input), the transition function returns (next state, next state table).  
+
+In our previous example of a general purpose computing system, the transition table is the entire disk state, and the transition function is the process of reading and writing from disk.
+
+#### Agent
+
+An **agent** is an autonomous entity.  An agent might be a person or animal, a computer program, a machine, or other physical object.  At extremely small scale, an agent might be an electron or other subatomic particle.  The defining characteristic of an agent is its ability to influence, and be influenced by, its environment.
+
+#### Pure Functions and Side Effects
+
+A **pure function** is a function that has no side effects and always returns the same output for the same input.  
+
+While pure functions aid in reasoning about a standalone system, it is useful to recognize that decentralized systems cannot exist without side effects; even if all agents in a decentralized system are themselves pure functions, the communications between them constitute side effects that alter the system's total state.
+
+#### Promise Theory
+
+**Promise Theory (PT)**, introduced by Mark Burgess, formalizes a model for understanding how autonomous agents interact in a decentralized environment. In PT, agents make *promises* about their behavior to others.  The model emphasizes that agents can only make promises about their own behavior; agents cannot impose obligations on, nor make promises about, the behavior of other agents.
+
+Promise Theory is a framework for modeling the behavior of autonomous agents in decentralized systems. It asserts that cooperation and coordination emerge from the voluntary commitments (promises) that agents make to one another. In Promise Theory:
+
+- **Agents are Autonomous**: Each agent controls its own behavior and cannot be compelled by others.
+
+- **Local Decision-Making**: Agents make decisions based on local information and the promises they have received from others.
+
+- **Trust and Verification**: Other agents may choose to rely on promises, and over time, trust is built based on the fulfillment of these promises.
+
+Promises are not guarantees; they are assertions an agent makes about its own behavior or state on a timeline.  From the frame of reference of another agent, these assertions may resolve as true, false, or undecided:  A promise may be viewed as fulfilled, broken, or still pending.  Over time, agents build trust by observing the behavior of other agents and their promises.  
+
+Frame of reference matters:  Whether a promise is fulfilled or broken depends on the observer. For example, Bob may view Alice's promise as fulfilled, while Carol views the same promise as broken.  Carol may then tell others that Alice's promise is broken, but it's important to note that, when making this claim, Carol is only making a promise about her own evaluation of Alice.
+
+Relativity matters:  It's worth considering that Carol and Bob may each be using the exact same criteria to evaluate Alice's promise, but they may have different frames of reference.  For example, Bob may be evaluating Alice's promise while he is at rest on Earth's surface, while Carol, in a 20,000km Earth orbit, gains about 38 microseconds per day on her local clock.  If Alice's promise includes microsecond-level precision, then Bob and Carol may be both correct and both in disagreement with each other.  [^gps]
+
+Dave, observing all of the above, may conclude that when he's evaluating Alice's, Bob's and Carol's promises, he may want to add his own compensation for relativistic effects.
+
+#### Semantic Spacetime
+
+**Semantic Spacetime (SST)**, also developed by Mark Burgess, is a natural extension of Promise Theory into physics and cosmology, integrating the dimensions of space and time into how we understand and model interactions within systems. In the SST model, agents exist and interact within a *spacetime* fabric, where the arrangement of agents (space) and the sequence of their interactions (time) are essential to understanding system behavior. 
+
+Semantic Spacetime extends the concepts of space and time into the semantics of system interactions. In this framework:
+
+- **Agents**: Represent autonomous entities that interact with their environment and other agents. An agent may be as complex as a biological organism or as simple as a subatomic particle.
+
+- **Space**: Refers to the arrangement and relationships between agents. The spatial configuration affects how agents interact and disseminate information.
+
+- **Time**: Represents the sequence and timing of interactions. Temporal aspects influence the causality and synchronization of events. The arrow of time, often associated with increasing entropy according to the second law of thermodynamics, implies that systems naturally evolve from states of lower entropy to higher entropy. In Semantic Spacetime, this entropy arrow reflects the progression of system states and the irreversibility of certain processes.
+
+- **Local Interactions**: Emphasizes that system behavior emerges from local interactions rather than global control.
+
+- **Emergent Behavior**: Complex system behaviors arise from the simple interactions of agents over spacetime.
+
+SST and PT are not limited to animate agents; they can be applied to any system where agents interact.  In this model, an agent might even be an electron or other subatomic particle, which promises to follow a set of rules in its interactions with other particles.  Here, too, PT is consistent; we can't make promises on behalf of another, in this case a subatomic particle, and so we are often surprised when the promises we make on their behalf turn out to be wrong.  The efforts of CERN, LLNL, and other national and international labs can be seen as a continuing conversation to discover the true nature of those promises. 
+
+SST is also not limited to linear time; it can represent branching or parallel timelines.  
+
+Promise Theory and SST lead to an interesting observation about real-world organizations, communities, and systems of governance: At their lowest level, all systems rely on promises, and many of those promises are implicit rather than explicit.  For instance, legal and monetary systems rely on the implied promises of the "social contract" between a government and its people.  The standards and practices of a profession rely on the promises of its members to uphold a certain set of values and ethics.  The health of any community or organization relies on promises, both explicit and implicit, that each member makes when joining and participating.  
 
 ## Acknowledgments
 Angela Traugott, Donaldo Almazon, JJ Salley, XXX
