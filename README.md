@@ -1,5 +1,7 @@
 # A Hypergraph-based Decentralized Infinite State Machine Model Compatible with Semantic Spacetime and Promise Theory
 
+Steve Traugott[^stevegt], Rebecca Snyder[^rebecca]
+
 ## Abstract
 
 We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles. This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.
@@ -14,6 +16,10 @@ Desire for reconciliation between these.
 ## Discussion
 
 XXX informal discussion of the paper's content
+
+XXX ensure forward references
+
+XXX provide a prediction that serves as a test of the model
 
 ## Theory
 
@@ -58,7 +64,11 @@ A real-world example of a decentralized finite state machine is the "flag transf
 
 #### Decentralized Infinite State Machine (DISM)
 
+A decentralized ISM is a system of interconnected infinite state machines that operate autonomously and interact with each other with no central controller.  Each machine manages only its own local state based on transitions triggered by inputs.  Inputs may be from local sources or from other state machines.
+
 A real-world example of a decentralized infinite state machine is a group of git repository forks, where each repository is an infinite state machine that can interact with other repositories via pull and push operations.
+
+XXX Each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control -- agents cannot make promises on behalf of others. These promises can be observed by others to inform their own state transitions.
 
 #### Transition Function
 
@@ -107,10 +117,6 @@ The health of any decentralized system relies on the promises that each agent ma
 This paper explores the relationship between ISM, PT, and SST and introduces a generic language for describing state transitions in a way that aligns with these theories.
 
 For the purposes of this paper, it may be helpful to think of a promise as an assertion of fact as of a particular point on a timeline, with veracity equal to true, false, or undecided.
-
-### Decentralized Infinite State Machine (ISM)
-
-The *decentralized* aspect of ISM ensures that there is no central controller, and each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control -- agents cannot make promises on behalf of others. These promises can be observed by others to inform their own state transitions.
 
 ### Promise Theory
 
@@ -249,7 +255,9 @@ Where:
 
 The tuple should be signed by the local DISM kernel hosting f1, rather than by f1 itself. The DISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.), and is able to influence their behavior, therefore functions should be considered components of the kernel, rather than independent agents themselves.
 
-## Implementation Considerations
+## Implementation 
+
+XXX move to before theory section, after discussion
 
 ### Suggested Encoding
 
@@ -296,11 +304,14 @@ To encode the promises (claims) made by agents within the DISM framework, the fo
 
 
 ## Acknowledgments
-XXX mention LLM models and how used
+Angela Traugott, Donaldo Almazon, JJ Salley, XXX
+XXX mention LLM models and how used?
 
 
 ## References
 
+[^stevegt]: [http://github.com/stevegt](https://github.com/stevegt)
+[^rebecca]: [https://github.com/RebeccaSnyder505](https://github.com/RebeccaSnyder505)
 [^turing]: Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," *Proceedings of the London Mathematical Society*, 1936.
 [^pt]: Mark Burgess, *Promise Theory: Principles and Applications*
 [^sst]: Mark Burgess, *Semantic Spacetime: A Practical Foundation*

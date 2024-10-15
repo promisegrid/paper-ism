@@ -13,6 +13,10 @@ Out: README.md
 
 Revise README.md:
 
+- remove duplicate 
+
+.stop
+
 - sender sends a non-blocking message that says "i will give you X if
   you attach hyperedge Y to nodes X", but it says that with some of
   the hyperedge endpoints as they touch the accounts 
@@ -49,7 +53,20 @@ Revise README.md:
   - LLMs have made (f1, in, out, f2) more obvious because it can be
     restated as (context, prompt, answer, new_context)
 
-from "multiagent tool, git storage":
-- tuple is (g, context, prompt, g', new_context, new_prompts), where g' might be a new behavior of g (g might be learning, responding to context and prompt, producing g').  any element might be a hash (pointer or merkle root)
-- interesting that it's like there is a layered thing going on -- message layer controlling changes in context layer
-- branch-level prompts (sysmsgs) might be in earlier commit messages
+- from "multiagent tool, git storage":
+  - tuple is (g, context, prompt, g', new_context, new_prompts), where g' might be a new behavior of g (g might be learning, responding to context and prompt, producing g').  any element might be a hash (pointer or merkle root)
+  - interesting that it's like there is a layered thing going on -- message layer controlling changes in context layer
+  - branch-level prompts (sysmsgs) might be in earlier commit messages
+
+- git graphs drawn wrong
+
+- rube goldberg example of inanimate agents
+
+- "why it matters" subsection in discussion
+
+- cite RFC's about centralization concerns
+
+- social media trust metrics should not be absolute -- trust is in the
+  eye of the beholder
+  
+- https://compcogneuro.org/book -- neuron is an agent, neuron can be expresses as a state table or state machine
