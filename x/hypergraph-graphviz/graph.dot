@@ -1,0 +1,77 @@
+digraph AcyclicSingleGraph {
+    rankdir=LR;
+
+    // Set up the first connections
+    node [shape=circle];
+    A;
+    B;
+    C;
+
+    node [shape=point];
+    A -> p17 [arrowhead=none, label="event17"];
+    C -> p17 [arrowhead=none];
+    p17 -> B;
+
+    // Hyperedge with multiple tails and heads
+    node [shape=point];
+    B -> p1 [arrowhead=none, label="event1"];
+
+    node [shape=circle];
+    p1 -> F;
+    p1 -> G;
+
+    // Second segment with multiple tails and heads
+    node [shape=circle];
+    H -> I [label="event10"];
+    J -> K [label="event7"];
+
+    K -> p1 [arrowhead=none, label="event8"];
+
+    node [shape=point];
+    F -> p2 [arrowhead=none, label="event2"];
+    G -> p2 [arrowhead=none];
+    I -> p2 [arrowhead=none];
+
+    node [shape=circle];
+    p2 -> M;
+    p2 -> N;
+
+    // A new hyperedge connecting multiple nodes
+    node [shape=point];
+    M ->p3[arrowhead=none, label="event3"];
+    N ->p3[arrowhead=none];
+
+
+    node [shape=circle];
+    p3-> P;
+    H -> E [label="event9"];
+
+    node [shape=point];
+    E -> p11 [arrowhead=none, label="event11"];
+
+    node [shape=circle];
+    p11 -> Q;
+    p11 -> R;
+
+    Q -> p3 [arrowhead=none];
+
+    // Hyperedge with more tails than heads
+    node [shape=point];
+    P -> p4 [arrowhead=none, label="event4"];
+    P -> S [arrowhead=none];
+
+    node [shape=circle];
+    p4 -> T;
+    S -> U;
+
+    // Continuing to interconnect all nodes
+    node [shape=point];
+    T -> p5 [arrowhead=none, label="event5"];
+    U -> p5 [arrowhead=none];
+
+    node [shape=circle];
+    p5 -> W;
+    p5 -> X;
+
+
+}

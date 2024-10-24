@@ -9,22 +9,20 @@ Sysmsg:
         meaning, and refrain from padding paragraphs with vague 
         marketing-style fluff.  Your audience is engineers.
 In: README.md
+Out: x/graph.scad
+
+write an openscad file showing a 3-d hypergraph.  the nodes are
+small spheres and represent states.  the edges are skinny cylinders
+
+
+
+.stop
+
+
 Out: README.md
 
 Revise README.md:
 
-In the discussion section, paraphrase this text:
-
-a consensus-based computing, communications, and
-governance system.  designed specifically to address the problems
-of collaborative work and leadership that plague organizations and
-communities, including non-profits and businesses.
-
-the system is to computation what the Internet is to communication --
-the Internet is a decentralized network; the system is a
-decentralized computer.  Owned and operated by its users rather than
-any single legal entity, the grid is scalable and resilient, growing
-as users join. 
 
 .stop
 
@@ -83,4 +81,22 @@ as users join.
 - https://compcogneuro.org/book -- neuron is an agent, neuron can be expresses as a state table or state machine
 
 XXX ensure forward references
+
+- JJ: need examples of joint ownership
+  - IETF/RFCs enable decentralized internet
+
+- possible title ref Rebecca: decentralized AI beyond crypt
+
+- JJ/Anthropic: 
+  - promise theory in practice: applications in modern software architecture
+
+- Steve: infinite promises: XXX
+
+- discussion should mention central giving way to decen
+
+- agents can't imspect themselves
+
+- hyperedges can have multiple inputs and multiple outputs
+  - group events
+  - quantum entanglement?
 
