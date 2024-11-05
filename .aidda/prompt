@@ -1,9 +1,10 @@
-openscad graph: add nodes
+openscad graph: adjust nodes, add edges
 
-Add nodes and edges to the graph.  The total number of nodes is 20.
-All node X, Y, and Z coordinates are positive random integers between
-0 and 100.  The Z coordinate of each successive node monotonically
-increases from 0 to 100.
+Adjust the node Z positions to be more random while still monotonically
+increasing from 0 to 100.  
+
+Add edges to the graph.  Make each node have between 2 to 4 edges
+connecting it to other nodes.  
 
 Sysmsg: You are an expert OpenSCAD user and developer.
 In: README.md x/hypergraph-openscad/graph.scad

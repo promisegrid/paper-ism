@@ -6,62 +6,56 @@ $fn = 20; // Increase the resolution for smoother spheres and curves
 
 pi = 3.14159265358979323846;
 
-// Define node positions with 20 nodes
-// X, Y, Z coordinates are positive random integers between 0 and 100
-// Z coordinates are monotonically increasing
+// Define node positions with 19 nodes
+// X, Y coordinates are random integers between 0 and 100
+// Z coordinates are randomly increasing from 0 to 100
 
 nodes = [
-    [12,  45,   5],
-    [23,  67,  10],
-    [34,  12,  15],
-    [45,  89,  20],
-    [56,  34,  25],
-    [67,  56,  30],
-    [78,  78,  35],
-    [89,  90,  40],
-    [90,  23,  45],
-    [81,  34,  50],
-    [72,  55,  55],
-    [63,  66,  60],
-    [54,  77,  65],
-    [45,  88,  70],
-    [36,  99,  75],
-    [27,  11,  80],
-    [18,  22,  85],
-    [9,   33,  90],
-    [5,   44,  95],
-    [2,   55, 100]
+    [12, 45, 2],
+    [30, 70, 6],
+    [15, 30, 9],
+    [40, 85, 15],
+    [25, 40, 19],
+    [60, 30, 24],
+    [30, 75, 29],
+    [80, 30, 35],
+    [25, 25, 39],
+    [78, 35, 43],
+    [48, 50, 48],
+    [13, 65, 54],
+    [58, 42, 60],
+    [50, 85, 65],
+    [42, 15, 72],
+    [35, 55, 78],
+    [50, 25, 83],
+    [10, 75, 89],
+    [55, 45, 95]
 ];
 
-// Define edges as pairs of node indices
+// Define edges ensuring each node has between 2 to 4 connections
 edges = [
-    [0, 1],
-    [1, 2],
-    [2, 3],
-    [3, 4],
-    [4, 5],
-    [5, 6],
-    [6, 7],
-    [7, 8],
-    [8, 9],
-    [9, 10],
-    [10, 11],
-    [11, 12],
-    [12, 13],
-    [13, 14],
-    [14, 15],
+    [0, 1], [0, 5], [0, 18],
+    [1, 2], [1, 6],
+    [2, 3], [2, 7],
+    [3, 4], [3, 8], [3, 12],
+    [4, 5], [4, 9],
+    [5, 6], [5, 10],
+    [6, 7], [6, 11],
+    [7, 8], [7, 12],
+    [8, 9], [8, 13],
+    [9, 10], [9, 14],
+    [10, 11], [10, 15],
+    [11, 12], [11, 16],
+    [12, 13], [12, 17],
+    [13, 14], [13, 18],
+    [14, 15], [14, 17],
     [15, 16],
     [16, 17],
-    [17, 18],
-    [0, 18],
-    [5, 15],
-    [3, 12],
-    [7, 14],
-    [10, 16]
+    [17, 18]
 ];
 
 // Parameters
-node_radius = 5; // 5mm radius for 10mm diameter
+node_radius = 3; // 5mm radius for 10mm diameter
 edge_radius = 0.5; // 0.5mm radius for 1mm diameter
 
 // Function to create a sphere for each node
