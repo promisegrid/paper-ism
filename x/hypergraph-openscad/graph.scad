@@ -1,17 +1,18 @@
 // graph.scad
 // OpenSCAD script to visualize a 3D hypergraph with nodes as spheres and edges as thin extrusions along curves.
+// Includes a time arrow representation.
 
 $fn = 20; // Increase the resolution for smoother spheres and curves
 
 pi = 3.14159265358979323846;
 
-// Define node positions
+// Define node positions (shifted to ensure all Z coordinates are positive)
 nodes = [
-    [0, 0, 0],
-    [50, 0, 0],
-    [25, 43.3, 0],
-    [25, 14.43, 43.3],
-    [25, 14.43, -43.3]
+    [0, 0, 43.3],
+    [50, 0, 43.3],
+    [25, 43.3, 43.3],
+    [25, 14.43, 86.6],
+    [25, 14.43, 0] // Previously had a negative Z; shifted to 0
 ];
 
 // Define edges as pairs of node indices
@@ -50,7 +51,7 @@ module create_edges() {
     }
 }
 
-// Function to draw a single edge with a smooth curve using a circular extrusion
+// Function to draw a single edge with a smooth curve 
 module draw_edge(p1, p2) {
     // Calculate the midpoint for curvature
     mid = [
@@ -94,10 +95,29 @@ function bezier_point(t, p0, p1, p2) =
         (1 - t)^2 * p0[2] + 2*(1 - t)*t * p1[2] + t^2 * p2[2]
     ];
 
+// Calculate N as the maximum Z coordinate of all nodes
+N = max([nodes[0][2], nodes[1][2], nodes[2][2], nodes[3][2], nodes[4][2]]);
+
+// Function to create the time arrow
+module create_time_arrow() {
+    color("black") {
+        // Base position for the time arrow
+        translate([-5, -5, 0]) {
+            // Cylinder: N units long along +Z, 1 unit in diameter
+            cylinder(h = N, d = 1, center = false);
+            
+            // Cone: N/10 units long, N/15 units in diameter at the base, at +Z end of the cylinder
+            translate([0, 0, N])
+                cylinder(h = N/10, d1 = N/15, d2 = 0, center = false);
+        }
+    }
+}
+
 // Main assembly
 module hypergraph() {
     create_edges();
     create_nodes();
+    create_time_arrow();
 }
 
 // Render the hypergraph
