@@ -1,9 +1,7 @@
 create an openscad file showing a 3-d hypergraph
 
 the nodes are spheres with 10mm diameter and represent states.  the edges are
-extrusions of 1mm diameter circles along curves and represent transitions.
-
-extrude a circle along the curve, not a cylinder.  
+1mm diameter spheres placed along curves and represent transitions.
 
 Sysmsg: You are an expert OpenSCAD user and developer.
 In: README.md x/hypergraph-openscad/graph.scad

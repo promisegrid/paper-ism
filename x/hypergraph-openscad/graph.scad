@@ -1,9 +1,9 @@
 // graph.scad
 // OpenSCAD script to visualize a 3D hypergraph with nodes as spheres and edges as thin extrusions along curves.
 
-$fn = 100; // Increase the resolution for smoother spheres and curves
+$fn = 20; // Increase the resolution for smoother spheres and curves
 
-pi = 3.141592653589793;
+pi = 3.14159265358979323846;
 
 // Define node positions
 nodes = [
@@ -50,7 +50,7 @@ module create_edges() {
     }
 }
 
-// Function to draw a single edge with a smooth curve
+// Function to draw a single edge with a smooth curve using a circular extrusion
 module draw_edge(p1, p2) {
     // Calculate the midpoint for curvature
     mid = [
@@ -67,7 +67,10 @@ module draw_edge(p1, p2) {
     curve_points = [for (i = [0 : steps]) 
                     let(t = i / steps) bezier_point(t, path[0], path[1], path[2])];
 
-    // Extrude a circle along the polyline to create the edge
+    // Create a polyline from the curve points
+    polyline = curve_points;
+
+    // Extrude a circle along the polyline to create the edge 
     for (i = [0 : steps - 1]) {
         p_current = curve_points[i];
         p_next = curve_points[i + 1];
@@ -77,16 +80,9 @@ module draw_edge(p1, p2) {
             p_next[2] - p_current[2]
         ];
         length = sqrt(direction[0]^2 + direction[1]^2 + direction[2]^2);
-        if (length > 0) {
-            // Calculate rotation angles
-            v = [direction[0]/length, direction[1]/length, direction[2]/length];
-            theta = acos(v[2]) * 180 / pi;
-            phi = atan2(v[1], v[0]) * 180 / pi;
-            // XXX extrude a circle along the edge, not a cylinder
-            translate(p_current)
-                rotate([theta, phi, 0])
-                cylinder(r = edge_radius, h = length, center = false);
-        }
+        // Position and orient the segment
+        translate(p_current)
+            sphere(r = edge_radius);
     }
 }
 

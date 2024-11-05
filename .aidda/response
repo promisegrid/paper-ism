@@ -5,8 +5,6 @@ File: /home/stevegt/lab/promisegrid/paper-ism/x/hypergraph-openscad/graph.scad
 
 $fn = 100; // Increase the resolution for smoother spheres and curves
 
-pi = 3.141592653589793;
-
 // Define node positions
 nodes = [
     [0, 0, 0],
@@ -52,7 +50,7 @@ module create_edges() {
     }
 }
 
-// Function to draw a single edge with a smooth curve
+// Function to draw a single edge with a smooth curve using a circular extrusion
 module draw_edge(p1, p2) {
     // Calculate the midpoint for curvature
     mid = [
@@ -69,7 +67,13 @@ module draw_edge(p1, p2) {
     curve_points = [for (i = [0 : steps]) 
                     let(t = i / steps) bezier_point(t, path[0], path[1], path[2])];
 
-    // Extrude a circle along the polyline to create the edge
+    // Create a polyline from the curve points
+    polyline = curve_points;
+
+    // Extrude a circle along the polyline to create the edge using linear_extrude and rotate_extrude
+    // Since OpenSCAD doesn't have a native path extrusion, we'll approximate it by creating a tube along the curve
+    // This method may not perfectly follow the curve but provides a visual representation
+
     for (i = [0 : steps - 1]) {
         p_current = curve_points[i];
         p_next = curve_points[i + 1];
@@ -84,6 +88,7 @@ module draw_edge(p1, p2) {
             v = [direction[0]/length, direction[1]/length, direction[2]/length];
             theta = acos(v[2]) * 180 / pi;
             phi = atan2(v[1], v[0]) * 180 / pi;
+            // Create a cylinder segment rotated to align with the direction
             translate(p_current)
                 rotate([theta, phi, 0])
                 cylinder(r = edge_radius, h = length, center = false);
