@@ -1,5 +1,3 @@
-File: /home/stevegt/lab/promisegrid/paper-ism/x/hypergraph-openscad/graph.scad
-```scad
 // graph.scad
 // OpenSCAD script to visualize a 3D hypergraph with nodes as spheres and edges as thin extrusions along curves.
 
@@ -84,6 +82,7 @@ module draw_edge(p1, p2) {
             v = [direction[0]/length, direction[1]/length, direction[2]/length];
             theta = acos(v[2]) * 180 / pi;
             phi = atan2(v[1], v[0]) * 180 / pi;
+            // XXX extrude a circle along the edge, not a cylinder
             translate(p_current)
                 rotate([theta, phi, 0])
                 cylinder(r = edge_radius, h = length, center = false);
@@ -107,5 +106,3 @@ module hypergraph() {
 
 // Render the hypergraph
 hypergraph();
-```
-EOF_/home/stevegt/lab/promisegrid/paper-ism/x/hypergraph-openscad/graph.scad
