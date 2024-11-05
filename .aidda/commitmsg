@@ -1,16 +1,7 @@
-openscad graph: add a time arrow
+openscad graph: add nodes
 
-Add a time arrow off to the side of the graph.  This is a cylinder
-with a cone at the end of it.  The cylinder is N units long and 1 unit
-in diameter.  The cone is N/10 units long and N/15 units in diameter
-at the base.  The cone is at the +Z end of the cylinder.  The cylinder
-and cone are colored black.  
-
-The time arrow length N is determined by the maximum Z coordinate of
-all the nodes in the graph.  
-
-The time arrow is placed off to the side of the graph so that it does
-not interfere with the graph itself.  This is done by keeping all of
-the node coordinates in the graph as positive numbers and placing the
-time arrow base at [-5, -5, 0].  
+Add nodes and edges to the graph.  The total number of nodes is 20.
+All node X, Y, and Z coordinates are positive random integers between
+0 and 100.  The Z coordinate of each successive node monotonically
+increases from 0 to 100.
 

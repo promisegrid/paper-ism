@@ -8,31 +8,63 @@ $fn = 20; // Increase the resolution for smoother spheres and curves
 
 pi = 3.14159265358979323846;
 
-// Define node positions (shifted to ensure all Z coordinates are positive)
+// Define node positions with 20 nodes
+// X, Y, Z coordinates are positive random integers between 0 and 100
+// Z coordinates are monotonically increasing
+
 nodes = [
-    [0, 0, 43.3],
-    [50, 0, 43.3],
-    [25, 43.3, 43.3],
-    [25, 14.43, 86.6],
-    [25, 14.43, 0] // Previously had a negative Z; shifted to 0
+    [12,  45,   5],
+    [23,  67,  10],
+    [34,  12,  15],
+    [45,  89,  20],
+    [56,  34,  25],
+    [67,  56,  30],
+    [78,  78,  35],
+    [89,  90,  40],
+    [90,  23,  45],
+    [81,  34,  50],
+    [72,  55,  55],
+    [63,  66,  60],
+    [54,  77,  65],
+    [45,  88,  70],
+    [36,  99,  75],
+    [27,  11,  80],
+    [18,  22,  85],
+    [9,   33,  90],
+    [5,   44,  95],
+    [2,   55, 100]
 ];
 
 // Define edges as pairs of node indices
 edges = [
     [0, 1],
-    [0, 2],
-    [0, 3],
-    [0, 4],
     [1, 2],
-    [1, 3],
     [2, 3],
-    [2, 4],
-    [3, 4]
+    [3, 4],
+    [4, 5],
+    [5, 6],
+    [6, 7],
+    [7, 8],
+    [8, 9],
+    [9, 10],
+    [10, 11],
+    [11, 12],
+    [12, 13],
+    [13, 14],
+    [14, 15],
+    [15, 16],
+    [16, 17],
+    [17, 18],
+    [0, 18],
+    [5, 15],
+    [3, 12],
+    [7, 14],
+    [10, 16]
 ];
 
 // Parameters
-node_radius = 5; // 5mm radius for 10mm diameter
-edge_radius = 0.5; // 0.5mm radius for 1mm diameter
+node_radius = 3; // 3mm radius for 6mm diameter
+edge_radius = 0.3; // 0.3mm radius for 0.6mm diameter
 
 // Function to create a sphere for each node
 module create_nodes() {
@@ -43,7 +75,7 @@ module create_nodes() {
     }
 }
 
-// Function to create edges as extrusions along curves
+// Function to create edges as thin cylinders between nodes
 module create_edges() {
     color("blue")
     for (edge = edges) {
@@ -53,52 +85,37 @@ module create_edges() {
     }
 }
 
-// Function to draw a single edge with a smooth curve 
+// Function to draw a single edge as a cylinder between two points
 module draw_edge(p1, p2) {
-    // Calculate the midpoint for curvature
-    mid = [
-        (p1[0] + p2[0])/2 + 10,
-        (p1[1] + p2[1])/2 + 10,
-        (p1[2] + p2[2])/2
-    ];
-
-    // Points for the quadratic Bezier curve
-    path = [p1, mid, p2];
-
-    // Generate points along the curve
-    steps = 100;
-    curve_points = [for (i = [0 : steps]) 
-                    let(t = i / steps) bezier_point(t, path[0], path[1], path[2])];
-
-    // Create a polyline from the curve points
-    polyline = curve_points;
-
-    // Extrude a circle along the polyline to create the edge 
-    for (i = [0 : steps - 1]) {
-        p_current = curve_points[i];
-        p_next = curve_points[i + 1];
-        direction = [
-            p_next[0] - p_current[0],
-            p_next[1] - p_current[1],
-            p_next[2] - p_current[2]
-        ];
-        length = sqrt(direction[0]^2 + direction[1]^2 + direction[2]^2);
-        // Position and orient the segment
-        translate(p_current)
-            sphere(r = edge_radius);
+    vector = [p2[0] - p1[0], p2[1] - p1[1], p2[2] - p1[2]];
+    length = norm(vector);
+    axis = [0, 0, 1];
+    direction = vector / length;
+    angle = acos(dot(direction, axis));
+    rotation_axis = cross(axis, direction);
+    if (norm(rotation_axis) == 0) {
+        rotation_axis = [1, 0, 0];
     }
+    rotate(a = angle * 180 / pi, v = rotation_axis)
+        translate(p1)
+            cylinder(h = length, r = edge_radius, center = false);
 }
 
-// Function to calculate a point on a quadratic Bezier curve
-function bezier_point(t, p0, p1, p2) = 
-    [
-        (1 - t)^2 * p0[0] + 2*(1 - t)*t * p1[0] + t^2 * p2[0],
-        (1 - t)^2 * p0[1] + 2*(1 - t)*t * p1[1] + t^2 * p2[1],
-        (1 - t)^2 * p0[2] + 2*(1 - t)*t * p1[2] + t^2 * p2[2]
-    ];
+// Function to calculate the norm of a vector
+function norm(v) = sqrt(v[0]^2 + v[1]^2 + v[2]^2);
+
+// Dot product of two vectors
+function dot(v1, v2) = v1[0]*v2[0] + v1[1]*v2[1] + v1[2]*v2[2];
+
+// Cross product of two vectors
+function cross(v1, v2) = [
+    v1[1]*v2[2] - v1[2]*v2[1],
+    v1[2]*v2[0] - v1[0]*v2[2],
+    v1[0]*v2[1] - v1[1]*v2[0]
+];
 
 // Calculate N as the maximum Z coordinate of all nodes
-N = max([nodes[0][2], nodes[1][2], nodes[2][2], nodes[3][2], nodes[4][2]]);
+N = max([for (node = nodes) node[2]]);
 
 // Function to create the time arrow
 module create_time_arrow() {

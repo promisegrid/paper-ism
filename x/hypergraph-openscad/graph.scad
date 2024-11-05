@@ -6,26 +6,58 @@ $fn = 20; // Increase the resolution for smoother spheres and curves
 
 pi = 3.14159265358979323846;
 
-// Define node positions (shifted to ensure all Z coordinates are positive)
+// Define node positions with 20 nodes
+// X, Y, Z coordinates are positive random integers between 0 and 100
+// Z coordinates are monotonically increasing
+
 nodes = [
-    [0, 0, 43.3],
-    [50, 0, 43.3],
-    [25, 43.3, 43.3],
-    [25, 14.43, 86.6],
-    [25, 14.43, 0] // Previously had a negative Z; shifted to 0
+    [12,  45,   5],
+    [23,  67,  10],
+    [34,  12,  15],
+    [45,  89,  20],
+    [56,  34,  25],
+    [67,  56,  30],
+    [78,  78,  35],
+    [89,  90,  40],
+    [90,  23,  45],
+    [81,  34,  50],
+    [72,  55,  55],
+    [63,  66,  60],
+    [54,  77,  65],
+    [45,  88,  70],
+    [36,  99,  75],
+    [27,  11,  80],
+    [18,  22,  85],
+    [9,   33,  90],
+    [5,   44,  95],
+    [2,   55, 100]
 ];
 
 // Define edges as pairs of node indices
 edges = [
     [0, 1],
-    [0, 2],
-    [0, 3],
-    [0, 4],
     [1, 2],
-    [1, 3],
     [2, 3],
-    [2, 4],
-    [3, 4]
+    [3, 4],
+    [4, 5],
+    [5, 6],
+    [6, 7],
+    [7, 8],
+    [8, 9],
+    [9, 10],
+    [10, 11],
+    [11, 12],
+    [12, 13],
+    [13, 14],
+    [14, 15],
+    [15, 16],
+    [16, 17],
+    [17, 18],
+    [0, 18],
+    [5, 15],
+    [3, 12],
+    [7, 14],
+    [10, 16]
 ];
 
 // Parameters
@@ -41,7 +73,6 @@ module create_nodes() {
     }
 }
 
-// Function to create edges as extrusions along curves
 module create_edges() {
     color("blue")
     for (edge = edges) {
@@ -71,7 +102,7 @@ module draw_edge(p1, p2) {
     // Create a polyline from the curve points
     polyline = curve_points;
 
-    // Extrude a circle along the polyline to create the edge 
+    // place spheres along the curve
     for (i = [0 : steps - 1]) {
         p_current = curve_points[i];
         p_next = curve_points[i + 1];
@@ -81,7 +112,6 @@ module draw_edge(p1, p2) {
             p_next[2] - p_current[2]
         ];
         length = sqrt(direction[0]^2 + direction[1]^2 + direction[2]^2);
-        // Position and orient the segment
         translate(p_current)
             sphere(r = edge_radius);
     }
@@ -96,7 +126,7 @@ function bezier_point(t, p0, p1, p2) =
     ];
 
 // Calculate N as the maximum Z coordinate of all nodes
-N = max([nodes[0][2], nodes[1][2], nodes[2][2], nodes[3][2], nodes[4][2]]);
+N = max([for (node = nodes) node[2]]);
 
 // Function to create the time arrow
 module create_time_arrow() {
