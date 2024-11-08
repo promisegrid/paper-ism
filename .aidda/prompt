@@ -1,7 +1,9 @@
-openscad graph: adjust nodes, add edges
+openscad graph: add nodes
 
-Adjust the node Z positions to be more random while still monotonically
-increasing from 0 to 100.  
+Add nodes to make a total of 30 nodes.  Adjust the X and Y node
+positions to random, non-monotonic values between 0 and 100.  Adjust
+the Z node positions to be more random while still monotonically
+increasing from 0 to 200.
 
 Add edges to the graph.  Make each node have between 2 to 4 edges
 connecting it to other nodes.  
@@ -11,6 +13,14 @@ In: README.md x/hypergraph-openscad/graph.scad
 Out: x/hypergraph-openscad/graph.scad
 
 .stop
+
+- maybe use 0xRRGGBB for node color to represent more than two state
+  dimanesions
+- consider video or animations to show time dimension
+
+.stop
+
+
 
 Sysmsg: 
         You are an expert technical writer proficient in Markdown. You
