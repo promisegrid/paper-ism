@@ -7,7 +7,7 @@ $fn = 20; // Increase the resolution for smoother spheres and curves
 pi = 3.14159265358979323846;
 
 // Define node positions with 30 nodes
-// X, Y coordinates are random integers between 0 and 100 (non-monotonic)
+// X, Y coordinates are random integers between 0 and 100
 // Z coordinates are randomly increasing from 0 to 200
 
 nodes = [
@@ -30,56 +30,53 @@ nodes = [
     [50, 25, 83],
     [10, 75, 89],
     [55, 45, 95],
-    [20, 60, 102],
+    [20, 60, 101],
     [65, 20, 108],
-    [70, 80, 115],
-    [5, 50, 123],
-    [85, 10, 130],
-    [40, 60, 138],
-    [90, 40, 147],
-    [33, 70, 155],
-    [75, 55, 164],
-    [60, 65, 173],
-    [15, 20, 182],
-    [95, 75, 191],
-    [50, 50, 200]
+    [85, 50, 115],
+    [40, 80, 123],
+    [70, 35, 130],
+    [25, 55, 138],
+    [75, 40, 145],
+    [35, 65, 153],
+    [60, 50, 160],
+    [15, 85, 168],
+    [80, 45, 175]
 ];
 
 // Define edges ensuring each node has between 2 to 4 connections
 edges = [
     [0, 1], [0, 5], [0, 18],
     [1, 2], [1, 6], [1, 19],
-    [2, 3], [2, 7], [2, 20],
-    [3, 4], [3, 8], [3, 21],
-    [4, 5], [4, 9], [4, 22],
-    [5, 6], [5, 10], [5, 23],
-    [6, 7], [6, 11], [6, 24],
-    [7, 8], [7, 12], [7, 25],
-    [8, 9], [8, 13], [8, 26],
-    [9, 10], [9, 14], [9, 27],
-    [10, 11], [10, 15], [10, 28],
-    [11, 12], [11, 16], [11, 29],
+    [2, 3], [2, 7],
+    [3, 4], [3, 8], [3, 20],
+    [4, 5], [4, 9],
+    [5, 6], [5, 10],
+    [6, 7], [6, 11],
+    [7, 8], [7, 12],
+    [8, 9], [8, 13],
+    [9, 10], [9, 14],
+    [10, 11], [10, 15],
+    [11, 12], [11, 16],
     [12, 13], [12, 17],
-    [13, 14],
-    [14, 15],
-    [15, 16],
-    [16, 17],
-    [17, 18],
-    [18, 19],
-    [19, 20],
-    [20, 21],
-    [21, 22],
-    [22, 23],
-    [23, 24],
-    [24, 25],
-    [25, 26],
-    [26, 27],
-    [27, 28],
-    [28, 29]
+    [13, 14], [13, 18],
+    [14, 15], [14, 19],
+    [15, 16], [15, 20],
+    [16, 17], [16, 21],
+    [17, 18], [17, 22],
+    [18, 19], [18, 23],
+    [19, 20], [19, 24],
+    [20, 21], [20, 25],
+    [21, 22], [21, 26],
+    [22, 23], [22, 27],
+    [23, 24], [23, 28],
+    [24, 25], [24, 29],
+    [25, 26], [25, 28],
+    [26, 27], [26, 29],
+    [27, 28], [28, 29]
 ];
 
 // Parameters
-node_radius = 3; // 5mm radius for 10mm diameter
+node_radius = 3; // 3mm radius for 6mm diameter
 edge_radius = 0.5; // 0.5mm radius for 1mm diameter
 
 // Function to create a sphere for each node
@@ -104,8 +101,8 @@ module create_edges() {
 module draw_edge(p1, p2) {
     // Calculate the midpoint for curvature
     mid = [
-        (p1[0] + p2[0])/2 + 10 * sin(p1[2]/200 * 2 * pi),
-        (p1[1] + p2[1])/2 + 10 * cos(p2[2]/200 * 2 * pi),
+        (p1[0] + p2[0])/2 + 10,
+        (p1[1] + p2[1])/2 + 10,
         (p1[2] + p2[2])/2
     ];
 
@@ -120,7 +117,7 @@ module draw_edge(p1, p2) {
     // Create a polyline from the curve points
     polyline = curve_points;
 
-    // place cylinders along the curve
+    // place spheres along the curve
     for (i = [0 : steps - 1]) {
         p_current = curve_points[i];
         p_next = curve_points[i + 1];
@@ -130,12 +127,8 @@ module draw_edge(p1, p2) {
             p_next[2] - p_current[2]
         ];
         length = sqrt(direction[0]^2 + direction[1]^2 + direction[2]^2);
-        angle = atan2(direction[1], direction[0]);
-        elevation = atan2(direction[2], sqrt(direction[0]^2 + direction[1]^2));
-
         translate(p_current)
-            rotate([degrees(elevation), 0, degrees(angle)])
-                cylinder(h = length, r = edge_radius, center = false);
+            sphere(r = edge_radius);
     }
 }
 
