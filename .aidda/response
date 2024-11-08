@@ -13,37 +13,38 @@ pi = 3.14159265358979323846;
 // Z coordinates are randomly increasing from 0 to 200
 
 nodes = [
-    [12, 45, 2],
-    [30, 70, 6],
-    [15, 30, 9],
-    [40, 85, 15],
-    [25, 40, 19],
-    [60, 30, 24],
-    [30, 75, 29],
-    [80, 30, 35],
-    [25, 25, 39],
-    [78, 35, 43],
-    [48, 50, 48],
-    [13, 65, 54],
-    [58, 42, 60],
-    [50, 85, 65],
-    [42, 15, 72],
-    [35, 55, 78],
-    [50, 25, 83],
-    [10, 75, 89],
-    [55, 45, 95],
-    [20, 60, 101],
-    [65, 20, 108],
-    [85, 50, 115],
-    [40, 80, 123],
-    [70, 35, 130],
-    [25, 55, 138],
-    [75, 40, 145],
-    [35, 65, 153],
-    [60, 50, 160],
-    [15, 85, 168],
-    [80, 45, 175],
-    [45, 70, 183]
+    [15, 25, 2],
+    [85, 30, 6],
+    [40, 80, 9],
+    [22, 55, 15],
+    [60, 45, 19],
+    [70, 60, 24],
+    [10, 70, 29],
+    [35, 10, 35],
+    [50, 65, 39],
+    [80, 20, 43],
+    [45, 50, 48],
+    [30, 75, 54],
+    [55, 35, 60],
+    [65, 80, 65],
+    [20, 40, 70],
+    [75, 55, 75],
+    [25, 65, 80],
+    [90, 25, 85],
+    [33, 58, 89],
+    [40, 15, 95],
+    [55, 70, 101],
+    [65, 30, 108],
+    [30, 85, 110],
+    [85, 45, 115],
+    [15, 60, 120],
+    [50, 25, 125],
+    [70, 75, 130],
+    [25, 50, 135],
+    [80, 55, 140],
+    [35, 70, 145],
+    [60, 20, 150],
+    [45, 75, 155]
 ];
 
 // Define edges ensuring each node has between 2 to 4 connections
@@ -104,8 +105,8 @@ module create_edges() {
 module draw_edge(p1, p2) {
     // Calculate the midpoint for curvature
     mid = [
-        (p1[0] + p2[0])/2 + 10 * sin(pi * (p1[0] + p2[0])/200),
-        (p1[1] + p2[1])/2 + 10 * cos(pi * (p1[1] + p2[1])/200),
+        (p1[0] + p2[0])/2 + 10,
+        (p1[1] + p2[1])/2 + 10,
         (p1[2] + p2[2])/2
     ];
 
@@ -120,7 +121,7 @@ module draw_edge(p1, p2) {
     // Create a polyline from the curve points
     polyline = curve_points;
 
-    // place cylinders along the curve to represent edges
+    // place spheres along the curve
     for (i = [0 : steps - 1]) {
         p_current = curve_points[i];
         p_next = curve_points[i + 1];
@@ -130,10 +131,8 @@ module draw_edge(p1, p2) {
             p_next[2] - p_current[2]
         ];
         length = sqrt(direction[0]^2 + direction[1]^2 + direction[2]^2);
-        angle = atan(direction[1]/direction[0]);
-        rotate([0, atan(direction[2]/sqrt(direction[0]^2 + direction[1]^2))/pi*180, angle/pi*180])
-            translate(p_current)
-                cylinder(h = length, r = edge_radius, center = false);
+        translate(p_current)
+            sphere(r = edge_radius);
     }
 }
 

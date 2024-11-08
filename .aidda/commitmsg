@@ -1,10 +1,6 @@
-openscad graph: add nodes
+openscad graph: expand X and Y plane
 
-Add nodes to make a total of 30 nodes.  Adjust the X and Y node
-positions to random, non-monotonic values between 0 and 100.  Adjust
-the Z node positions to be more random while still monotonically
-increasing from 0 to 200.
-
-Add edges to the graph.  Ensure each node has 2 to 4 edges
-connecting it to other nodes.  
+Adjust the X and Y node positions to random, non-monotonic values
+between 0 and 100.  Try to keep them from being bunched up in the
+corners.  
 
