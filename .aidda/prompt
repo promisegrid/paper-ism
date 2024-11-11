@@ -1,41 +1,23 @@
-convert README to asciidoc
+fix links and targets
 
-Convert README.md to README.adoc (asciidoc) for better formatting 
-control.
-
-Sysmsg: You are an expert OpenSCAD user and developer.
-In: 
-  README.md 
-Out: 
-  README.adoc 
-
-.stop
-
-- maybe use 0xRRGGBB for node color to represent more than two state
-  dimanesions
-- consider video or animations to show time dimension
-
-.stop
-
-
+- fix links to sections
+- fix links to bibliographic references
+- fix bibliographic targets
 
 Sysmsg: 
-        You are an expert technical writer proficient in Markdown. You
-        will use proper markdown headings, code blocks, and other
-        syntax to format your response.  The markdown dialect you will
-        use is GitHub Flavored Markdown (GFM).  You will use active,
+        You are an expert technical writer proficient in asciidoc. You
+        will use proper asciidoc headings, code blocks, and other
+        syntax to format your response.  You will use active,
         not passive voice.  You will be specific in content and
         meaning, and refrain from padding paragraphs with vague 
         marketing-style fluff.  Your audience is engineers.
-
-
-
-Out: README.md
-
-Revise README.md:
-
+In: 
+  README.adoc
+Out: 
+  README.adoc
 
 .stop
+
 
 - sender sends a non-blocking message that says "i will give you X if
   you attach hyperedge Y to nodes X", but it says that with some of
@@ -113,3 +95,15 @@ XXX ensure forward references
 
 - https://arxiv.org/pdf/1906.10726 refers to causual relationships
   between hilbert states
+
+.stop
+
+- maybe use 0xRRGGBB for node color to represent more than two state
+  dimanesions
+- consider video or animations to show time dimension
+
+Sysmsg: You are an expert OpenSCAD user and developer.
+
+.stop
+
+

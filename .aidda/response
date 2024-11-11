@@ -1,8 +1,9 @@
+```
 File: /home/stevegt/lab/promisegrid/paper-ism/README.adoc
 ```adoc
 = A Hypergraph-based Decentralized Infinite State Machine Model Compatible with Semantic Spacetime and Promise Theory
 
-Steve Traugott[stevegt], Rebecca Snyder[^rebecca]
+Steve Traugott[link:stevegt[stevegt]], Rebecca Snyder[link:rebecca[^rebecca]]
 
 == Abstract
 
@@ -20,7 +21,7 @@ We propose a system for computing, communication, and governance built on consen
 
 This system serves as a decentralized computation network, analogous to how the Internet operates as a decentralized communication network. Just as the Internet is a distributed network, our system functions as a decentralized computer. It is owned and operated by its users rather than any single legal entity, ensuring that the grid remains scalable and resilient as more users join.
 
-In a nutshell, if [sec theory] is correct, then we should be able to build a decentralized system for equitable and accurate group communication, computation, and decision-making using current technology and concepts from graph theory.
+In a nutshell, if <<theory, Theory>> is correct, then we should be able to build a decentralized system for equitable and accurate group communication, computation, and decision-making using current technology and concepts from graph theory.
 
 The general idea is that the universe can be modeled as a hypergraph, where each node in the graph is a state of an agent, and each edge in the graph is an action taken by an agent in response to a stimulus. A hypergraph that models the universe can also be thought of as an infinite state machine.
 
@@ -171,7 +172,7 @@ To encode the promises (claims) made by agents within the DISM framework, the fo
 **CBOR** is a binary data serialization format that is designed to be small in size and fast to parse. It is well-suited for encoding structured data like promises because of its compactness and flexibility.
 
 - **Advantages:**
-  - **Efficiency:** Binary format reduces the size of the encoded data, which is beneficial for distributed systems where bandwidth may be limited.
+  - **Efficiency:** Binary format reduces the size of the encoded data, which beneficial for distributed systems where bandwidth may be limited.
   - **Flexibility:** Supports a wide range of data types, including complex nested structures.
   - **Interoperability:** Widely supported across various programming languages and platforms.
 
@@ -239,7 +240,7 @@ The behavior of a decentralized state machine can be modeled as a hypergraph. If
 
 ==== Decentralized Finite State Machine (DFSM) 
 
-A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site. Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group. [^flagxfer]
+A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site. Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group. <<flagxfer, [^flagxfer]>>
 
 ==== Decentralized Infinite State Machine (DISM)
 
@@ -281,7 +282,7 @@ Promises are not guarantees; they are assertions an agent makes about its own be
 
 Frame of reference matters: Whether a promise is fulfilled or broken depends on the observer. For example, Bob may view Alice's promise as fulfilled, while Carol views the same promise as broken. Carol may then tell others that Alice's promise is broken, but it's important to note that, when making this claim, Carol is only making a promise about her own evaluation of Alice.
 
-Relativity matters: It's worth considering that Carol and Bob may each be using the exact same criteria to evaluate Alice's promise, but they may have different frames of reference. For example, Bob may be evaluating Alice's promise while he is at rest on Earth's surface, while Carol, in a 20,000km Earth orbit, gains about 38 microseconds per day on her local clock. If Alice's promise includes microsecond-level precision, then Bob and Carol may be both correct and both in disagreement with each other. [^gps]
+Relativity matters: It's worth considering that Carol and Bob may each be using the exact same criteria to evaluate Alice's promise, but they may have different frames of reference. For example, Bob may be evaluating Alice's promise while he is at rest on Earth's surface, while Carol, in a 20,000km Earth orbit, gains about 38 microseconds per day on her local clock. If Alice's promise includes microsecond-level precision, then Bob and Carol may both be correct and both in disagreement with each other. <<gps, [^gps]>>
 
 Dave, observing all of the above, may conclude that when he's evaluating Alice's, Bob's and Carol's promises, he may want to add his own compensation for relativistic effects.
 
@@ -315,24 +316,25 @@ XXX mention LLM models and how used?
 
 == References
 
-[stevegt]#http://github.com/stevegt[https://github.com/stevegt]
+[[stevegt]] http://github.com/stevegt[https://github.com/stevegt]
 
-[^rebecca]#https://github.com/RebeccaSnyder505[https://github.com/RebeccaSnyder505]
+[[rebecca]] https://github.com/RebeccaSnyder505[https://github.com/RebeccaSnyder505]
 
-[^turing]#Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," *Proceedings of the London Mathematical Society*, 1936.
+[[turing]] Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," *Proceedings of the London Mathematical Society*, 1936.
 
-[^pt]#Mark Burgess, *Promise Theory: Principles and Applications*
+[[pt]] Mark Burgess, *Promise Theory: Principles and Applications*
 
-[^sst]#Mark Burgess, *Semantic Spacetime: A Practical Foundation*
+[[sst]] Mark Burgess, *Semantic Spacetime: A Practical Foundation*
 
-[^pvp]#Steve Traugott, *Push vs Pull*
+[[pvp]] Steve Traugott, *Push vs Pull*
 
-[^order]#Steve Traugott, *Why Order Matters*
+[[order]] Steve Traugott, *Why Order Matters*
 
-[^antikernel]#Andrew Zonenberg, *Antikernel*
+[[antikernel]] Andrew Zonenberg, *Antikernel*
 
-[^flagxfer]#Manual on Uniform Traffic Control Devices for Streets and Highways, US Dept of Transportation <https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12>[https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12]
+[[flagxfer]] Manual on Uniform Traffic Control Devices for Streets and Highways, US Dept of Transportation <https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12>[https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12]
 
-[^gps]#Inside the Box: GPS and Relativity <https://www.gpsworld.com/inside-the-box-gps-and-relativity/>[https://www.gpsworld.com/inside-the-box-gps-and-relativity/]
+[[gps]] Inside the Box: GPS and Relativity <https://www.gpsworld.com/inside-the-box-gps-and-relativity/>[https://www.gpsworld.com/inside-the-box-gps-and-relativity/]
 ```
 EOF_/home/stevegt/lab/promisegrid/paper-ism/README.adoc
+```
