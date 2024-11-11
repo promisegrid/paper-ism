@@ -1,5 +1,3 @@
-File: /home/stevegt/lab/promisegrid/paper-ism/README.adoc
-```adoc
 = A Hypergraph-based Decentralized Infinite State Machine Model Compatible with Semantic Spacetime and Promise Theory
 
 Steve Traugott[stevegt], Rebecca Snyder[^rebecca]
@@ -334,5 +332,3 @@ XXX mention LLM models and how used?
 [^flagxfer]#Manual on Uniform Traffic Control Devices for Streets and Highways, US Dept of Transportation <https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12>[https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12]
 
 [^gps]#Inside the Box: GPS and Relativity <https://www.gpsworld.com/inside-the-box-gps-and-relativity/>[https://www.gpsworld.com/inside-the-box-gps-and-relativity/]
-```
-EOF_/home/stevegt/lab/promisegrid/paper-ism/README.adoc

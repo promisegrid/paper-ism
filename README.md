@@ -1,6 +1,6 @@
 # A Hypergraph-based Decentralized Infinite State Machine Model Compatible with Semantic Spacetime and Promise Theory
 
-Steve Traugott[^stevegt], Rebecca Snyder[^rebecca]
+Steve Traugott[stevegt], Rebecca Snyder[^rebecca]
 
 ## Abstract
 
@@ -17,7 +17,7 @@ We propose a system for computing, communication, and governance built on consen
 
 This system serves as a decentralized computation network, analogous to how the Internet operates as a decentralized communication network. Just as the Internet is a distributed network, our system functions as a decentralized computer. It is owned and operated by its users rather than any single legal entity, ensuring that the grid remains scalable and resilient as more users join.
 
-In a nutshell, if the [theory](#theory) section is correct, then we should be able to build a decentralized system for equitable and accurate group communication, computation, and decision-making using current technology and concepts from graph theory.
+In a nutshell, if [sec theory] is correct, then we should be able to build a decentralized system for equitable and accurate group communication, computation, and decision-making using current technology and concepts from graph theory.
 
 The general idea is that the universe can be modeled as a hypergraph, where each node in the graph is a state of an agent, and each edge in the graph is an action taken by an agent in response to a stimulus. A hypergraph that models the universe can also be thought of as an infinite state machine.
 
@@ -310,7 +310,7 @@ XXX mention LLM models and how used?
 
 ## References
 
-[^stevegt]: [http://github.com/stevegt](https://github.com/stevegt)
+[stevegt]: [http://github.com/stevegt](https://github.com/stevegt)
 [^rebecca]: [https://github.com/RebeccaSnyder505](https://github.com/RebeccaSnyder505)
 [^turing]: Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," *Proceedings of the London Mathematical Society*, 1936.
 [^pt]: Mark Burgess, *Promise Theory: Principles and Applications*

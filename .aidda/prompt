@@ -1,12 +1,13 @@
-openscad graph: expand X and Y plane
+convert README to asciidoc
 
-Adjust the X and Y node positions to random, non-monotonic values
-between 0 and 100.  Try to keep them from being bunched up in the
-corners.  
+Convert README.md to README.adoc (asciidoc) for better formatting 
+control.
 
 Sysmsg: You are an expert OpenSCAD user and developer.
-In: README.md x/hypergraph-openscad/graph.scad
-Out: x/hypergraph-openscad/graph.scad
+In: 
+  README.md 
+Out: 
+  README.adoc 
 
 .stop
 
