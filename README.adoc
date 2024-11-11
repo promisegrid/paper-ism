@@ -31,7 +31,8 @@ States, agents, and graph edges can be referenced by cryptographic hash in conte
 
 As of this writing we are currently working on a proof of concept implementation of this system, using existing libraries for low-level message framing and content-addressable data storage.
 
-XXX need a pretty picture here showing a 3D hypergraph with states and transitions moving upward in time, maybe openscad
+.XXX 3D hypergraph with states and transitions moving upward in time
+image::images/hypergraph-openscad/graph.png[]
 
 == Prediction
 
