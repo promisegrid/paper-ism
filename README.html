@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
-<meta name="author" content="Steve Traugott, Rebecca Snyder">
+<meta name="author" content="Steve Traugott, Donaldo Almazon, JJ Salley, Rebecca Snyder, Angela Traugott">
 <title>A Hypergraph-based Decentralized Infinite State Machine Model Compatible with Semantic Spacetime and Promise Theory</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -441,8 +441,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="details">
 <span id="author" class="author">Steve Traugott</span><br>
 <span id="email" class="email"><a href="http://github.com/stevegt" class="bare">http://github.com/stevegt</a></span><br>
-<span id="author2" class="author">Rebecca Snyder</span><br>
-<span id="email2" class="email"><a href="https://github.com/RebeccaSnyder505" class="bare">https://github.com/RebeccaSnyder505</a></span><br>
+<span id="author2" class="author">Donaldo Almazon</span><br>
+<span id="author3" class="author">JJ Salley</span><br>
+<span id="author4" class="author">Rebecca Snyder</span><br>
+<span id="email4" class="email"><a href="https://github.com/RebeccaSnyder505" class="bare">https://github.com/RebeccaSnyder505</a></span><br>
+<span id="author5" class="author">Angela Traugott</span><br>
 </div>
 </div>
 <div id="content">
@@ -450,15 +453,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_abstract">Abstract</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles. This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.</p>
+<p>We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about state transitions in the past or future on one or more timelines. We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles. This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.</p>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle" class="title">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_abstract">Abstract</a></li>
-<li><a href="#_foreword">Foreword</a></li>
-<li><a href="#_discussion">Discussion</a></li>
-<li><a href="#_prediction">Prediction</a></li>
+<li><a href="#_discussion">Discussion</a>
+<ul class="sectlevel2">
+<li><a href="#_background">Background</a></li>
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_a_prediction">A Prediction</a></li>
+</ul>
+</li>
 <li><a href="#_theory">Theory</a>
 <ul class="sectlevel2">
 <li><a href="#_semantic_spacetime_and_dism_compatibility">Semantic Spacetime and DISM Compatibility</a></li>
@@ -466,10 +473,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_the_role_of_the_dism_kernel_in_state_transitions">The Role of the DISM Kernel in State Transitions</a></li>
 </ul>
 </li>
-<li><a href="#_possible_implementation">Possible Implementation</a>
+<li><a href="#_implementation">Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#_suggested_encoding">Suggested Encoding</a></li>
-<li><a href="#_definition_of_terms">Definition of Terms</a></li>
+<li><a href="#_encoding">Encoding</a></li>
+</ul>
+</li>
+<li><a href="#_definition_of_terms">Definition of Terms</a>
+<ul class="sectlevel2">
+<li><a href="#_state_machine">State Machine</a></li>
+<li><a href="#_finite_state_machine_fsm">Finite State Machine (FSM)</a></li>
+<li><a href="#_infinite_state_machine_ism">Infinite State Machine (ISM)</a></li>
+<li><a href="#_decentralized_state_machine_dsm">Decentralized State Machine (DSM)</a></li>
+<li><a href="#_decentralized_finite_state_machine_dfsm">Decentralized Finite State Machine (DFSM)</a></li>
+<li><a href="#_decentralized_infinite_state_machine_dism">Decentralized Infinite State Machine (DISM)</a></li>
+<li><a href="#_transition_function">Transition Function</a></li>
+<li><a href="#_agent">Agent</a></li>
+<li><a href="#_pure_functions_and_side_effects">Pure Functions and Side Effects</a></li>
+<li><a href="#_promise_theory">Promise Theory</a></li>
+<li><a href="#_semantic_spacetime">Semantic Spacetime</a></li>
 </ul>
 </li>
 <li><a href="#_acknowledgments">Acknowledgments</a></li>
@@ -479,8 +500,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_foreword">Foreword</h2>
+<h2 id="_discussion">Discussion</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_background">Background</h3>
 <div class="paragraph">
 <p><strong>-- By Steve Traugott</strong></p>
 </div>
@@ -488,10 +511,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>XXX Retrospective on the prehistory of the DevOps movement&#8217;s concepts and cultures of convergence, congruence, promise theory, semantic spacetime. Desire for reconciliation between these concepts.</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_discussion">Discussion</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_introduction">Introduction</h3>
 <div class="paragraph">
 <p>We propose a system for computing, communication, and governance built on consensus mechanisms, specifically designed to tackle the challenges in collaborative work and leadership that hinder organizations and communities, including non-profits and businesses.</p>
 </div>
@@ -520,10 +541,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Figure 1. XXX 3D hypergraph with states and transitions moving upward in time</div>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_prediction">Prediction</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_a_prediction">A Prediction</h3>
 <div class="paragraph">
 <p>If the following model is correct, then we should be able to use it as a basis for design of a decentralized system that can be used to compute any function computable by machine.</p>
 </div>
@@ -532,6 +551,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="paragraph">
 <p>Finally, if the system includes multiple agents that are human, then it should be able to compute any function computable by a group of humans, including analysis, consensus formation, conflict detection and resolution, and decision recording.</p>
+</div>
 </div>
 </div>
 </div>
@@ -835,13 +855,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_possible_implementation">Possible Implementation</h2>
+<h2 id="_implementation">Implementation</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>XXX move to before theory section, after discussion</p>
 </div>
 <div class="sect2">
-<h3 id="_suggested_encoding">Suggested Encoding</h3>
+<h3 id="_encoding">Encoding</h3>
 <div class="paragraph">
 <p>To encode the promises (claims) made by agents within the DISM framework, the following encoding standards are suggested:</p>
 </div>
@@ -939,16 +959,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_definition_of_terms">Definition of Terms</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_definition_of_terms">Definition of Terms</h3>
-<div class="sect3">
-<h4 id="_state_machine">State Machine</h4>
+<h3 id="_state_machine">State Machine</h3>
 <div class="paragraph">
 <p>A <strong>state machine</strong> is a model of computation that describes a system&#8217;s behavior as a sequence of states. In a state machine, the system transitions from one state to another based on inputs and internal conditions.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_finite_state_machine_fsm">Finite State Machine (FSM)</h4>
+<div class="sect2">
+<h3 id="_finite_state_machine_fsm">Finite State Machine (FSM)</h3>
 <div class="paragraph">
 <p>A <strong>finite state machine</strong> has a fixed number of states and transitions, making it suitable for modeling systems with a limited number of possible states.</p>
 </div>
@@ -959,8 +982,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Finite state machines typically repeat a fixed set of states in one or more loops. Their behavior can be modeled as a cyclic directed graph, where states are nodes and transitions are edges.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_infinite_state_machine_ism">Infinite State Machine (ISM)</h4>
+<div class="sect2">
+<h3 id="_infinite_state_machine_ism">Infinite State Machine (ISM)</h3>
 <div class="paragraph">
 <p>An <strong>infinite state machine (ISM)</strong> is a system in which the number of potential states is unbounded.</p>
 </div>
@@ -983,8 +1006,8 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 <p>Infinite state machines typically do not repeat previous states. Their behavior can be modeled as an open-ended directed graph.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_decentralized_state_machine_dsm">Decentralized State Machine (DSM)</h4>
+<div class="sect2">
+<h3 id="_decentralized_state_machine_dsm">Decentralized State Machine (DSM)</h3>
 <div class="paragraph">
 <p>A <strong>decentralized state machine (DSM)</strong> is a system of interconnected state machines that operate autonomously and interact with each other with no central controller. Each machine manages only its own local state based on transitions triggered by inputs. Inputs may be from local sources or from other state machines.</p>
 </div>
@@ -992,14 +1015,14 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 <p>The behavior of a decentralized state machine can be modeled as a hypergraph. If the group includes an infinite state machine, then the graph is open-ended.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_decentralized_finite_state_machine_dfsm">Decentralized Finite State Machine (DFSM)</h4>
+<div class="sect2">
+<h3 id="_decentralized_finite_state_machine_dfsm">Decentralized Finite State Machine (DFSM)</h3>
 <div class="paragraph">
 <p>A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site. Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group. <a href="#flagxfer">[flagxfer]</a></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_decentralized_infinite_state_machine_dism">Decentralized Infinite State Machine (DISM)</h4>
+<div class="sect2">
+<h3 id="_decentralized_infinite_state_machine_dism">Decentralized Infinite State Machine (DISM)</h3>
 <div class="paragraph">
 <p>A decentralized ISM is a system of interconnected infinite state machines that operate autonomously and interact with each other with no central controller. Each machine manages only its own local state based on transitions triggered by inputs. Inputs may be from local sources or from other state machines.</p>
 </div>
@@ -1010,8 +1033,8 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 <p>XXX Each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control&#8201;&#8212;&#8201;agents cannot make promises on behalf of others. These promises can be observed by others to inform their own state transitions.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_transition_function">Transition Function</h4>
+<div class="sect2">
+<h3 id="_transition_function">Transition Function</h3>
 <div class="paragraph">
 <p>A <strong>transition function</strong> is a mapping from the current state of the system to the next state. In a finite state machine, the transition function might be a static table of state transitions; the table key is (current state, input event), which returns a value of (next state). In an infinite state machine, the transition function is a dynamic table; given (current state, input), the transition function returns (next state, next state table).</p>
 </div>
@@ -1019,14 +1042,14 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 <p>In our previous example of a general purpose computing system, the transition table is the entire disk state, and the transition function is the process of reading and writing from disk.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_agent">Agent</h4>
+<div class="sect2">
+<h3 id="_agent">Agent</h3>
 <div class="paragraph">
 <p>An <strong>agent</strong> is an autonomous entity. An agent might be a person or animal, a computer program, a machine, or other physical object. At extremely small scale, an agent might be an electron or other subatomic particle. The defining characteristic of an agent is its ability to influence, and be influenced by, its environment.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_pure_functions_and_side_effects">Pure Functions and Side Effects</h4>
+<div class="sect2">
+<h3 id="_pure_functions_and_side_effects">Pure Functions and Side Effects</h3>
 <div class="paragraph">
 <p>A <strong>pure function</strong> is a function that has no side effects and always returns the same output for the same input.</p>
 </div>
@@ -1034,8 +1057,8 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 <p>While pure functions aid in reasoning about a standalone system, it is useful to recognize that decentralized systems cannot exist without side effects; even if all agents in a decentralized system are themselves pure functions, the communications between them constitute side effects that alter the system&#8217;s total state.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_promise_theory">Promise Theory</h4>
+<div class="sect2">
+<h3 id="_promise_theory">Promise Theory</h3>
 <div class="paragraph">
 <p><strong>Promise Theory (PT)</strong>, introduced by Mark Burgess, formalizes a model for understanding how autonomous agents interact in a decentralized environment. In PT, agents make <strong>promises</strong> about their behavior to others. The model emphasizes that agents can only make promises about their own behavior; agents cannot impose obligations on, nor make promises about, the behavior of other agents.</p>
 </div>
@@ -1068,8 +1091,8 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 <p>Dave, observing all of the above, may conclude that when he&#8217;s evaluating Alice&#8217;s, Bob&#8217;s and Carol&#8217;s promises, he may want to add his own compensation for relativistic effects.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_semantic_spacetime">Semantic Spacetime</h4>
+<div class="sect2">
+<h3 id="_semantic_spacetime">Semantic Spacetime</h3>
 <div class="paragraph">
 <p><strong>Semantic Spacetime (SST)</strong>, also developed by Mark Burgess, is a natural extension of Promise Theory into physics and cosmology, integrating the dimensions of space and time into how we understand and model interactions within systems. In the SST model, agents exist and interact within a <strong>spacetime</strong> fabric, where the arrangement of agents (space) and the sequence of their interactions (time) are essential to understanding system behavior.</p>
 </div>
@@ -1107,12 +1130,11 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
 <h2 id="_acknowledgments">Acknowledgments</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Angela Traugott, Donaldo Almazon, JJ Salley, XXX</p>
+<p>XXX Mark</p>
 </div>
 <div class="paragraph">
 <p>XXX mention LLM models and how used?</p>
@@ -1155,7 +1177,7 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-11 05:42:38 UTC
+Last updated 2024-11-11 05:54:29 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
