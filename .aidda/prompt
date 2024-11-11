@@ -1,8 +1,4 @@
-fix links and targets
-
-- fix links to sections
-- fix links to bibliographic references
-- fix bibliographic targets
+move toc to after abstract
 
 Sysmsg: 
         You are an expert technical writer proficient in asciidoc. You
