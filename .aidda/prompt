@@ -1,4 +1,4 @@
-add hypergraph image
+first draft of History section
 
 Sysmsg: 
         You are an expert technical writer proficient in asciidoc. You
@@ -8,6 +8,7 @@ Sysmsg:
         meaning, and refrain from padding paragraphs with vague 
         marketing-style fluff.  Your audience is engineers.
 In: 
+  /home/stevegt/lab/promisegrid/promisegrid/README.md
   README.adoc
 Out: 
   README.adoc
@@ -21,11 +22,13 @@ Out:
 - receiver either ignores it or attaches the edge
 - sender monitors or polls the node, sees the edge show up
 - nodes have capability-based permissions
+
 - double-spend isn't proactively prevented but might later prevent
   merge if merge would cause bidder's balance to drop below zero
   - similar in concept to git taking a nonlocking, merge-later
     approach rather than proactively locking to prevent edits of the
     same file in earlier VCS e.g. CVS and SVN
+
 - a node is a graph is a hyperedge is a message is an intent is a
   (something that is a fundamental building block of the universe),
   which means the message really is "here's an intent that I'm
@@ -61,6 +64,13 @@ Out:
 - rube goldberg example of inanimate agents
 
 - "why it matters" subsection in discussion
+In Discussion section, add a subsection "Why it matters" that explains
+the importance of the work in the context of the current state of the
+art and the future of the field.  This subsection should be a few
+paragraphs long and should be written in a way that is accessible to
+non-experts.  It should be the first subsection in the Background
+section.
+
 
 - cite RFC's about centralization concerns
 

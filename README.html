@@ -453,7 +453,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_abstract">Abstract</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about state transitions in the past or future on one or more timelines. We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles. This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.</p>
+<p>We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about state transitions in the past or future on one or more timelines.</p>
+</div>
+<div class="paragraph">
+<p>We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles.</p>
+</div>
+<div class="paragraph">
+<p>This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves.</p>
+</div>
+<div class="paragraph">
+<p>We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.</p>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle" class="title">Table of Contents</div>
@@ -461,7 +473,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_abstract">Abstract</a></li>
 <li><a href="#_discussion">Discussion</a>
 <ul class="sectlevel2">
-<li><a href="#_background">Background</a></li>
+<li><a href="#_history">History</a></li>
 <li><a href="#_introduction">Introduction</a></li>
 <li><a href="#_a_prediction">A Prediction</a></li>
 </ul>
@@ -480,6 +492,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_definition_of_terms">Definition of Terms</a>
 <ul class="sectlevel2">
+<li><a href="#_promise">Promise</a></li>
 <li><a href="#_state_machine">State Machine</a></li>
 <li><a href="#_finite_state_machine_fsm">Finite State Machine (FSM)</a></li>
 <li><a href="#_infinite_state_machine_ism">Infinite State Machine (ISM)</a></li>
@@ -503,16 +516,275 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_discussion">Discussion</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_background">Background</h3>
+<h3 id="_history">History</h3>
 <div class="paragraph">
 <p><strong>-- By Steve Traugott</strong></p>
 </div>
 <div class="paragraph">
-<p>XXX Retrospective on the prehistory of the DevOps movement&#8217;s concepts and cultures of convergence, congruence, promise theory, semantic spacetime. Desire for reconciliation between these concepts.</p>
+<p>The year was 1994.  There I was, standing in the former boardroom of a
+major international bank, looking at the README for an early version
+of Mark Burgess&#8217;s cfengine.  I was thinking "this is close to what we
+need, but I&#8217;ll not be able to get it past internal culture."</p>
+</div>
+<div class="paragraph">
+<p>In that year, the terms "open source" and "infrastructure" had not yet
+been applied to computing. About 1% of the world&#8217;s population was
+using the Internet, most software was still distributed on tape or
+floppy disks, Linux was at version 0.99, and git was over a decade in
+the future.</p>
+</div>
+<div class="paragraph">
+<p>Derivatives trading was becoming the most profitable business in
+global finance. The bank had acquired a major competitor and vacated
+the competitor&#8217;s boardroom, turning it into a software development
+area for derivatives trading. It was generally understood that a
+trading operation needed to write their own application code to be
+competitive, but that philosophy had not yet penetrated internal
+culture around systems infrastructure or administration.  When it came
+to the underlying infrastructure, the bank&#8217;s cultural preference was
+for commercial software with support contracts.</p>
+</div>
+<div class="paragraph">
+<p>I was working on a project to automate the management of the bank&#8217;s
+global derivatives trading systems&#8201;&#8212;&#8201;at that time, this was hundreds
+of UNIX desktops and servers worldwide, built by hand, installed from
+tape.</p>
+</div>
+<div class="paragraph">
+<p>Those UNIX machines were considered bleeding-edge, part of the
+"client-server" trend that was occupying increasing mindshare in IT at
+the time.  The bank&#8217;s older systems consisted of mainframes and
+minicomputers, with either terminals or DOS/Windows on desktops.  The
+internal network consisted of 56k links between continents carrying a
+mix of SNA, X.25, IPX, and TCP/IP traffic.  Thicknet was still in the
+walls, and daisy-chained coaxial Ethernet was under the desks.</p>
+</div>
+<div class="paragraph">
+<p>For automating UNIX administration, there was very little prior art to
+draw from&#8201;&#8212;&#8201;the MIT Athena project was the only other large-scale
+system management project I was aware of.  The bank&#8217;s internal network
+was not yet connected to the Internet&#8201;&#8212;&#8201;any research I could do was
+limited to my dialup UUCP and PPP connections at home.  The USENIX
+LISA conferences were the only place I knew of where large-scale
+systems administration was being discussed, but even there most of the
+conversation was around narrowly-focused problems such as NFS tuning
+or sendmail configuration, rather than a holistic approach to managing
+a large environment using code.</p>
+</div>
+<div class="paragraph">
+<p>At that time, most systems administrators were not yet programmers&#8201;&#8212;&#8201;the concept of "infrastructure as code" was several years in the
+future. <a href="#iac">[iac]</a></p>
+</div>
+<div class="paragraph">
+<p>Operating systems vendors were not helpful&#8201;&#8212;&#8201;this was the middle of
+the "UNIX wars," and vendors were not as interested in helping
+customers automate a real-world environment made up of a mix of
+competing vendors' systems.  The few automation tools that were
+commercially available were better suited for the vendor&#8217;s own
+internal testing, focused primarily on automating installation and
+upgrades for a single operating system, ignoring applications, user
+data, and heterogeneous environments.</p>
+</div>
+<div class="paragraph">
+<p>The upshot of all of this was that, at the time, in a typical company,
+the ratio of systems administrators to machines was about 1:10.  At
+that ratio, scaling to the size of today&#8217;s cloud providers would not
+have been possible.  The only way to scale was to automate.</p>
+</div>
+<div class="paragraph">
+<p>Worse than scaling issues, that 1:10 ratio implied hand-built systems
+that were not reproducible&#8201;&#8212;&#8201;in a typical environment, each machine
+was unique as a snowflake.  It was not uncommon for a machine to be
+built by hand, and then for the administrator to forget what they had
+done to build it.  The only way to find out was to look at the machine
+and reverse-engineer it, but that, too, was problematic&#8201;&#8212;&#8201;which of
+the many changes made to the machine were worth looking at?</p>
+</div>
+<div class="paragraph">
+<p>Even worse, unique machines meant that software could not be tested in
+a realistic environment before deployment.  Because the test and
+production environments were different, software that worked in test
+often failed in production.</p>
+</div>
+<div class="paragraph">
+<p>Finally, a lack of automation means that application installation and
+upgrades were both time-consuming and error-prone.  Even in an
+environment where the machines were identical, if application
+installation was manual, then deployment time was proportional to the
+number of machines, and the likelihood of error was proportional to
+the number of steps in the installation process.</p>
+</div>
+<div class="paragraph">
+<p>These issues were particularly acute in a global trading environment,
+where time-to-market of new code is critical.  If you can&#8217;t deploy new
+code quickly, your competitors will arbitrage away the opportunity the
+new code was meant to address.  And of course if you deploy new code
+quickly but incorrectly, you can crash a trading floor if not an
+entire market. <a href="#knight">[knight]</a></p>
+</div>
+<div class="paragraph">
+<p>"Maybe I should just use Makefiles." After several weeks of testing
+alternatives, I found myself grasping for the simplest thing that
+could possibly work.  "I&#8217;ll just have each machine run 'make' at boot
+and from cron".  I had recently left a contract at UNIX System Labs
+(USL), where an extensive Makefile-based system was used to build the
+UNIX kernel and utilities&#8201;&#8212;&#8201;one 'make' command would build UNIX on
+any of the dozens of hardware platforms supported by the codebase, and
+I still had 'make' on my mind.  I hadn&#8217;t yet fully realized Makefiles
+were a Turing-complete functional programming language, but I felt
+pretty sure they should be able to do the job.</p>
+</div>
+<div class="paragraph">
+<p>I started hacking on the idea on my little HP DOS 5.0 palmtop on the
+train to and from work.  I had a working prototype in a few days.  The
+end result was a little shell script that pulled a bigger shell script
+from a central server.  The bigger shell script would mount an NFS
+filesystem to get the Makefile and related assets, and then run 'make'
+to configure the machine.  It was simple, and it worked great.</p>
+</div>
+<div class="paragraph">
+<p>The Makefiles worked.  We used them to build the next trading floor,
+and with generous support and encouragement from George Sherman, I was
+able to get in contact with my counterparts on other continents, hire
+Joel Huddleston and then a larger team, and together we built and
+rebuilt trading floors like cookie cutters during the course of the
+international bank mergers and acquisitions of the 1990s.</p>
+</div>
+<div class="paragraph">
+<p>The last trading floor I worked on went live in April 1997, and the
+following year I left the bank to move to the US West Coast so I could
+focus on distributed systems and the Internet.  I had long wanted to
+work on better, non-heirarchical systems for coordinating human
+effort, and I felt that the bank was not the ideal place to do that. I
+also wanted to get on with life&#8201;&#8212;&#8201;I had been working 60-100 hour
+weeks for years and was ready for a change.</p>
+</div>
+<div class="paragraph">
+<p>I finally met Mark Burgess in 1997, at my first USENIX LISA
+conference. He held a BoF on cfengine, and the room was packed.</p>
+</div>
+<div class="paragraph">
+<p>While I was at NASA Ames Research Center in 1998, I was finally able
+to install cfengine in a production environment&#8201;&#8212;&#8201;we used it to
+manage the supercomputers in NASA&#8217;s Numerical Aerodynamic Simulation
+(NAS) facility.  Doing this gave me some ideas for how to improve the
+tool for mission-critical environments&#8201;&#8212;&#8201;more on that later.</p>
+</div>
+<div class="paragraph">
+<p>Meanwhile, Joel and I decided to describe the Makefile-based system we
+had built at the bank, mentioning it in the 1998 USENIX LISA
+proceedings in our "Bootstrapping an Infrastructure" paper.
+<a href="#bootstrapping">[bootstrapping]</a></p>
+</div>
+<div class="paragraph">
+<p>Mark presented cfengine and his concept of "Computer Immunology" at
+the 1998 USENIX LISA conference, and I was quite taken with the idea.
+The concept of "self-healing systems" was what we thought we were
+doing at the bank, and I was glad to see that someone else was
+thinking along the same lines.</p>
+</div>
+<div class="paragraph">
+<p>It wasn&#8217;t until an incident in late 2001 <a href="#cfengine2wks">[cfengine2wks]</a> that I
+realized that Mark and I had been working toward the same goal from
+different directions&#8201;&#8212;&#8201;and it wasn&#8217;t until that moment that I
+realized how much others would perceive those different approaches as
+a deep divide.  This perception would soon fuel tribalism in the
+systems administration community, blocking progress in the field,
+disrupting careers and lives.</p>
+</div>
+<div class="paragraph">
+<p>The short version is that, as far as I can tell, Mark&#8217;s approach was a
+variant of Lambda Calculus, and mine was a variant of Turing Machines.
+Alonzo Church and Alan Turing demonstrated in the 1930s that these two
+models are equivalent in terms of computing power.  <a href="#church-turing">[church-turing]</a>
+More on this later.</p>
+</div>
+<div class="paragraph">
+<p>Lance Brown and I attempted to address the Turing-related half of this
+in a 2002 LISA paper titled "Why Order Matters: Turing Equivalence in
+Automated Systems Administration."  <a href="#ordermatters">[ordermatters]</a>   While the
+long-term response to the paper has been positive, the short-term
+reaction was decidedly not.  I won&#8217;t go into the gory details here,
+but it was pretty bad.</p>
+</div>
+<div class="paragraph">
+<p>On top of the tribal drama, I was bothered by the idea that all of the
+controversy was about the wrong thing.  I was pretty sure that the
+centralized systems that were the subject of discussion were not the
+future.  I was also pretty sure Mark was thinking the same thing; he
+later started firming up his own thoughts in public with his Promise
+Theory work.  <a href="#promisetheory">[promisetheory]</a></p>
+</div>
+<div class="paragraph">
+<p>As far back as the Challenger disaster<a href="#challenger">[challenger]</a>, I&#8217;ve been
+convinced that centralized systems are on the wrong side of history.
+The universe is not centralized, but instead exhibits complex,
+emergent behavior based on simple rules and local interactions.
+Centralized systems are not well-suited to understanding or managing
+complexity, but are instead fragile, brittle, prone to corruption and
+catastrophic failure.</p>
+</div>
+<div class="paragraph">
+<p>The Internet itself is largely a decentralized system, but the tooling
+we were all working on and arguing about at LISA was optimized for
+building and managing centralized systems, using the Internet as a
+substrate. I believe this shortcut we&#8217;ve taken has led to a lot of the
+problems we see today with Internet-based systems and services.  There
+are even RFCs that raise this concern, dating as far back as <a href="#XXX">[XXX]</a></p>
+</div>
+<div class="paragraph">
+<p>I discontinued my attendance at LISA and decided to not publish any
+more papers on the subject for a while. I thought it might take
+several years for the systems administration community to make the
+transition to a more code-driven approach, which itself would be a
+prerequisite for a decentralized approach.</p>
+</div>
+<div class="paragraph">
+<p>I was pretty close&#8201;&#8212;&#8201;Andrew Clay Shafer and Patrick Debois started
+the DevOps movement in 2009, Stephen Nelson-Smith published "Test
+Driven Infrastructure with Chef" in 2011, and finally Kief Morris
+published "Infrastructure as Code" in 2016.  These were quickly
+followed by "The Devops Handbook" and "The Unicorn Project" by Gene
+Kim, Jez Humble, John Willis, and Patrick Debois.</p>
+</div>
+<div class="paragraph">
+<p>While all this was happening, I continued to work on the problems of
+decentralized systems myself, trying different approaches within my
+own business infrastructure.  Chris Buytaert and Toshaan Bharvani
+invited Mark Burgess and Luke Kanies to speak at the Ghent DevOpsDays
+conference in 2018, and then invited me in 2019&#8201;&#8212;&#8201;it was interesting
+to see that Mark, Luke, and I all included in our talks words to the
+effect that the tribalism had become too much and really needed to
+stop.</p>
+</div>
+<div class="paragraph">
+<p>When 2020 brought into stark relief the problems of centralized
+systems not being able to handle science and technology problems at
+global scale, I started funding teams of folks to work with me.  One
+of those efforts is the Community Systems Working Group <a href="#cswg">[cswg]</a>, and
+this paper is a product of that group.</p>
+</div>
+<div class="paragraph">
+<p>In this paper, we attempt to bring together Mark&#8217;s later work on
+Promise Theory and Semantic Spacetime and the CSWG&#8217;s work on
+decentralized infrastructure.  I believe these are compatible, and in
+many cases may in fact be saying the same things using different
+terminology.</p>
+</div>
+<div class="paragraph">
+<p>I believe that the synthesis of these ideas can lead to a new way of
+thinking about computing itself, including networked computers and how
+we use them.  By extension and of greater importance, I believe that
+the people and organizations that use networked computers (the entire
+developed world at this point) can benefit from the resulting better
+tools for communications and governance.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_introduction">Introduction</h3>
+<div class="paragraph">
+<p>XXX stop here</p>
+</div>
 <div class="paragraph">
 <p>We propose a system for computing, communication, and governance built on consensus mechanisms, specifically designed to tackle the challenges in collaborative work and leadership that hinder organizations and communities, including non-profits and businesses.</p>
 </div>
@@ -538,7 +810,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <img src="images/hypergraph-openscad/graph.png" alt="graph">
 </div>
-<div class="title">Figure 1. XXX 3D hypergraph with states and transitions moving upward in time</div>
+<div class="title">Figure 1. 3D hypergraph with states and transitions moving upward in time</div>
 </div>
 </div>
 <div class="sect2">
@@ -816,10 +1088,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Distributed Systems:</strong></p>
 </li>
 <li>
-<p><strong>f1:</strong> Current state of a node or service.</p>
+<p><strong>f1:</strong> Current state of an agent or service.</p>
 </li>
 <li>
-<p><strong>invars:</strong> Messages or requests from other nodes.</p>
+<p><strong>invars:</strong> Messages or requests from other agents.</p>
 </li>
 <li>
 <p><strong>outvars:</strong> Responses or actions taken.</p>
@@ -857,9 +1129,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_implementation">Implementation</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>XXX move to before theory section, after discussion</p>
-</div>
 <div class="sect2">
 <h3 id="_encoding">Encoding</h3>
 <div class="paragraph">
@@ -965,6 +1234,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_definition_of_terms">Definition of Terms</h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="_promise">Promise</h3>
+<div class="paragraph">
+<p>A <strong>promise</strong> in this document refers to a non-binding commitment, roughly equivalent to an assertion or a "letter of intent." This definition differs from normal usage in US law, where a promise can be a binding commitment.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_state_machine">State Machine</h3>
 <div class="paragraph">
 <p>A <strong>state machine</strong> is a model of computation that describes a system&#8217;s behavior as a sequence of states. In a state machine, the system transitions from one state to another based on inputs and internal conditions.</p>
@@ -1060,10 +1335,10 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 <div class="sect2">
 <h3 id="_promise_theory">Promise Theory</h3>
 <div class="paragraph">
-<p><strong>Promise Theory (PT)</strong>, introduced by Mark Burgess, formalizes a model for understanding how autonomous agents interact in a decentralized environment. In PT, agents make <strong>promises</strong> about their behavior to others. The model emphasizes that agents can only make promises about their own behavior; agents cannot impose obligations on, nor make promises about, the behavior of other agents.</p>
+<p><strong>Promise Theory (PT)</strong>, introduced by Mark Burgess, formalizes a model for understanding how autonomous agents interact in a decentralized environment. In PT, agents make <strong>non-binding promises</strong> about their behavior to others. The model emphasizes that agents can only make promises about their own behavior; agents cannot impose obligations on, nor make promises about, the behavior of other agents.</p>
 </div>
 <div class="paragraph">
-<p>Promise Theory is a framework for modeling the behavior of autonomous agents in decentralized systems. It asserts that cooperation and coordination emerge from the voluntary commitments (promises) that agents make to one another. In Promise Theory:</p>
+<p>Promise Theory is a framework for modeling the behavior of autonomous agents in decentralized systems. It asserts that cooperation and coordination emerge from the voluntary commitments (<strong>non-binding promises</strong>) that agents make to one another. In Promise Theory:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1147,21 +1422,6 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
-<p><a id="turing"></a>[turing] Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," <strong>Proceedings of the London Mathematical Society</strong>, 1936.</p>
-</li>
-<li>
-<p><a id="pt"></a>[pt] Mark Burgess, <strong>Promise Theory: Principles and Applications</strong></p>
-</li>
-<li>
-<p><a id="sst"></a>[sst] Mark Burgess, <strong>Semantic Spacetime: A Practical Foundation</strong></p>
-</li>
-<li>
-<p><a id="pvp"></a>[pvp] Steve Traugott, <strong>Push vs Pull</strong></p>
-</li>
-<li>
-<p><a id="order"></a>[order] Steve Traugott, <strong>Why Order Matters</strong></p>
-</li>
-<li>
 <p><a id="antikernel"></a>[antikernel] Andrew Zonenberg, <strong>Antikernel</strong></p>
 </li>
 <li>
@@ -1170,6 +1430,27 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 <li>
 <p><a id="gps"></a>[gps] Inside the Box: GPS and Relativity <a href="https://www.gpsworld.com/inside-the-box-gps-and-relativity/" class="bare">https://www.gpsworld.com/inside-the-box-gps-and-relativity/</a></p>
 </li>
+<li>
+<p><a id="iac"></a>[iac] Infrastructure as Code <a href="https://en.wikipedia.org/wiki/Infrastructure_as_code" class="bare">https://en.wikipedia.org/wiki/Infrastructure_as_code</a></p>
+</li>
+<li>
+<p><a id="knight"></a>[knight] Knight Capital Group 2012 disruption <a href="https://en.wikipedia.org/wiki/Knight_Capital_Group#2012_stock_trading_disruption" class="bare">https://en.wikipedia.org/wiki/Knight_Capital_Group#2012_stock_trading_disruption</a></p>
+</li>
+<li>
+<p><a id="order"></a>[order] Steve Traugott, <strong>Why Order Matters</strong></p>
+</li>
+<li>
+<p><a id="pt"></a>[pt] Mark Burgess, <strong>Promise Theory: Principles and Applications</strong></p>
+</li>
+<li>
+<p><a id="pvp"></a>[pvp] Steve Traugott, <strong>Push vs Pull</strong></p>
+</li>
+<li>
+<p><a id="sst"></a>[sst] Mark Burgess, <strong>Semantic Spacetime: A Practical Foundation</strong></p>
+</li>
+<li>
+<p><a id="turing"></a>[turing] Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," <strong>Proceedings of the London Mathematical Society</strong>, 1936.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -1177,7 +1458,7 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-11 05:54:29 UTC
+Last updated 2024-11-12 22:35:24 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">

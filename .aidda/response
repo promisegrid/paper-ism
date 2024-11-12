@@ -1,27 +1,39 @@
-```
 File: /home/stevegt/lab/promisegrid/paper-ism/README.adoc
 ```adoc
 = A Hypergraph-based Decentralized Infinite State Machine Model Compatible with Semantic Spacetime and Promise Theory
-
-Steve Traugott[link:stevegt[stevegt]], Rebecca Snyder[link:rebecca[^rebecca]]
+Steve Traugott <http://github.com/stevegt>; Donaldo Almazon; JJ Salley; Rebecca Snyder <https://github.com/RebeccaSnyder505>; Angela Traugott
+:stem:
+:toc: macro
 
 == Abstract
 
-We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about future state transitions. We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles. This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.
+We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about state transitions in the past or future on one or more timelines. 
 
-== Foreword
+We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. 
+
+Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles. 
+
+This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. 
+
+We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.
+
+toc::[]
+
+== Discussion
+
+=== Background
 
 *-- By Steve Traugott*
 
 XXX Retrospective on the prehistory of the DevOps movement's concepts and cultures of convergence, congruence, promise theory, semantic spacetime. Desire for reconciliation between these concepts.
 
-== Discussion
+=== Introduction
 
 We propose a system for computing, communication, and governance built on consensus mechanisms, specifically designed to tackle the challenges in collaborative work and leadership that hinder organizations and communities, including non-profits and businesses.
 
 This system serves as a decentralized computation network, analogous to how the Internet operates as a decentralized communication network. Just as the Internet is a distributed network, our system functions as a decentralized computer. It is owned and operated by its users rather than any single legal entity, ensuring that the grid remains scalable and resilient as more users join.
 
-In a nutshell, if <<theory, Theory>> is correct, then we should be able to build a decentralized system for equitable and accurate group communication, computation, and decision-making using current technology and concepts from graph theory.
+In a nutshell, if the <<Theory>> section is correct, then we should be able to build a decentralized system for equitable and accurate group communication, computation, and decision-making using current technology and concepts from graph theory.
 
 The general idea is that the universe can be modeled as a hypergraph, where each node in the graph is a state of an agent, and each edge in the graph is an action taken by an agent in response to a stimulus. A hypergraph that models the universe can also be thought of as an infinite state machine.
 
@@ -31,9 +43,10 @@ States, agents, and graph edges can be referenced by cryptographic hash in conte
 
 As of this writing we are currently working on a proof of concept implementation of this system, using existing libraries for low-level message framing and content-addressable data storage.
 
-XXX need a pretty picture here showing a 3D hypergraph with states and transitions moving upward in time, maybe openscad
+.3D hypergraph with states and transitions moving upward in time
+image::images/hypergraph-openscad/graph.png[]
 
-== Prediction
+=== A Prediction
 
 If the following model is correct, then we should be able to use it as a basis for design of a decentralized system that can be used to compute any function computable by machine.
 
@@ -144,8 +157,8 @@ Where:
   - **f2:** Updated function if the transformation logic changes due to processing.
 
 - **Distributed Systems:**
-  - **f1:** Current state of a node or service.
-  - **invars:** Messages or requests from other nodes.
+  - **f1:** Current state of an agent or service.
+  - **invars:** Messages or requests from other agents.
   - **outvars:** Responses or actions taken.
   - **f2:** New state after processing messages.
 
@@ -159,11 +172,9 @@ Where:
 
 The tuple should be signed by the local DISM kernel hosting f1, rather than by f1 itself. The DISM kernel acts as the agent making promises about state transitions. It provides the runtime environment for functions (f1, f2, etc.), and is able to influence their behavior, therefore functions should be considered components of the kernel, rather than independent agents themselves.
 
-== Possible Implementation 
+== Implementation 
 
-XXX move to before theory section, after discussion
-
-=== Suggested Encoding
+=== Encoding
 
 To encode the promises (claims) made by agents within the DISM framework, the following encoding standards are suggested:
 
@@ -206,13 +217,17 @@ To encode the promises (claims) made by agents within the DISM framework, the fo
   - Represent promises as CWTs to encapsulate the necessary claims within a secure token.
   - Facilitate the verification of promises by agents without exposing the underlying data unnecessarily.
 
-=== Definition of Terms
+== Definition of Terms
 
-==== State Machine
+=== Promise
+
+A **promise** in this document refers to a non-binding commitment, roughly equivalent to a "letter of intent." These promises are subject to change or revocation and differ from "promise" in US law, which implies a binding commitment.
+
+=== State Machine
 
 A **state machine** is a model of computation that describes a system's behavior as a sequence of states. In a state machine, the system transitions from one state to another based on inputs and internal conditions. 
 
-==== Finite State Machine (FSM)
+=== Finite State Machine (FSM)
 
 A **finite state machine** has a fixed number of states and transitions, making it suitable for modeling systems with a limited number of possible states.  
 
@@ -220,29 +235,36 @@ A real-world example of a finite state machine is a traffic light, which has a f
 
 Finite state machines typically repeat a fixed set of states in one or more loops. Their behavior can be modeled as a cyclic directed graph, where states are nodes and transitions are edges.
 
-==== Infinite State Machine (ISM)
+=== Infinite State Machine (ISM)
 
 An **infinite state machine (ISM)** is a system in which the number of potential states is unbounded. 
 
 A real-world example of an infinite state machine is a git repository, which can have an unbounded number of commits over time, each representing a unique state of the repository and its history.
 
-Another real-world example of an infinite state machine is a general purpose computing system -- as the system operates, it advances from each disk state to the next based on the programs it executes. (In theory, the total number of possible states of a physical computer is finite, limited by local storage, but in practice, the machine's state space is effectively unbounded: Assuming a 1 terabyte disk, a contemporary machine has +`8 * 2^10^12`+ possible bit states -- innumerable in geologic time.)
+Another real-world example of an infinite state machine is a general
+purpose computing system -- as the system operates, it advances from
+each disk state to the next based on the programs it executes. (In
+theory, the total number of possible states of a physical computer is
+finite, limited by local storage, but in practice, the machine's state
+space is effectively unbounded: Assuming a 1 terabyte disk, a
+contemporary machine has stem:[8 * 2^(10^12)] possible bit states --
+innumerable in geologic time at typical CPU clock rates.)
 
 In theory, it should be possible to commit a machine's entire disk state to a git repository with each state change, but in practice, git is not optimized for frequent commits of large objects.
 
 Infinite state machines typically do not repeat previous states. Their behavior can be modeled as an open-ended directed graph.
 
-==== Decentralized State Machine (DSM)
+=== Decentralized State Machine (DSM)
 
 A **decentralized state machine (DSM)** is a system of interconnected state machines that operate autonomously and interact with each other with no central controller. Each machine manages only its own local state based on transitions triggered by inputs. Inputs may be from local sources or from other state machines.  
 
 The behavior of a decentralized state machine can be modeled as a hypergraph. If the group includes an infinite state machine, then the graph is open-ended.
 
-==== Decentralized Finite State Machine (DFSM) 
+=== Decentralized Finite State Machine (DFSM) 
 
-A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site. Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group. <<flagxfer, [^flagxfer]>>
+A real-world example of a decentralized finite state machine is the "flag transfer method" of directing traffic at a road construction site. Each flagger has a fixed set of signals and rules for when to signal them, and they communicate via a token or flag transported by the driver of the last car in a group. <<flagxfer>>
 
-==== Decentralized Infinite State Machine (DISM)
+=== Decentralized Infinite State Machine (DISM)
 
 A decentralized ISM is a system of interconnected infinite state machines that operate autonomously and interact with each other with no central controller. Each machine manages only its own local state based on transitions triggered by inputs. Inputs may be from local sources or from other state machines.
 
@@ -250,27 +272,27 @@ A real-world example of a decentralized infinite state machine is a group of git
 
 XXX Each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control -- agents cannot make promises on behalf of others. These promises can be observed by others to inform their own state transitions.
 
-==== Transition Function
+=== Transition Function
 
 A **transition function** is a mapping from the current state of the system to the next state. In a finite state machine, the transition function might be a static table of state transitions; the table key is (current state, input event), which returns a value of (next state). In an infinite state machine, the transition function is a dynamic table; given (current state, input), the transition function returns (next state, next state table).  
 
 In our previous example of a general purpose computing system, the transition table is the entire disk state, and the transition function is the process of reading and writing from disk.
 
-==== Agent
+=== Agent
 
 An **agent** is an autonomous entity. An agent might be a person or animal, a computer program, a machine, or other physical object. At extremely small scale, an agent might be an electron or other subatomic particle. The defining characteristic of an agent is its ability to influence, and be influenced by, its environment.
 
-==== Pure Functions and Side Effects
+=== Pure Functions and Side Effects
 
 A **pure function** is a function that has no side effects and always returns the same output for the same input.  
 
 While pure functions aid in reasoning about a standalone system, it is useful to recognize that decentralized systems cannot exist without side effects; even if all agents in a decentralized system are themselves pure functions, the communications between them constitute side effects that alter the system's total state.
 
-==== Promise Theory
+=== Promise Theory
 
-**Promise Theory (PT)**, introduced by Mark Burgess, formalizes a model for understanding how autonomous agents interact in a decentralized environment. In PT, agents make *promises* about their behavior to others. The model emphasizes that agents can only make promises about their own behavior; agents cannot impose obligations on, nor make promises about, the behavior of other agents.
+**Promise Theory (PT)**, introduced by Mark Burgess, formalizes a model for understanding how autonomous agents interact in a decentralized environment. In PT, agents make *non-binding promises* about their behavior to others. The model emphasizes that agents can only make promises about their own behavior; agents cannot impose obligations on, nor make promises about, the behavior of other agents.
 
-Promise Theory is a framework for modeling the behavior of autonomous agents in decentralized systems. It asserts that cooperation and coordination emerge from the voluntary commitments (promises) that agents make to one another. In Promise Theory:
+Promise Theory is a framework for modeling the behavior of autonomous agents in decentralized systems. It asserts that cooperation and coordination emerge from the voluntary commitments (*non-binding promises*) that agents make to one another. In Promise Theory:
 
 - **Agents are Autonomous**: Each agent controls its own behavior and cannot be compelled by others.
 
@@ -282,11 +304,11 @@ Promises are not guarantees; they are assertions an agent makes about its own be
 
 Frame of reference matters: Whether a promise is fulfilled or broken depends on the observer. For example, Bob may view Alice's promise as fulfilled, while Carol views the same promise as broken. Carol may then tell others that Alice's promise is broken, but it's important to note that, when making this claim, Carol is only making a promise about her own evaluation of Alice.
 
-Relativity matters: It's worth considering that Carol and Bob may each be using the exact same criteria to evaluate Alice's promise, but they may have different frames of reference. For example, Bob may be evaluating Alice's promise while he is at rest on Earth's surface, while Carol, in a 20,000km Earth orbit, gains about 38 microseconds per day on her local clock. If Alice's promise includes microsecond-level precision, then Bob and Carol may both be correct and both in disagreement with each other. <<gps, [^gps]>>
+Relativity matters: It's worth considering that Carol and Bob may each be using the exact same criteria to evaluate Alice's promise, but they may have different frames of reference. For example, Bob may be evaluating Alice's promise while he is at rest on Earth's surface, while Carol, in a 20,000km Earth orbit, gains about 38 microseconds per day on her local clock. If Alice's promise includes microsecond-level precision, then Bob and Carol may both be correct and both in disagreement with each other. <<gps>>
 
 Dave, observing all of the above, may conclude that when he's evaluating Alice's, Bob's and Carol's promises, he may want to add his own compensation for relativistic effects.
 
-==== Semantic Spacetime
+=== Semantic Spacetime
 
 **Semantic Spacetime (SST)**, also developed by Mark Burgess, is a natural extension of Promise Theory into physics and cosmology, integrating the dimensions of space and time into how we understand and model interactions within systems. In the SST model, agents exist and interact within a *spacetime* fabric, where the arrangement of agents (space) and the sequence of their interactions (time) are essential to understanding system behavior. 
 
@@ -310,31 +332,27 @@ Promise Theory and SST lead to an interesting observation about real-world organ
 
 == Acknowledgments
 
-Angela Traugott, Donaldo Almazon, JJ Salley, XXX
+XXX Mark
 
 XXX mention LLM models and how used?
 
+[bibliography]
 == References
 
-[[stevegt]] http://github.com/stevegt[https://github.com/stevegt]
+* [[[turing]]] Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," *Proceedings of the London Mathematical Society*, 1936.
 
-[[rebecca]] https://github.com/RebeccaSnyder505[https://github.com/RebeccaSnyder505]
+* [[[pt]]] Mark Burgess, *Promise Theory: Principles and Applications*
 
-[[turing]] Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," *Proceedings of the London Mathematical Society*, 1936.
+* [[[sst]]] Mark Burgess, *Semantic Spacetime: A Practical Foundation*
 
-[[pt]] Mark Burgess, *Promise Theory: Principles and Applications*
+* [[[pvp]]] Steve Traugott, *Push vs Pull*
 
-[[sst]] Mark Burgess, *Semantic Spacetime: A Practical Foundation*
+* [[[order]]] Steve Traugott, *Why Order Matters*
 
-[[pvp]] Steve Traugott, *Push vs Pull*
+* [[[antikernel]]] Andrew Zonenberg, *Antikernel*
 
-[[order]] Steve Traugott, *Why Order Matters*
+* [[[flagxfer]]] Manual on Uniform Traffic Control Devices for Streets and Highways, US Dept of Transportation https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12
 
-[[antikernel]] Andrew Zonenberg, *Antikernel*
-
-[[flagxfer]] Manual on Uniform Traffic Control Devices for Streets and Highways, US Dept of Transportation <https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12>[https://mutcd.fhwa.dot.gov/htm/2009/part6/part6c.htm#section6C12]
-
-[[gps]] Inside the Box: GPS and Relativity <https://www.gpsworld.com/inside-the-box-gps-and-relativity/>[https://www.gpsworld.com/inside-the-box-gps-and-relativity/]
+* [[[gps]]] Inside the Box: GPS and Relativity https://www.gpsworld.com/inside-the-box-gps-and-relativity/
 ```
 EOF_/home/stevegt/lab/promisegrid/paper-ism/README.adoc
-```
