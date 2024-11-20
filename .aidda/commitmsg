@@ -1,6 +1,0 @@
-openscad graph: expand X and Y plane
-
-Adjust the X and Y node positions to random, non-monotonic values
-between 0 and 100.  Try to keep them from being bunched up in the
-corners.  
-
