@@ -153,7 +153,7 @@ While I was at NASA Ames Research Center in 1998, I was finally able
 to install cfengine in a production environment -- we used it to
 manage the supercomputers in NASA's Numerical Aerodynamic Simulation
 (NAS) facility.  Doing this gave me some ideas for how to improve the
-tool for mission-critical environments -- more on that later. 
+tool for mission-critical environments -- more on that in a bit.
 
 Meanwhile, Joel and I decided to describe the Makefile-based system we
 had built at the bank, mentioning it in the 1998 USENIX LISA
@@ -162,11 +162,12 @@ proceedings in our "Bootstrapping an Infrastructure" paper.
 
 Mark presented cfengine and his concept of "Computer Immunology" at
 the 1998 USENIX LISA conference, and I was quite taken with the idea.
-The concept of "self-healing systems" was what we thought we were
-doing at the bank, and I was glad to see that someone else was
-thinking along the same lines.  
+The concept of "self-healing systems" had been a frequent topic of
+discussion in our group at the bank, and I was glad to see that
+someone else was thinking along the same lines.
 
-It wasn't until an incident in late 2001 <<cfengine2wks>> that I
+It wasn't until an incident in late 2001 <<cfengine2wks>>, when 
+attempting to bring the lessons learned from NASA to cfengine, that I
 realized that Mark and I had been working toward the same goal from
 different directions -- and it wasn't until that moment that I
 realized how much others would perceive those different approaches as
@@ -174,22 +175,21 @@ a deep divide.  This perception would soon fuel tribalism in the
 systems administration community, blocking progress in the field,
 disrupting careers and lives.
 
-The short version is that, as far as I can tell, Mark's approach was a
-variant of Lambda Calculus, and mine was a variant of Turing Machines.
-Alonzo Church and Alan Turing demonstrated in the 1930s that these two
-models are equivalent in terms of computing power.  <<church-turing>>
-More on this later.
+The short version is that, as a rough approximation, Mark's
+approach was a variant of Lambda Calculus, and mine was a variant of
+Turing Machines. Alonzo Church and Alan Turing demonstrated in the
+1930s that these two models are equivalent in terms of computing
+power.  <<church-turing>>  More on this in <<Appendix A>>.
 
-Lance Brown and I attempted to address the Turing-related half of this
-in a 2002 LISA paper titled "Why Order Matters: Turing Equivalence in
+Lance Brown and I attempted to address the Turing-related aspect in a
+2002 LISA paper titled "Why Order Matters: Turing Equivalence in
 Automated Systems Administration."  <<ordermatters>>   While the
 long-term response to the paper has been positive, the short-term
-reaction was decidedly not.  I won't go into the gory details here,
-but it was pretty bad.
+reaction was decidedly not.  I won't go into the gory details here.
 
-On top of the tribal drama, I was bothered by the idea that all of the
-controversy was about the wrong thing.  I was pretty sure that the
-centralized systems that were the subject of discussion were not the
+On top of the tribal drama, I was bothered by the thought that much of
+the controversy was about the wrong thing.  I was pretty sure that the
+centralized systems that were the subject of debate were not the
 future.  I was also pretty sure Mark was thinking the same thing; he
 later started firming up his own thoughts in public with his Promise
 Theory work.  <<promisetheory>>
@@ -249,6 +249,13 @@ we use them.  By extension and of greater importance, I believe that
 the people and organizations that use networked computers (the entire
 developed world at this point) can benefit from the resulting better
 tools for communications and governance. 
+
+LLMs in particular help solve the consensus merge problem for non-numerical
+decisions, reduce the need to boil decisions down to numbers, and
+provide an advantage over traditional Operational Research methods or
+cryptocurrency-based consensus mechanisms.  
+
+
 
 === Introduction
 
@@ -560,6 +567,77 @@ Promise Theory and SST lead to an interesting observation about real-world organ
 XXX Mark
 
 XXX mention LLM models and how used?
+
+
+== Appendix A
+
+At the time, Mark and I had broadly characterized our approaches as
+"convergence" or "congruence".  A "convergent" approach relies on
+declarative descriptions of a desired state, while a "congruent"
+approach relies on imperative descriptions of state transitions.  A
+"convergent" tool tends to dynamically generate the sequence of state
+transitions needed to reach the desired state, while a "congruent"
+tool tends to rely on pre-tested sequences of state transitions, which
+at the time were assumed to be human-generated.
+
+A key point that I always thought was lost in the noise is that these
+two approaches are not mutually exclusive -- they are in fact
+complementary.  A convergent process can be used to automatically
+generate a sequence of state transitions that will take a system from
+its current state to a desired state, and a congruent process can then
+be used to test those changes on a limited subset of machines and then
+replay them on the rest.  
+
+The right balance between the two approaches -- how much to rely on
+dynamic generation versus pre-tested replay -- should be based on the
+risk management strategy of the organization.
+
+A research organization, for example, tends to expect machines to be
+highly unique compared to each other -- users may even have root.
+This environment benefits from a more convergent approach, where
+differences are expected and the tool is expected to adapt to them.
+In this environment, the correct response to an unexpected difference
+is to note it, adapt to it, and continue.
+
+A financial organization, on the other hand, tends to expect machines
+to be highly uniform, regulated in a legal sense -- users would never
+have root.  This environment benefits from a more congruent approach,
+where differences are not expected and the tool is expected to halt
+and alert when it encounters them.  In this environment, the correct
+response to an unexpected difference is to assume that the machine is
+compromised, conduct a forensic investigation, and then reformat the
+local disk.
+
+There are also several theoretical aspects that are applicable in
+comparing the two approaches.  One aspect is that, as a rough
+approximation, a convergent, declarative approach is a variant of
+Lambda Calculus, and a congruent, imperative approach is a variant of
+Turing Machines.  Alonzo Church and Alan Turing demonstrated in the
+1930s that these two models are equivalent in terms of computing
+power.  <<church-turing>>  
+
+A key difference between the two models concerns the halting problem.
+Ideally, we would want a tool to halt for human intervention when it
+is computationally infeasible to determine the correct course of
+action. Convergent tools err on the side of not halting, while
+congruent tools err on the side of halting.  This difference in
+behavior agrees with the desired behavior of the research and
+financial examples above.
+
+Though the two models are equivalent in terms of computing power, they
+differ in terms of side effects.  Lambda Calculus is a model of a
+functional programming language, where functions have no side effects,
+while Turing Machines are a model of an imperative programming
+language, where functions can have side effects.  
+
+In a real-world distributed system, the communications between agents
+constitute side effects that alter the system's total state -- without
+this change in total state, the system as a whole would have no
+purpose.  
+
+
+XXX <<sysinit>>
+
 
 [bibliography]
 == References
