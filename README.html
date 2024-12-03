@@ -471,6 +471,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle" class="title">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_abstract">Abstract</a></li>
+<li><a href="#_how_to_read_this_document">How to Read this Document</a></li>
 <li><a href="#_discussion">Discussion</a>
 <ul class="sectlevel2">
 <li><a href="#_history">History</a></li>
@@ -510,6 +511,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_appendix_a">Appendix A</a></li>
 <li><a href="#_references">References</a></li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_read_this_document">How to Read this Document</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document is split into two major parts&#8201;&#8212;&#8201;a <a href="#_discussion">Discussion</a>
+section that is written in a more accessible narrative style, and a
+<a href="#_theory">Theory</a> section that is more technical and formal.</p>
 </div>
 </div>
 </div>
@@ -766,25 +777,78 @@ of those efforts is the Community Systems Working Group <a href="#cswg">[cswg]</
 this paper is a product of that group.</p>
 </div>
 <div class="paragraph">
-<p>In this paper, we attempt to bring together Mark&#8217;s later work on
-Promise Theory and Semantic Spacetime and the CSWG&#8217;s work on
-decentralized infrastructure.  I believe these are compatible, and in
-many cases may in fact be saying the same things using different
-terminology.</p>
+<p>A key problem in decentralized systems is the consensus merge problem&#8201;&#8212;&#8201;how can we incentivize a group of agents to agree on a decision,
+and how do we know when agreement has been reached?</p>
 </div>
 <div class="paragraph">
-<p>I believe that the synthesis of these ideas can lead to a new way of
-thinking about computing itself, including networked computers and how
-we use them.  By extension and of greater importance, I believe that
-the people and organizations that use networked computers (the entire
-developed world at this point) can benefit from the resulting better
+<p>Market-based consensus mechanisms use price discovery to form
+consensus, but only for problems that can be expressed in terms of
+prices, quantities, and other numerical values.</p>
+</div>
+<div class="paragraph">
+<p>Operations Research methods such as Real Options Analysis can be used
+to form consensus, but again only for problems that can be expressed
+in terms of numerical values.</p>
+</div>
+<div class="paragraph">
+<p>Blockchain-based systems use numerical mechanisms such as
+proof-of-work and proof-of-stake to form consensus regarding the next
+block in a chain, but the choice of the next block primarily serves to
+prevent double-spending, and is often unrelated to the problem being
+solved by any higher-layer dapp.</p>
+</div>
+<div class="paragraph">
+<p>File version control systems can be used for non-numerical consensus
+merge problems, but they do not scale well to large groups or complex
+decisions.</p>
+</div>
+<div class="paragraph">
+<p>Git, for example, is currently dominant in the software development
+industry, but is nearing 20 years of age as of this writing, and was
+itself a reimplementation of a system that was already several years
+old at the time <a href="#bitkeeper">[bitkeeper]</a>.  Git was a step toward decentralized
+systems, but is limited in feature set, optimized primarily for small
+files and small groups of developers with public IP addresses, and
+otherwise is burdened by the workflow and user interface it was
+designed to mimic. These shortcomings have been to some extent
+addressed by the use of centralized services such as GitHub, GitLab,
+Gitea, and Bitbucket, but using centralized services to work around
+the limitations of a decentralized system is not a good long-term
+solution.</p>
+</div>
+<div class="paragraph">
+<p>With git, the merge problem is solved by having humans propose and
+approve changes. The tool attempts to help with line-based merging,
+without any context regarding the meaning of the text or problem to be
+solved, and gives up quickly in case of conflicts. It&#8217;s up to human
+reviewers to provide intent and context, supported by test cases,
+documentation, issue comments, and other artifacts that are external
+to git itself.</p>
+</div>
+<div class="paragraph">
+<p>Finally, the recent advent of more capable large language models
+(LLMs), both closed and open source, has brought with it the ability
+to write tools that can analyze and propose merges of text, taking
+into account meaning, context, and intent.  These tools can help solve
+the merge problem for non-numerical decisions, reducing the
+need to boil problems down to numbers, providing an advantage over the
+above numerical methods as well as over earlier file-based version
+control systems such as git.</p>
+</div>
+<div class="paragraph">
+<p>In this paper, we attempt to bring together the principles behind
+basic computing theory, Infrastrucure as Code, Promise Theory,
+Semantic Spacetime, DevOps, version control, and LLMs to propose a new
+model for decentralized systems that can handle both numerical and
+non-numerical consensus merge problems at global scale.</p>
+</div>
+<div class="paragraph">
+<p>The synthesis of these ideas can lead to a new way of thinking about
+computing itself, particularly networked computers and how we use
+them.  By extension and of greater importance, the people and
+organizations that use networked computers (the entire developed world
+at this point) should be able to benefit from the resulting better
 tools for communications and governance.</p>
-</div>
-<div class="paragraph">
-<p>LLMs in particular help solve the consensus merge problem for non-numerical
-decisions, reduce the need to boil decisions down to numbers, and
-provide an advantage over traditional Operational Research methods or
-cryptocurrency-based consensus mechanisms.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1546,7 +1610,7 @@ purpose.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-11-27 03:34:02 UTC
+Last updated 2024-12-03 19:22:44 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
