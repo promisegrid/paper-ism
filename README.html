@@ -475,7 +475,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_discussion">Discussion</a>
 <ul class="sectlevel2">
 <li><a href="#_history">History</a></li>
-<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_the_merge_problem">The Merge Problem</a></li>
+<li><a href="#_a_possible_solution">A Possible Solution</a></li>
 <li><a href="#_a_prediction">A Prediction</a></li>
 </ul>
 </li>
@@ -776,6 +777,9 @@ global scale, I started funding teams of folks to work with me.  One
 of those efforts is the Community Systems Working Group <a href="#cswg">[cswg]</a>, and
 this paper is a product of that group.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_the_merge_problem">The Merge Problem</h3>
 <div class="paragraph">
 <p>A key problem in decentralized systems is the consensus merge problem&#8201;&#8212;&#8201;how can we incentivize a group of agents to agree on a decision,
 and how do we know when agreement has been reached?</p>
@@ -836,6 +840,11 @@ above numerical methods as well as over earlier file-based version
 control systems such as git.</p>
 </div>
 <div class="paragraph">
+<p>Decentralization needs to be applied to LLMs as well, to prevent
+centralization of power and control over the tools that are used to
+make decisions.</p>
+</div>
+<div class="paragraph">
 <p>In this paper, we attempt to bring together the principles behind
 basic computing theory, Infrastrucure as Code, Promise Theory,
 Semantic Spacetime, DevOps, version control, and LLMs to propose a new
@@ -852,7 +861,76 @@ tools for communications and governance.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_introduction">Introduction</h3>
+<h3 id="_a_possible_solution">A Possible Solution</h3>
+<div class="paragraph">
+<p>It appears that we can incentivize agents using a system similar to
+that of Promise Theory, where agents make promises and evaluate each
+other based on the promises they keep.</p>
+</div>
+<div class="paragraph">
+<p>It also appears that we can discover consensus among agents by
+observing the promises they build on.  Roughly speaking, if Bob makes
+a promise that is dependent on Alice&#8217;s promise, then we can infer that
+Bob accepts Alice&#8217;s promise as true.</p>
+</div>
+<div class="paragraph">
+<p>It may be helpful to think of a promise as an assertion of fact as of a
+particular point on a timeline, with veracity equal to true, false, or
+undecided.  As agents add promises to a timeline, they build a
+consensus about the state of the world at earlier points on the
+timeline.  This is a generalization of the more limited concept of
+blockchain consensus, which is limited to the next block in a chain.</p>
+</div>
+<div class="paragraph">
+<p>In contrast to a blockchain, where there can be only one "next block",
+it appears we can model the universe as a hypergraph, where each node
+in the graph is a state of some part of the universe, and each edge in
+the graph is an action taken by an agent to transition from one state
+to another.</p>
+</div>
+<div class="paragraph">
+<p>Mark Burgess discusses a similar model in <a href="#sst1">[sst1]</a>, using the concept
+of world lines to represent states and transitions in a spacetime
+model.  Figure 41 of that document shows a notional X/Y plane of
+states in space, and a Z axis of time moving upward.  Our own attempt
+at a more detailed graph, showing more states and transitions, is
+<a href="#fig:3dhypergraph">Figure 1</a>.</p>
+</div>
+<div id="fig:3dhypergraph" class="imageblock">
+<div class="content">
+<img src="images/hypergraph-openscad/graph.png" alt="graph">
+</div>
+<div class="title">Figure 1. 3D hypergraph with states and transitions moving upward in time</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s important to note that the X/Y plane in these illustrations is a
+simplification&#8201;&#8212;&#8201;it&#8217;s more useful to think of this plane as having
+more than the two X and Y dimensions we can easily visualize or
+illustrate.</p>
+</div>
+<div class="paragraph">
+<p>In particular, the state of a thing can be many-dimensional.  For
+example, the location in cartesian space of a particle is a
+three-dimensional state.  The context of a block of text as used in an
+LLM is a vector of word embeddings; the embedding vector for the text
+block may have hundreds or thousands of dimensions.  In all cases, the
+location of a thing in its state space can be described using a vector
+of coordinates. <a href="#sst1">[sst1]</a><a href="#sst2">[sst2]</a><a href="#sst3">[sst3]</a></p>
+</div>
+<div class="paragraph">
+<p>For a practical example, consider a git repository.  The repository
+contains the history of a set of files.  This history is modeled as a
+hypergraph, where each node in the graph is the state of a single
+file, a tree of files, or a commit message, and the edges in the graph
+represent are the commits that transition the repository from one
+state to another.  The repository is an infinite state machine, as it
+can have an unbounded number of commits over time.  The graph is
+decentralized, as each agent (developer) manages their own local state
+and interacts with other agents by making promises about state
+transitions on one or more timelines (branches).  The merge problem is
+the problem of reconciling the promises (commits) made by different
+agents (developers) on different branches.</p>
+</div>
 <div class="paragraph">
 <p>XXX stop here</p>
 </div>
@@ -876,12 +954,6 @@ tools for communications and governance.</p>
 </div>
 <div class="paragraph">
 <p>As of this writing we are currently working on a proof of concept implementation of this system, using existing libraries for low-level message framing and content-addressable data storage.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/hypergraph-openscad/graph.png" alt="graph">
-</div>
-<div class="title">Figure 1. 3D hypergraph with states and transitions moving upward in time</div>
 </div>
 </div>
 <div class="sect2">
@@ -1598,7 +1670,13 @@ purpose.</p>
 <p><a id="pvp"></a>[pvp] Steve Traugott, <strong>Push vs Pull</strong></p>
 </li>
 <li>
-<p><a id="sst"></a>[sst] Mark Burgess, <strong>Semantic Spacetime: A Practical Foundation</strong></p>
+<p><a id="sst1"></a>[sst1] Spacetimes with Semantics I, Mark Burgess, <a href="https://arxiv.org/abs/1411.5563" class="bare">https://arxiv.org/abs/1411.5563</a></p>
+</li>
+<li>
+<p><a id="sst2"></a>[sst2] Spacetimes with Semantics II, Mark Burgess, <a href="https://arxiv.org/abs/1505.01716" class="bare">https://arxiv.org/abs/1505.01716</a></p>
+</li>
+<li>
+<p><a id="sst3"></a>[sst3] Spacetimes with Semantics III, Mark Burgess, <a href="https://arxiv.org/abs/1608.02193" class="bare">https://arxiv.org/abs/1608.02193</a></p>
 </li>
 <li>
 <p><a id="turing"></a>[turing] Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," <strong>Proceedings of the London Mathematical Society</strong>, 1936.</p>
@@ -1610,7 +1688,7 @@ purpose.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-12-03 19:22:44 UTC
+Last updated 2024-12-03 21:08:24 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">

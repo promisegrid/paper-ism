@@ -1,6 +1,7 @@
 = A Hypergraph-based Decentralized Infinite State Machine Model Compatible with Semantic Spacetime and Promise Theory
 Steve Traugott <http://github.com/stevegt>; Donaldo Almazon; JJ Salley; Rebecca Snyder <https://github.com/RebeccaSnyder505>; Angela Traugott
 :stem:
+:xrefstyle: short
 :toc: macro
 
 == Abstract
@@ -243,6 +244,8 @@ global scale, I started funding teams of folks to work with me.  One
 of those efforts is the Community Systems Working Group <<cswg>>, and
 this paper is a product of that group.
 
+=== The Merge Problem
+
 A key problem in decentralized systems is the consensus merge problem
 -- how can we incentivize a group of agents to agree on a decision,
 and how do we know when agreement has been reached?  
@@ -295,6 +298,10 @@ need to boil problems down to numbers, providing an advantage over the
 above numerical methods as well as over earlier file-based version
 control systems such as git.  
 
+Decentralization needs to be applied to LLMs as well, to prevent
+centralization of power and control over the tools that are used to
+make decisions.  
+
 In this paper, we attempt to bring together the principles behind
 basic computing theory, Infrastrucure as Code, Promise Theory,
 Semantic Spacetime, DevOps, version control, and LLMs to propose a new
@@ -308,7 +315,66 @@ organizations that use networked computers (the entire developed world
 at this point) should be able to benefit from the resulting better
 tools for communications and governance.
 
-=== Introduction
+=== A Possible Solution
+
+It appears that we can incentivize agents using a system similar to
+that of Promise Theory, where agents make promises and evaluate each
+other based on the promises they keep.
+
+It also appears that we can discover consensus among agents by
+observing the promises they build on.  Roughly speaking, if Bob makes
+a promise that is dependent on Alice's promise, then we can infer that
+Bob accepts Alice's promise as true.
+
+It may be helpful to think of a promise as an assertion of fact as of a
+particular point on a timeline, with veracity equal to true, false, or
+undecided.  As agents add promises to a timeline, they build a
+consensus about the state of the world at earlier points on the
+timeline.  This is a generalization of the more limited concept of
+blockchain consensus, which is limited to the next block in a chain.
+
+In contrast to a blockchain, where there can be only one "next block",
+it appears we can model the universe as a hypergraph, where each node
+in the graph is a state of some part of the universe, and each edge in
+the graph is an action taken by an agent to transition from one state
+to another.  
+
+Mark Burgess discusses a similar model in <<sst1>>, using the concept
+of world lines to represent states and transitions in a spacetime
+model.  Figure 41 of that document shows a notional X/Y plane of
+states in space, and a Z axis of time moving upward.  Our own attempt
+at a more detailed graph, showing more states and transitions, is
+<<fig:3dhypergraph>>. 
+
+.3D hypergraph with states and transitions moving upward in time
+[[fig:3dhypergraph]]
+image::images/hypergraph-openscad/graph.png[]
+
+It's important to note that the X/Y plane in these illustrations is a
+simplification -- it's more useful to think of this plane as having
+more than the two X and Y dimensions we can easily visualize or
+illustrate.  
+
+In particular, the state of a thing can be many-dimensional.  For
+example, the location in cartesian space of a particle is a
+three-dimensional state.  The context of a block of text as used in an
+LLM is a vector of word embeddings; the embedding vector for the text
+block may have hundreds or thousands of dimensions.  In all cases, the
+location of a thing in its state space can be described using a vector
+of coordinates. <<sst1>><<sst2>><<sst3>>
+
+For a practical example, consider a git repository.  The repository
+contains the history of a set of files.  This history is modeled as a
+hypergraph, where each node in the graph is the state of a single
+file, a tree of files, or a commit message, and the edges in the graph
+represent are the commits that transition the repository from one
+state to another.  The repository is an infinite state machine, as it
+can have an unbounded number of commits over time.  The graph is
+decentralized, as each agent (developer) manages their own local state
+and interacts with other agents by making promises about state
+transitions on one or more timelines (branches).  The merge problem is
+the problem of reconciling the promises (commits) made by different
+agents (developers) on different branches.  
 
 XXX stop here
 
@@ -325,9 +391,6 @@ Promise Theory and Semantic Spacetime provide a framework for understanding how 
 States, agents, and graph edges can be referenced by cryptographic hash in content-addressable storage, avoiding the need for central registration of code or data.
 
 As of this writing we are currently working on a proof of concept implementation of this system, using existing libraries for low-level message framing and content-addressable data storage.
-
-.3D hypergraph with states and transitions moving upward in time
-image::images/hypergraph-openscad/graph.png[]
 
 === A Prediction
 
@@ -701,6 +764,8 @@ XXX <<sysinit>>
 * [[[order]]] Steve Traugott, *Why Order Matters*
 * [[[pt]]] Mark Burgess, *Promise Theory: Principles and Applications*
 * [[[pvp]]] Steve Traugott, *Push vs Pull*
-* [[[sst]]] Mark Burgess, *Semantic Spacetime: A Practical Foundation*
+* [[[sst1]]] Spacetimes with Semantics I, Mark Burgess, https://arxiv.org/abs/1411.5563
+* [[[sst2]]] Spacetimes with Semantics II, Mark Burgess, https://arxiv.org/abs/1505.01716
+* [[[sst3]]] Spacetimes with Semantics III, Mark Burgess, https://arxiv.org/abs/1608.02193
 * [[[turing]]] Alan Turing, "On Computable Numbers, with an Application to the Entscheidungsproblem," *Proceedings of the London Mathematical Society*, 1936.
 
