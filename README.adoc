@@ -196,7 +196,7 @@ Automated Systems Administration."  <<ordermatters>>   While the
 long-term response to the paper has been positive, the short-term
 reaction was decidedly not.  I won't go into the gory details here.
 
-Tribal drama aside, I was bothered by the thought that much of
+Tribal drama aside, I was bothered by my own thought that much of
 the controversy was about the wrong thing.  I was pretty sure that the
 centralized systems that were the subject of debate were not the
 future.  I was also pretty sure Mark was thinking the same thing; he
