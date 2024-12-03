@@ -453,7 +453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_abstract">Abstract</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>We introduce a system that executes a worldline discovery process.
+<p>We introduce a system that executes a world line discovery process.
 The system is a decentralized infinite state machine in which
 each agent manages its local state and interacts with other agents by
 making promises about state transitions in the past or future on one
@@ -541,7 +541,7 @@ need, but I&#8217;ll not be able to get it past internal culture."</p>
 <p>In that year, the terms "open source" and "infrastructure" had not yet
 been applied to computing. About 1% of the world&#8217;s population was
 using the Internet, most software was still distributed on tape or
-floppy disks, Linux was at version 0.99, and git was over a decade in the
+floppy disks, Linux was at version 0.99, and Git was over a decade in the
 future.</p>
 </div>
 <div class="paragraph">
@@ -719,7 +719,7 @@ long-term response to the paper has been positive, the short-term
 reaction was decidedly not.  I won&#8217;t go into the gory details here.</p>
 </div>
 <div class="paragraph">
-<p>On top of the tribal drama, I was bothered by the thought that much of
+<p>Tribal drama aside, I was bothered by the thought that much of
 the controversy was about the wrong thing.  I was pretty sure that the
 centralized systems that were the subject of debate were not the
 future.  I was also pretty sure Mark was thinking the same thing; he
@@ -819,13 +819,13 @@ the limitations of a decentralized system is not a good long-term
 solution.</p>
 </div>
 <div class="paragraph">
-<p>With git, the merge problem is solved by having humans propose and
+<p>With Git, the merge problem is solved by having humans propose and
 approve changes. The tool attempts to help with line-based merging,
 without any context regarding the meaning of the text or problem to be
 solved, and gives up quickly in case of conflicts. It&#8217;s up to human
 reviewers to provide intent and context, supported by test cases,
 documentation, issue comments, and other artifacts that are external
-to git itself.</p>
+to Git itself.</p>
 </div>
 <div class="paragraph">
 <p>Finally, the recent advent of more capable large language models
@@ -835,7 +835,7 @@ into account meaning, context, and intent.  These tools can help solve
 the merge problem for non-numerical decisions, reducing the
 need to boil problems down to numbers, providing an advantage over the
 above numerical methods as well as over earlier file-based version
-control systems such as git.</p>
+control systems such as Git.</p>
 </div>
 <div class="paragraph">
 <p>Decentralization needs to be applied to LLMs as well, to prevent
@@ -916,11 +916,11 @@ location of a thing in its state space can be described using a vector
 of coordinates. <a href="#sst1">[sst1]</a><a href="#sst2">[sst2]</a><a href="#sst3">[sst3]</a></p>
 </div>
 <div class="paragraph">
-<p>For a practical example, consider a git repository.  The repository
-contains the history of a set of files.  This history is modeled as a
+<p>For a practical example, consider a Git repository.  The repository
+contains the history of a set of files.  This history can be modeled as a
 hypergraph, where each node in the graph is the state of a single
 file, a tree of files, or a commit message, and the edges in the graph
-represent are the commits that transition the repository from one
+represent the commits that transition the repository from one
 state to another.  The repository is an infinite state machine, as it
 can have an unbounded number of commits over time.  The graph is
 decentralized, as each agent (developer) manages their own local state
@@ -928,6 +928,9 @@ and interacts with other agents by making promises about state
 transitions on one or more timelines (branches).  The merge problem is
 the problem of reconciling the promises (commits) made by different
 agents (developers) on different branches.</p>
+</div>
+<div class="paragraph">
+<p>XXX add graph illustrating git repository as hypergraph</p>
 </div>
 </div>
 </div>
@@ -988,6 +991,9 @@ state-transition model we are proposing here.</p>
 </div>
 <div class="paragraph">
 <p>XXX stop here</p>
+</div>
+<div class="paragraph">
+<p>XXX add graphics</p>
 </div>
 <div class="paragraph">
 <p>To enable ISM compatibility with Promise Theory and Semantic Spacetime, we propose a generic language for describing state transitions. This language uses a tuple format to capture promises about function execution. The proposed format is as follows:</p>
@@ -1675,7 +1681,7 @@ purpose.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-12-03 23:24:02 UTC
+Last updated 2024-12-03 23:40:28 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
