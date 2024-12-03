@@ -477,7 +477,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_history">History</a></li>
 <li><a href="#_the_merge_problem">The Merge Problem</a></li>
 <li><a href="#_a_possible_solution">A Possible Solution</a></li>
-<li><a href="#_a_prediction">A Prediction</a></li>
 </ul>
 </li>
 <li><a href="#_theory">Theory</a>
@@ -543,8 +542,8 @@ need, but I&#8217;ll not be able to get it past internal culture."</p>
 <p>In that year, the terms "open source" and "infrastructure" had not yet
 been applied to computing. About 1% of the world&#8217;s population was
 using the Internet, most software was still distributed on tape or
-floppy disks, Linux was at version 0.99, and git was over a decade in
-the future.</p>
+floppy disks, Linux was at version 0.99, and git was over a decade in the
+future.</p>
 </div>
 <div class="paragraph">
 <p>Derivatives trading was becoming the most profitable business in
@@ -846,7 +845,7 @@ make decisions.</p>
 </div>
 <div class="paragraph">
 <p>In this paper, we attempt to bring together the principles behind
-basic computing theory, Infrastrucure as Code, Promise Theory,
+basic computing theory, Infrastructure as Code, Promise Theory,
 Semantic Spacetime, DevOps, version control, and LLMs to propose a new
 model for decentralized systems that can handle both numerical and
 non-numerical consensus merge problems at global scale.</p>
@@ -933,39 +932,6 @@ agents (developers) on different branches.</p>
 </div>
 <div class="paragraph">
 <p>XXX stop here</p>
-</div>
-<div class="paragraph">
-<p>We propose a system for computing, communication, and governance built on consensus mechanisms, specifically designed to tackle the challenges in collaborative work and leadership that hinder organizations and communities, including non-profits and businesses.</p>
-</div>
-<div class="paragraph">
-<p>This system serves as a decentralized computation network, analogous to how the Internet operates as a decentralized communication network. Just as the Internet is a distributed network, our system functions as a decentralized computer. It is owned and operated by its users rather than any single legal entity, ensuring that the grid remains scalable and resilient as more users join.</p>
-</div>
-<div class="paragraph">
-<p>In a nutshell, if the <a href="#_theory">Theory</a> section is correct, then we should be able to build a decentralized system for equitable and accurate group communication, computation, and decision-making using current technology and concepts from graph theory.</p>
-</div>
-<div class="paragraph">
-<p>The general idea is that the universe can be modeled as a hypergraph, where each node in the graph is a state of an agent, and each edge in the graph is an action taken by an agent in response to a stimulus. A hypergraph that models the universe can also be thought of as an infinite state machine.</p>
-</div>
-<div class="paragraph">
-<p>Promise Theory and Semantic Spacetime provide a framework for understanding how agents interact in a decentralized system; a hypergraph appears to be able to model these interactions completely.</p>
-</div>
-<div class="paragraph">
-<p>States, agents, and graph edges can be referenced by cryptographic hash in content-addressable storage, avoiding the need for central registration of code or data.</p>
-</div>
-<div class="paragraph">
-<p>As of this writing we are currently working on a proof of concept implementation of this system, using existing libraries for low-level message framing and content-addressable data storage.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_a_prediction">A Prediction</h3>
-<div class="paragraph">
-<p>If the following model is correct, then we should be able to use it as a basis for design of a decentralized system that can be used to compute any function computable by machine.</p>
-</div>
-<div class="paragraph">
-<p>It is also reasonable that, if the resulting system includes agents that are super-Turing, e.g. human agents, then the system should be able to compute any function computable by a human.</p>
-</div>
-<div class="paragraph">
-<p>Finally, if the system includes multiple agents that are human, then it should be able to compute any function computable by a group of humans, including analysis, consensus formation, conflict detection and resolution, and decision recording.</p>
 </div>
 </div>
 </div>
@@ -1288,7 +1254,7 @@ agents (developers) on different branches.</p>
 <p><strong>Advantages:</strong></p>
 </li>
 <li>
-<p><strong>Efficiency:</strong> Binary format reduces the size of the encoded data, which beneficial for distributed systems where bandwidth may be limited.</p>
+<p><strong>Efficiency:</strong> Binary format reduces the size of the encoded data, which is beneficial for distributed systems where bandwidth may be limited.</p>
 </li>
 <li>
 <p><strong>Flexibility:</strong> Supports a wide range of data types, including complex nested structures.</p>
@@ -1442,13 +1408,10 @@ contemporary machine has \$8 * 2^(10^12)\$ possible bit states&#8201;&#8212;&#82
 <div class="sect2">
 <h3 id="_decentralized_infinite_state_machine_dism">Decentralized Infinite State Machine (DISM)</h3>
 <div class="paragraph">
-<p>A decentralized ISM is a system of interconnected infinite state machines that operate autonomously and interact with each other with no central controller. Each machine manages only its own local state based on transitions triggered by inputs. Inputs may be from local sources or from other state machines.</p>
+<p>A decentralized infinite state machine is a system of interconnected infinite state machines that operate autonomously and interact with each other with no central controller. Each machine manages only its own local state based on transitions triggered by inputs. Inputs may be from local sources or from other state machines.</p>
 </div>
 <div class="paragraph">
 <p>A real-world example of a decentralized infinite state machine is a group of git repository forks, where each repository is an infinite state machine that can interact with other repositories via pull and push operations.</p>
-</div>
-<div class="paragraph">
-<p>XXX Each agent acts independently, promoting scalability and fault tolerance. Each agent is responsible for deciding its own next state based on both internal conditions and the promises made by other agents. These agents are autonomous, following the core principle of Promise Theory, where each agent manages its own behavior and is not dictated by any central authority. Agents only promise things that are under their own control&#8201;&#8212;&#8201;agents cannot make promises on behalf of others. These promises can be observed by others to inform their own state transitions.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1636,7 +1599,7 @@ this change in total state, the system as a whole would have no
 purpose.</p>
 </div>
 <div class="paragraph">
-<p>XXX <a href="#sysinit">[sysinit]</a></p>
+<p>XXX mention System Initiative <a href="#sysinit">[sysinit]</a></p>
 </div>
 </div>
 </div>
@@ -1688,7 +1651,7 @@ purpose.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-12-03 21:08:24 UTC
+Last updated 2024-12-03 21:56:24 UTC
 </div>
 </div>
 <script type="text/x-mathjax-config">
