@@ -6,15 +6,15 @@ Steve Traugott <http://github.com/stevegt>; Donaldo Almazon; JJ Salley; Rebecca 
 
 == Abstract
 
-We introduce the concept of a decentralized infinite state machine (DISM) in which each agent manages its local state and interacts with other agents by making promises about state transitions in the past or future on one or more timelines. 
+We introduce a system that executes a worldline discovery process.
+The system is a decentralized infinite state machine in which
+each agent manages its local state and interacts with other agents by
+making promises about state transitions in the past or future on one
+or more timelines. 
 
-We postulate that this DISM framework is compatible with both Semantic Spacetime (SST) and Promise Theory (PT), providing a natural model for decentralized systems where the interaction between autonomous agents defines system behavior. 
-
-Additionally, we propose a generic language for describing state transitions in DISM that aligns with SST and PT principles. 
-
-This language relies on the concept of promises, where the DISM kernel (the agent) signs tuples that describe transitions between functions without those functions making promises themselves. 
-
-We suspect that this model maintains a separation of concerns between the kernel and hosted functions that is consistent with Promise Theory.
+This process appears to be usable for general-purpose computing as
+well as for organizational and community governance, including
+decentralized consensus formation.  
 
 toc::[]
 
@@ -26,7 +26,9 @@ section that is written in a more accessible narrative style, and a
 
 == Discussion
 
-=== History
+Feel free to skip to <<<The Merge Problem>>> if you're in a hurry.
+
+=== History and Motivation
 
 *-- By Steve Traugott*
 
@@ -315,7 +317,7 @@ organizations that use networked computers (the entire developed world
 at this point) should be able to benefit from the resulting better
 tools for communications and governance.
 
-=== A Possible Solution
+=== World Line Discovery Process
 
 It appears that we can incentivize agents using a system similar to
 that of Promise Theory, where agents make promises and evaluate each
@@ -651,7 +653,6 @@ Promise Theory and SST lead to an interesting observation about real-world organ
 XXX Mark
 
 XXX mention LLM models and how used?
-
 
 == Appendix A
 
