@@ -6,7 +6,7 @@ Steve Traugott <http://github.com/stevegt>; Donaldo Almazon; JJ Salley; Rebecca 
 
 == Abstract
 
-We introduce a system that executes a world line discovery process.
+We introduce a system that executes a world line discovery process. <<worldline>>
 The system is a decentralized infinite state machine in which
 each agent manages its local state and interacts with other agents by
 making promises about state transitions in the past or future on one
@@ -343,7 +343,7 @@ to another.
 
 Mark Burgess discusses a similar model in <<sst1>>, using the concept
 of world lines to represent states and transitions in a spacetime
-model.  Figure 41 of that document shows a notional X/Y plane of
+model.  Figure 41 in <<sst1>> shows a notional X/Y plane of
 states in space, and a Z axis of time moving upward.  Our own attempt
 at a more detailed graph, showing more states and transitions, is
 <<fig:3dhypergraph>>. 
@@ -664,6 +664,11 @@ SST and PT are not limited to animate agents; they can be applied to any system 
 SST is also not limited to linear time; it can represent branching or parallel timelines.  
 
 Promise Theory and SST lead to an interesting observation about real-world organizations, communities, and systems of governance: At their lowest level, all systems rely on promises, and many of those promises are implicit rather than explicit. For instance, legal and monetary systems rely on the implied promises of the "social contract" between a government and its people. The standards and practices of a profession rely on the promises of its members to uphold a certain set of values and ethics. The health of any community or organization relies on promises, both explicit and implicit, that each member makes when joining and participating.  
+
+[[worldline]]
+=== World Line
+
+In physics, a **world line** is the path traced by a particle or object through spacetime. It represents the history of the object's position and state over time. In the context of Semantic Spacetime, world lines can be used to model the states and transitions of agents within a system. Each agent's world line captures its interactions, promises, and state changes over time.
 
 == Acknowledgments
 
