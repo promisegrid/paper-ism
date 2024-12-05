@@ -1,0 +1,49 @@
+- the truth is out there:  if we pretend that everything computable
+  has already been computed, then the results of the computation are
+  available -- out job, then is to understand how to index and access 
+  those results
+- function call is a lookup:  if all functions are already computed,
+  then a function call is a lookup in a table of results -- the
+  table might be indexed by function and input values
+- very large hashes can be used as pointers to the function's
+  algorithm and any input values
+- lookup table is a list of assertions:  if a function call is a
+  lookup, then the table is a list of assertions about the function
+  and its inputs and outputs
+- there may be multiple competing assertions for a given function call and input
+  value set.  our job, then, is to determine which assertion is the
+  most likely to be correct
+- we can use Promise Theory to track the assertions made by the agents
+  who created the assertions in the lookup table; if an assertion
+  holds true over time, then the agent who made the assertion is 
+  more likely to be trustworthy
+- because we are pretending that all functions are already computed,
+  and because a function call is a lookup, then we can pretend that
+  all data, including function call algorithms, are already in the
+  table as index values.  
+- if we use hashes as pointers to algorithms or data items, then
+  retrieving the data is a matter of looking up the hash in the table
+  index and following the pointer to the data
+- if we use hashes as pointers to algorithms or data items, then
+  storing the data is a matter of storing the data at the hash
+  location in the table index 
+- because all data is indexed in the table, we can chain the output
+  data from a function call to the input data of another function call
+- because we can chain all function calls and data, we can build a
+  hypergraph of all function calls and data in the universe
+- because we can build a hypergraph of all function calls and data in
+  the universe, we can build a hypergraph of all agents in the
+  universe and their interactions
+- because we can use Promise Theory to track assertions and outcomes,
+  and because we can build a hypergraph of all agents and their
+  interactions, we can better choose which agents to trust based on
+  the cumulative outcomes of their assertions in a given branch of the
+  hypergraph
+- because we can better choose which agents to trust based on the
+  cumulative outcomes of their assertions in a given branch of the
+  hypergraph, we can build a decentralized system that is more
+  resilient to attack and more scalable than a centralized system
+- because we can build a decentralized system that is more resilient
+  to attack and more scalable than a centralized system, we can build
+  a system that is more equitable and accurate in its decision-making
+  than a centralized system
