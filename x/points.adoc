@@ -1,17 +1,18 @@
 - the truth is out there:  if we pretend that everything computable
   has already been computed, then the results of the computation are
-  available -- out job, then is to understand how to index and access 
+  available -- our job, then, is to understand how to index and access 
   those results
 - function call is a lookup:  if all functions are already computed,
-  then a function call is a lookup in a table of results -- the
-  table might be indexed by function and input values
+  then a function call is a lookup in a table of results -- the table
+  can be a key-value store. the keys are an index of function and
+  input values, with function results as values
 - very large hashes can be used as pointers to the function's
   algorithm and any input values
 - lookup table is a list of assertions:  if a function call is a
   lookup, then the table is a list of assertions about the function
   and its inputs and outputs
 - there may be multiple competing assertions for a given function call and input
-  value set.  our job, then, is to determine which assertion is the
+  value set.  our job, then, is to determine which assertion is 
   most likely to be correct
 - we can use Promise Theory to track the assertions made by the agents
   who created the assertions in the lookup table; if an assertion

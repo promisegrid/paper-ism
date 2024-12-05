@@ -1,5 +1,3 @@
-File: /home/stevegt/lab/promisegrid/paper-ism/x/logic.adoc
-```adoc
 [[1]] 1. If we assume that all computable results have already been computed, then the outputs of any computation are readily available. Our primary task becomes understanding how to index and access these precomputed results.
 
 [[2]] 2. Since all functions are already computed in this scenario, invoking a function equates to performing a lookup in a table of results. This table can be indexed by the function identifier and its input values, simplifying function calls to retrieval operations.
@@ -29,5 +27,3 @@ File: /home/stevegt/lab/promisegrid/paper-ism/x/logic.adoc
 [[14]] 14. As a result of <<13>>, we can develop a decentralized system that is more resilient to attacks and scales better than centralized systems. The decentralized nature reduces single points of failure and distributes trust across multiple agents.
 
 [[15]] 15. Ultimately, by constructing a decentralized, resilient, and scalable system as described in <<14>>, we can achieve a system that is more equitable and accurate in its decision-making processes compared to traditional centralized systems.
-```
-EOF_/home/stevegt/lab/promisegrid/paper-ism/x/logic.adoc
